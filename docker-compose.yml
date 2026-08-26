@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------------------------
+  # 1. BASE DE DATOS LOCAL POSTGRESQL (v15)
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:15-alpine
+    container_name: albarracin_db
+    restart: always
+    environment:
+      POSTGRES_DB: albarracin_erp
+      POSTGRES_USER: albarracin_admin
+      POSTGRES_PASSWORD: SecretLocalPassword2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U albarracin_admin -d albarracin_erp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # 2. STOREFRONT ECOMMERCE (WordPress + WooCommerce)
+  # ---------------------------------------------------------------------------
+  wordpress:
+    image: wordpress:latest
+    container_name: albarracin_storefront
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: postgres:5432
+      WORDPRESS_DB_USER: albarracin_admin
+      WORDPRESS_DB_PASSWORD: SecretLocalPassword2026
+      WORDPRESS_DB_NAME: albarracin_erp
+    volumes:
+      - wp_data:/var/www/html
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ---------------------------------------------------------------------------
+  # 3. SCRIPT RUNNER ETL & AUTOMATION (Python 3.11 Cron Engine)
+  # ---------------------------------------------------------------------------
+  etl_runner:
+    image: python:3.11-slim
+    container_name: albarracin_etl_cron
+    restart: always
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - TELEGRAM_BOT_TOKEN=123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ
+      - TELEGRAM_CHAT_ID=-100123456789
+      - API_BASE_URL=http://wordpress:80/wp-json/wc/v3
+      - MERCADOLIBRE_CLIENT_ID=${MERCADOLIBRE_CLIENT_ID:-}
+      - MERCADOLIBRE_CLIENT_SECRET=${MERCADOLIBRE_CLIENT_SECRET:-}
+      - MERCADOLIBRE_REDIRECT_URI=${MERCADOLIBRE_REDIRECT_URI:-http://localhost:8080/api/mercadolibre/callback}
+    command: >
+      sh -c "pip install pandas requests &&
+            echo '0 8 * * * python /app/importador.py >> /var/log/cron.log 2>&1' > /etc/cron.d/etl-cron &&
+            chmod 0644 /etc/cron.d/etl-cron &&
+            python /app/importador.py &&
+            tail -f /dev/null"
+    depends_on:
+      - wordpress
+
+  # ---------------------------------------------------------------------------
+  # 4. CLOUDFLARE TUNNEL (Exposición Segura HTTPS 0$)
+  # ---------------------------------------------------------------------------
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: albarracin_tunnel
+    restart: always
+    command: tunnel --no-autoupdate run --token YOUR_CLOUDFLARE_TUNNEL_TOKEN_HERE
+    depends_on:
+      - wordpress
+
+volumes:
+  postgres_data:
+  wp_data:

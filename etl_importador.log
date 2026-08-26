@@ -1,0 +1,9 @@
+2026-08-21 16:35:44,241 [INFO] === INICIANDO PROCESAMIENTO ETL: lista_proveedor.csv ===
+2026-08-21 16:35:44,241 [ERROR] El archivo lista_proveedor.csv no existe. Creando muestra de prueba...
+2026-08-21 16:35:44,270 [INFO] [API & ML SYNC] Sincronizando SKU FISPA-70014 -> PVP: $84566.29 | Stock: 14 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-08-21 16:35:44,270 [WARNING] ⚠️ VARIACIÓN ALTA DETECTADA (28.68%) en SKU FISPA-20045: Costo anterior $29530.0 -> Nuevo $38000.0
+2026-08-21 16:35:45,380 [WARNING] Error al enviar alerta a Telegram: {"ok":false,"error_code":401,"description":"Unauthorized"}
+2026-08-21 16:35:45,384 [INFO] [API & ML SYNC] Sincronizando SKU AUTOCENTRAL-DIST-GATES -> PVP: $65830.05 | Stock: 12 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-08-21 16:35:45,385 [INFO] [API & ML SYNC] Sincronizando SKU ALMA-EMB-SACHS -> PVP: $185010.21 | Stock: 8 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-08-21 16:35:45,385 [INFO] [API & ML SYNC] Sincronizando SKU ACARA-HONDA-TORNADO -> PVP: $5466507.75 | Stock: 4 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-08-21 16:35:45,386 [INFO] === ETL COMPLETADO: {'procesados': 4, 'bloqueados_alerta': 1, 'sincronizados': 4} ===
