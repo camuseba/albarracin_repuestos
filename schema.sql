@@ -234,6 +234,12 @@ CREATE TABLE IF NOT EXISTS vehicle_makes (
     country VARCHAR(100),
     is_active BOOLEAN DEFAULT TRUE,
     source VARCHAR(100) DEFAULT 'BASE_INTERNA_VERIFICADA',
+    source_record_id VARCHAR(100),
+    source_updated_at TIMESTAMP WITH TIME ZONE,
+    last_synced_at TIMESTAMP WITH TIME ZONE,
+    sync_status VARCHAR(50) DEFAULT 'SYNCED', -- 'SYNCED', 'PENDING_REVIEW', 'INACTIVE'
+    verification_status VARCHAR(50) DEFAULT 'VERIFIED', -- 'VERIFIED', 'PENDING', 'REJECTED'
+    record_hash VARCHAR(64),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -254,6 +260,12 @@ CREATE TABLE IF NOT EXISTS vehicle_models (
     is_active BOOLEAN DEFAULT TRUE,
     source VARCHAR(100) DEFAULT 'BASE_INTERNA_VERIFICADA',
     external_id VARCHAR(100),
+    source_record_id VARCHAR(100),
+    source_updated_at TIMESTAMP WITH TIME ZONE,
+    last_synced_at TIMESTAMP WITH TIME ZONE,
+    sync_status VARCHAR(50) DEFAULT 'SYNCED',
+    verification_status VARCHAR(50) DEFAULT 'VERIFIED',
+    record_hash VARCHAR(64),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -269,15 +281,23 @@ CREATE TABLE IF NOT EXISTS vehicle_versions (
     id SERIAL PRIMARY KEY,
     vehicle_model_id INT REFERENCES vehicle_models(id) ON DELETE CASCADE,
     name VARCHAR(200) NOT NULL,
+    generation VARCHAR(50),
     year_from INT NOT NULL,
     year_to INT NOT NULL,
     engine_code VARCHAR(100),
     engine_displacement VARCHAR(50),
     fuel_type VARCHAR(50),
     transmission VARCHAR(50),
+    traction VARCHAR(50),
     body_type VARCHAR(50),
     external_id VARCHAR(100),
     source VARCHAR(100) DEFAULT 'CATÁLOGO_TÉCNICO',
+    source_record_id VARCHAR(100),
+    source_updated_at TIMESTAMP WITH TIME ZONE,
+    last_synced_at TIMESTAMP WITH TIME ZONE,
+    sync_status VARCHAR(50) DEFAULT 'SYNCED',
+    verification_status VARCHAR(50) DEFAULT 'VERIFIED',
+    record_hash VARCHAR(64),
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
@@ -300,9 +320,20 @@ CREATE TABLE IF NOT EXISTS vehicles (
     engine_code VARCHAR(100),
     engine_displacement VARCHAR(50),
     fuel_type VARCHAR(50),
+    transmission VARCHAR(50),
+    traction VARCHAR(50),
+    body_type VARCHAR(50),
     source VARCHAR(100) DEFAULT 'BASE_INTERNA_VERIFICADA',
     external_id VARCHAR(100),
-    is_active BOOLEAN DEFAULT TRUE
+    source_record_id VARCHAR(100),
+    source_updated_at TIMESTAMP WITH TIME ZONE,
+    last_synced_at TIMESTAMP WITH TIME ZONE,
+    sync_status VARCHAR(50) DEFAULT 'SYNCED',
+    verification_status VARCHAR(50) DEFAULT 'VERIFIED',
+    record_hash VARCHAR(64),
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE INDEX idx_vehicles_lookup ON vehicles(make_id, model_id, version_id, year);
@@ -315,12 +346,19 @@ CREATE TABLE IF NOT EXISTS product_vehicle_compatibility (
     id SERIAL PRIMARY KEY,
     product_id INT REFERENCES productos(id) ON DELETE CASCADE,
     vehicle_id INT REFERENCES vehicles(id) ON DELETE CASCADE,
-    compatibility_type VARCHAR(50) DEFAULT 'EXACTA', -- 'EXACTA', 'MODELO', 'GENERACIÓN', 'VERSIÓN', 'MOTOR', 'AÑO', 'UNIVERSAL', 'REQUIERE_VERIFICACIÓN'
+    product_sku VARCHAR(60),
+    compatibility_type VARCHAR(50) DEFAULT 'EXACTA', -- 'EXACTA', 'MODELO', 'GENERACIÓN', 'VERSIÓN', 'MOTOR', 'AÑO', 'UNIVERSAL'
+    compatibility_scope VARCHAR(100) DEFAULT 'MOTOR_CHASIS',
     position VARCHAR(100),
+    year_from INT,
+    year_to INT,
+    engine_code VARCHAR(100),
+    engine_displacement VARCHAR(50),
     notes TEXT,
-    source VARCHAR(100) NOT NULL, -- 'FABRICANTE', 'DISTRIBUIDOR_OFICIAL', 'CATÁLOGO_TÉCNICO', 'MERCADO_LIBRE', 'BASE_INTERNA_VERIFICADA'
+    source VARCHAR(100) NOT NULL, -- 'FABRICANTE', 'DISTRIBUIDOR_OFICIAL', 'CATÁLOGO_TÉCNICO', 'OEM', 'BASE_INTERNA_VERIFICADA'
     source_reference VARCHAR(255),
     confidence NUMERIC(3, 2) DEFAULT 1.0,
+    verification_status VARCHAR(30) NOT NULL DEFAULT 'VERIFIED', -- 'VERIFIED', 'PENDING', 'REJECTED'
     verified BOOLEAN DEFAULT TRUE,
     verified_by VARCHAR(150),
     verified_at TIMESTAMP WITH TIME ZONE,
@@ -331,7 +369,7 @@ CREATE TABLE IF NOT EXISTS product_vehicle_compatibility (
 
 CREATE INDEX idx_comp_product ON product_vehicle_compatibility(product_id);
 CREATE INDEX idx_comp_vehicle ON product_vehicle_compatibility(vehicle_id);
-CREATE INDEX idx_comp_verified ON product_vehicle_compatibility(verified);
+CREATE INDEX idx_comp_status ON product_vehicle_compatibility(verification_status);
 
 -- -----------------------------------------------------------------------------
 -- 18. TABLA: product_oem_references
@@ -370,6 +408,30 @@ CREATE TABLE IF NOT EXISTS vehicle_plate_cache (
 );
 
 CREATE INDEX idx_plate_hash ON vehicle_plate_cache(plate_hash);
+
+-- -----------------------------------------------------------------------------
+-- 20. TABLA: vehicle_sync_runs
+-- Auditoría de corridas de sincronización diaria y trazabilidad de proveedores.
+-- -----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS vehicle_sync_runs (
+    id SERIAL PRIMARY KEY,
+    provider VARCHAR(100) NOT NULL, -- 'DNRPA_OFFICIAL', 'ACARA_OFFICIAL', 'OEM_CATALOG', 'INTERNAL_BATCH'
+    started_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    finished_at TIMESTAMP WITH TIME ZONE,
+    status VARCHAR(30) NOT NULL DEFAULT 'RUNNING', -- 'RUNNING', 'SUCCESS', 'PARTIAL_SUCCESS', 'FAILED', 'CANCELLED'
+    records_received INT DEFAULT 0,
+    records_inserted INT DEFAULT 0,
+    records_updated INT DEFAULT 0,
+    records_unchanged INT DEFAULT 0,
+    records_failed INT DEFAULT 0,
+    last_cursor VARCHAR(255),
+    last_sync_reference VARCHAR(255),
+    error_message TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_sync_runs_status ON vehicle_sync_runs(status);
+CREATE INDEX idx_sync_runs_started ON vehicle_sync_runs(started_at);
 
 
 

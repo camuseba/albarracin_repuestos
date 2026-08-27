@@ -238,6 +238,22 @@ function renderLoyaltyContent() {
             Registrarme y Recibir Puntos 🎁
           </button>
         </form>
+
+        <!-- Acceso Directo DNRPA Sync -->
+        <div style="margin-top: 25px; background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(59, 130, 246, 0.5); border-radius: 10px; padding: 12px; cursor: pointer;" onclick="if(typeof openVehicleAdminModal==='function'){ openVehicleAdminModal(); }">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.3rem;">🚗</span>
+              <div style="text-align: left;">
+                <div style="font-weight: 800; font-size: 0.82rem; color: #f8fafc;">Sincronización DNRPA & Base Vehicular</div>
+                <div style="font-size: 0.7rem; color: #94a3b8;">Estado oficial, métricas y diagnóstico</div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary" style="padding: 4px 8px; font-size: 0.72rem; background: #3b82f6; border-color: #3b82f6; color: white; font-weight: 800; border-radius: 4px;">
+              ⚙️ Abrir
+            </button>
+          </div>
+        </div>
       </div>
     `;
     
@@ -446,25 +462,23 @@ function renderLoyaltyContent() {
         ${renderActiveCoupons()}
       </div>
 
-      <!-- Historial -->
-      <div class="loyalty-section-title">
-        <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
-        Historial de Puntos
-      </div>
-      <div style="max-height: 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
-        ${loyaltyState.history.length === 0 ? `
-          <p style="font-size: 0.8rem; color: var(--text-tertiary); text-align: center;">No hay transacciones aún.</p>
-        ` : loyaltyState.history.slice().reverse().map(h => `
-          <div style="display: flex; justify-content: space-between; font-size: 0.75rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 4px;">
-            <div style="display: flex; flex-direction: column;">
-              <span style="font-weight: 600; color: var(--text-primary);">${h.desc}</span>
-              <span style="font-size: 0.65rem; color: var(--text-tertiary);">${new Date(h.date).toLocaleDateString()}</span>
+      <!-- Sincronización DNRPA & Base Vehicular -->
+      <div style="margin-top: 20px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)); border: 1.5px solid rgba(59, 130, 246, 0.5); border-radius: 10px; padding: 14px; cursor: pointer; transition: all 0.2s ease;" onclick="if(typeof openVehicleAdminModal==='function'){ openVehicleAdminModal(); }">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.2); width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">🚗</span>
+            <div>
+              <div style="font-weight: 800; font-size: 0.85rem; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <span>Sincronización DNRPA</span>
+                <span style="background: rgba(16,185,129,0.2); color: #10b981; font-size: 0.65rem; padding: 2px 6px; border-radius: 3px; font-weight: 800;">OFICIAL</span>
+              </div>
+              <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Base maestra, corridas y diagnóstico de patentes</div>
             </div>
-            <span style="font-weight: 700; color: ${h.amount > 0 ? '#00e676' : '#ff5722'};">
-              ${h.amount > 0 ? `+${h.amount}` : h.amount} pts
-            </span>
           </div>
-        `).join("")}
+          <button type="button" class="btn btn-primary" style="padding: 6px 12px; font-size: 0.75rem; background: #3b82f6; border-color: #3b82f6; color: white; font-weight: 800; border-radius: 6px; cursor: pointer;">
+            Abrir ⚙️
+          </button>
+        </div>
       </div>
     `;
     

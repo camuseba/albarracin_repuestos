@@ -1,0 +1,9 @@
+﻿User-agent: *
+Allow: /
+Disallow: /__pycache__/
+Disallow: *.py
+Disallow: *.log
+Disallow: *.sql
+Disallow: *.json
+
+Sitemap: https://albarracin-motos-repuestos.com.ar/sitemap.xml

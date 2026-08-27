@@ -619,21 +619,29 @@ function initNavScroll() {
           link.classList.add("active");
         }
       });
+      document.querySelectorAll(".android-nav-item").forEach(item => {
+        item.classList.remove("active");
+        if (item.getAttribute("href") === `#${currentSectionId}`) {
+          item.classList.add("active");
+        }
+      });
     }
   });
 
   const mobileToggle = document.getElementById("mobile-toggle");
   const navMenu = document.getElementById("nav-menu");
 
-  mobileToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("open");
-    mobileToggle.classList.toggle("active");
-  });
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      mobileToggle.classList.toggle("active");
+    });
+  }
 
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
-      navMenu.classList.remove("open");
-      mobileToggle.classList.remove("active");
+      if (navMenu) navMenu.classList.remove("open");
+      if (mobileToggle) mobileToggle.classList.remove("active");
     });
   });
 }

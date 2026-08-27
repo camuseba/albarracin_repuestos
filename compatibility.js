@@ -2445,37 +2445,101 @@
       return (raw || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase();
     },
 
-    // Búsqueda inteligente por dominio
-    searchByPlate: function (rawPlate) {
+    // Búsqueda inteligente por dominio con conexión a backend oficial DNRPA y Base Maestra
+    searchByPlate: async function (rawPlate, selectedVersionId) {
       const plate = this.normalizePlate(rawPlate);
       const statusEl = document.getElementById("patente-status-msg");
 
       if (!plate || plate.length < 6 || plate.length > 8) {
         if (statusEl) {
-          statusEl.innerHTML = '<span style="color: #ef4444; font-weight: 700;">⚠ Ingresá una patente válida (Ej: PAV832, AB123CD o OOT554).</span>';
+          statusEl.innerHTML = '<span style="color: #ef4444; font-weight: 700;">⚠ Ingresá una patente válida (Ej: PAV832, AB123CD o A123BCD).</span>';
         }
         return;
       }
 
       if (statusEl) {
-        statusEl.innerHTML = '<span style="color: var(--accent-orange); font-weight: 600;">🔍 Consultando registro vehicular autorizado...</span>';
+        statusEl.innerHTML = '<span style="color: var(--accent-orange); font-weight: 600;">🔍 Consultando registro vehicular y base maestra sincronizada...</span>';
       }
 
-      setTimeout(() => {
+      try {
+        // 1. Intentar resolver a través del backend oficial / API REST
+        let backendResult = null;
+        try {
+          const res = await fetch("/api/vehicles/lookup-by-plate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ plate: plate, version_id: selectedVersionId })
+          });
+          if (res.ok) {
+            backendResult = await res.json();
+          } else {
+            backendResult = await res.json().catch(() => null);
+          }
+        } catch (netErr) {
+          backendResult = null;
+        }
+
+        // Si el backend retornó desambiguación requerida (FASE 15)
+        if (backendResult && backendResult.needs_disambiguation) {
+          if (statusEl) {
+            let verOptionsHtml = backendResult.available_versions.map(v => 
+              `<button onclick="window.COMPATIBILITY_ENGINE.searchByPlate('${plate}', ${v.id})" style="display: block; width: 100%; text-align: left; padding: 6px 10px; margin-top: 5px; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-primary); cursor: pointer; font-size: 0.76rem;">
+                👉 <strong>${v.name}</strong> ${v.engine ? '(' + v.engine + ')' : ''}
+              </button>`
+            ).join("");
+
+            statusEl.innerHTML = `
+              <div style="background: rgba(245,158,11,0.12); border: 1px solid #f59e0b; padding: 10px; border-radius: 4px; margin-top: 6px; color: #f59e0b; font-size: 0.78rem; line-height: 1.35;">
+                <strong style="display: block; margin-bottom: 4px;">ℹ ${backendResult.message}</strong>
+                ${verOptionsHtml}
+              </div>
+            `;
+          }
+          return;
+        }
+
+        // Si el backend resolvió con éxito
+        if (backendResult && backendResult.success && backendResult.vehicle) {
+          const v = backendResult.vehicle;
+          this.activeVehicleFilter = {
+            makeId: v.make_id,
+            modelId: v.model_id,
+            versionId: v.version_id,
+            year: v.year,
+            displayName: v.displayName || `${v.make} ${v.model} ${v.version} (${v.year})`,
+            provider: v.provider
+          };
+
+          if (statusEl) {
+            statusEl.innerHTML = `
+              <div style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; padding: 8px 10px; border-radius: 4px; margin-top: 6px; color: #10b981; font-weight: 800; font-size: 0.8rem;">
+                ✓ Vehículo identificado (${v.provider}): ${this.activeVehicleFilter.displayName}
+              </div>
+            `;
+          }
+
+          const resetBtn = document.getElementById("comp-reset-btn");
+          if (resetBtn) resetBtn.style.display = "block";
+          this.updateCatalogView();
+          return;
+        }
+
+        // 2. Fallback resiliente a base local en memoria (si el servidor no está corriendo o es modo estático)
         const samples = (this.db && this.db.sample_plates) || [];
-        const match = samples.find(s => s.plate === plate);
+        const match = samples.find(s => this.normalizePlate(s.plate) === plate);
 
         if (match) {
           this.activeVehicleFilter = {
             makeId: match.make_id,
             modelId: match.model_id,
-            versionId: match.version_id,
+            versionId: selectedVersionId || match.version_id,
             year: match.year,
-            displayName: `${match.make_name} ${match.model_name} ${match.version_name} (${match.year})`
+            displayName: `${match.make_name} ${match.model_name} ${match.version_name} (${match.year})`,
+            provider: "BASE_LOCAL_VERIFICADA"
           };
 
           if (statusEl) {
-            statusEl.innerHTML = `<div style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; padding: 8px 10px; border-radius: 4px; margin-top: 6px; color: #10b981; font-weight: 800; font-size: 0.8rem;">✓ Vehículo identificado: ${this.activeVehicleFilter.displayName}</div>`;
+            statusEl.innerHTML = `<div style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; padding: 8px 10px; border-radius: 4px; margin-top: 6px; color: #10b981; font-weight: 800; font-size: 0.8rem;">✓ Vehículo identificado (Base Local): ${this.activeVehicleFilter.displayName}</div>`;
           }
 
           const resetBtn = document.getElementById("comp-reset-btn");
@@ -2484,17 +2548,25 @@
           this.updateCatalogView();
         } else {
           if (statusEl) {
+            const providerStatusBadge = backendResult?.provider_badge || "~ PENDIENTE DE CREDENCIALES / CONVENIO";
             statusEl.innerHTML = `
               <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); padding: 10px; border-radius: 4px; margin-top: 6px; color: #f87171; font-size: 0.78rem; line-height: 1.4;">
-                <strong style="color: #ef4444; display: block; margin-bottom: 2px;">⚠ Dominio sin compatibilidad directa en base local</strong>
-                Para evitar sugerir repuestos incorrectos, la consulta de patentes en vivo requiere credenciales activas del proveedor vehicular. 
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                  <strong style="color: #ef4444;">⚠ Dominio sin coincidencia en base local</strong>
+                  <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.7rem; color: #e2e8f0;">DNRPA: ${providerStatusBadge}</span>
+                </div>
+                Para evitar sugerir repuestos incompatibles, las consultas en vivo requieren credenciales oficiales habilitadas.
                 <br><br>
                 👉 <strong>Seleccioná tu vehículo en la pestaña "Por Vehículo"</strong> para ver exactamente los repuestos que le corresponden.
               </div>
             `;
           }
         }
-      }, 200);
+      } catch (err) {
+        if (statusEl) {
+          statusEl.innerHTML = `<span style="color: #ef4444; font-size: 0.75rem;">Error en la verificación de patente: ${err.message}</span>`;
+        }
+      }
     },
 
     applyVehicleSearch: function () {
@@ -2575,7 +2647,8 @@
       const matchingVIds = matchingVehicles.map(v => v.id);
 
       const compatibilities = (this.db.product_vehicle_compatibility || []).filter(c => {
-        return matchingVIds.includes(c.vehicle_id) && c.verified;
+        const isVerified = (c.verification_status === "VERIFIED") || (c.verified === true && c.verification_status !== "PENDING" && c.verification_status !== "REJECTED");
+        return matchingVIds.includes(c.vehicle_id) && isVerified;
       });
 
       return compatibilities.map(c => c.product_sku);

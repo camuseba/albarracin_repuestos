@@ -677,14 +677,27 @@ button {
 }
 
 .hero-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.hero-card .hero-card-title {
   font-size: 1.8rem;
   color: #ffffff;
   margin-bottom: 10px;
 }
 
 .hero-card-desc {
-  color: #d1d5db;
+  color: var(--text-secondary);
   font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.hero-card .hero-card-desc {
+  color: #d1d5db;
   margin-bottom: 20px;
 }
 
@@ -1393,15 +1406,20 @@ button {
 
 /* Appointment Form Wrapper */
 .booking-section {
-  margin-top: 50px;
-  padding: 40px;
+  margin-top: 30px;
+  padding: 28px 30px;
+}
+
+.booking-section .hero-card-title {
+  font-size: 1.45rem;
+  margin-bottom: 4px;
 }
 
 .booking-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
+  gap: 18px;
+  margin-top: 20px;
 }
 
 .form-group {
@@ -1954,10 +1972,15 @@ button {
 }
 
 .contact-info-panel {
-  padding: 40px;
+  padding: 28px 30px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+}
+
+.contact-info-panel .hero-card-title {
+  font-size: 1.45rem;
+  margin-bottom: 2px;
 }
 
 .contact-item {
@@ -2441,6 +2464,36 @@ button {
     height: 320px;
     width: 100%;
   }
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .category-card {
+    padding: 18px 12px !important;
+    border-radius: var(--border-radius-sm) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .category-icon-wrapper {
+    width: 50px !important;
+    height: 50px !important;
+    margin: 0 auto 10px !important;
+  }
+  .category-icon-wrapper svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .category-title {
+    font-size: 1.0rem !important;
+    margin-bottom: 4px !important;
+    line-height: 1.2 !important;
+  }
+  .category-desc {
+    font-size: 0.74rem !important;
+    line-height: 1.32 !important;
+  }
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
@@ -2513,7 +2566,16 @@ button {
     padding: 20px;
   }
   .booking-section {
-    padding: 20px;
+    margin-top: 20px;
+    padding: 18px 16px;
+  }
+  .booking-section .hero-card-title,
+  .contact-info-panel .hero-card-title {
+    font-size: 1.25rem;
+  }
+  .contact-info-panel {
+    padding: 18px 16px;
+    gap: 16px;
   }
   .cart-drawer, .loyalty-drawer {
     width: 100%;
@@ -2528,6 +2590,29 @@ button {
 @media (max-width: 480px) {
   .container {
     padding: 0 16px;
+  }
+  .categories-grid {
+    gap: 10px !important;
+  }
+  .category-card {
+    padding: 14px 8px !important;
+  }
+  .category-icon-wrapper {
+    width: 42px !important;
+    height: 42px !important;
+    margin: 0 auto 8px !important;
+  }
+  .category-icon-wrapper svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .category-title {
+    font-size: 0.88rem !important;
+    margin-bottom: 3px !important;
+  }
+  .category-desc {
+    font-size: 0.68rem !important;
+    line-height: 1.25 !important;
   }
   .hero-title {
     font-size: 2.0rem;
@@ -2582,13 +2667,130 @@ button {
   color: var(--accent-blue) !important;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* ==========================================
+   ANDROID MOBILE MENU & BOTTOM BAR
+   ========================================== */
+.android-menu-btn {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  width: auto;
+  min-width: 44px;
 }
 
-@keyframes pulse-glow {
-  0% { opacity: 0.6; box-shadow: 0 0 4px var(--accent-green); }
-  100% { opacity: 1; box-shadow: 0 0 12px var(--accent-green); }
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18px;
+  height: 13px;
+}
+
+.hamburger-lines span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.android-menu-btn.active .hamburger-lines span:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.android-menu-btn.active .hamburger-lines span:nth-child(2) {
+  opacity: 0;
+}
+
+.android-menu-btn.active .hamburger-lines span:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+.menu-label-text {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-icon-mobile {
+  display: none;
+  font-size: 1.1rem;
+}
+
+.android-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .android-menu-btn {
+    display: flex;
+  }
+  .nav-icon-mobile {
+    display: inline-block;
+  }
+  .android-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+    z-index: 999;
+    justify-content: space-around;
+    align-items: center;
+    padding: 4px 8px env(safe-area-inset-bottom, 4px);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  }
+  .android-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    flex: 1;
+  }
+  .android-nav-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  .android-nav-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 0.2px;
+  }
+  .android-nav-item:hover,
+  .android-nav-item.active {
+    color: var(--text-primary);
+  }
+  .android-nav-item.active .android-nav-label {
+    color: var(--accent-orange);
+  }
+  .android-nav-item-ml .android-nav-label {
+    color: #ffe600;
+  }
+  .android-nav-item-club .android-nav-label {
+    color: var(--accent-orange);
+    font-weight: 800;
+  }
+  body {
+    padding-bottom: 70px;
+  }
 }
 
