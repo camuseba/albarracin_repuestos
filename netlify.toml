@@ -1,0 +1,21 @@
+# Configuración oficial de despliegue y sincronización en Netlify Cloud
+
+[build]
+  publish = "."
+  command = "python3 dnrpa_sync.py --run-now"
+
+[functions]
+  directory = "netlify/functions"
+
+# Encabezados HTTP para evitar que los navegadores congelen en caché la base de compatibilidad
+[[headers]]
+  for = "/compatibility_db.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"

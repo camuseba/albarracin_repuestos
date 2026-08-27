@@ -30,6 +30,33 @@ from typing import Optional, Dict, Any, List, Tuple
 # Logger específico del proveedor
 logger = logging.getLogger("DNRPA_PROVIDER")
 
+def _load_env_file():
+    """Carga automáticamente variables de entorno desde .env si existe."""
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    candidates = [
+        os.path.join(base_dir, ".env"),
+        os.path.join(os.getcwd(), ".env")
+    ]
+    for env_path in candidates:
+        if os.path.isfile(env_path):
+            try:
+                with open(env_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if not line or line.startswith("#") or "=" not in line:
+                            continue
+                        k, v = line.split("=", 1)
+                        k = k.strip()
+                        v = v.strip().strip("'\"")
+                        if k and k not in os.environ:
+                            os.environ[k] = v
+                break
+            except Exception as err:
+                logger.warning(f"Error leyendo archivo de entorno {env_path}: {err}")
+
+# Carga inicial al importar el módulo
+_load_env_file()
+
 class DnrpaVehicleProvider:
     """
     Proveedor desacoplado para consulta e identificación vehicular autorizada ante DNRPA.

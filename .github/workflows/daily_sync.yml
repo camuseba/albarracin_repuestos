@@ -1,0 +1,30 @@
+﻿name: Sincronizacion Diaria de Catalogo Vehicular
+
+on:
+  schedule:
+    # 03:30 AM Argentina (06:30 UTC)
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Ejecutar Sincronizador de Datos Abiertos y ACARA
+        run: |
+          python dnrpa_sync.py --run-now
+          python test_dnrpa_compatibility.py
+
+      - name: Commitear base actualizada hacia Netlify
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(cron): actualizacion diaria de base vehicular compatibility_db.json"
+          file_pattern: "compatibility_db.json club_albarracin_fidelizacion/compatibility_db.json"

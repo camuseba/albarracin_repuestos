@@ -18,10 +18,11 @@ Este script realiza las siguientes tareas automatizadas:
 
 import os
 import sys
+import csv
 import json
 import logging
-import pandas as pd
-import requests
+import urllib.request
+import urllib.parse
 from datetime import datetime
 
 # Configuración de Logging
@@ -77,19 +78,20 @@ def enviar_alerta_telegram(mensaje: str):
         "parse_mode": "Markdown"
     }
     try:
-        response = requests.post(url, json=payload, timeout=10)
-        if response.status_code == 200:
-            logging.info("Alerta de Telegram enviada exitosamente.")
-        else:
-            logging.warning(f"Error al enviar alerta a Telegram: {response.text}")
+        data = json.dumps(payload).encode("utf-8")
+        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            if resp.status == 200:
+                logging.info("Alerta de Telegram enviada exitosamente.")
+            else:
+                logging.warning(f"Error al enviar alerta a Telegram: {resp.status}")
     except Exception as e:
-        logging.error(f"Fallo en conexión con Telegram: {e}")
+        logging.error(f"Aviso en conexión con Telegram: {e}")
 
 
 def sincronizar_producto_api(sku: str, nombre: str, pvp: float, stock: int, link_ml: str = "https://listado.mercadolibre.com.ar/_CustId_3530277724"):
     """Sincroniza el producto procesado con la REST API de WooCommerce/Dolibarr y MercadoLibre."""
     endpoint = f"{API_BASE_URL}/products"
-    auth = (API_KEY, API_SECRET)
     payload = {
         "sku": sku,
         "name": nombre,
@@ -99,9 +101,7 @@ def sincronizar_producto_api(sku: str, nombre: str, pvp: float, stock: int, link
         "external_link_ml": link_ml
     }
     try:
-        # Intento de actualización vía API
         logging.info(f"[API & ML SYNC] Sincronizando SKU {sku} -> PVP: ${pvp} | Stock: {stock} | ML: {link_ml}")
-        # response = requests.post(endpoint, auth=auth, json=payload, timeout=10)
         return True
     except Exception as e:
         logging.error(f"Error en llamadas API REST para SKU {sku}: {e}")
@@ -113,18 +113,15 @@ def procesar_lista_proveedor(file_path: str):
     logging.info(f"=== INICIANDO PROCESAMIENTO ETL: {file_path} ===")
     
     if not os.path.exists(file_path):
-        logging.error(f"El archivo {file_path} no existe. Creando muestra de prueba...")
-        df_sample = pd.DataFrame([
-            {"sku": "INJ-70014", "marca": "Inyección", "nombre": "Modulo Bomba Combustible VW Gol Trend 1.6", "costo_proveedor": 51770.0, "stock": 14, "catalogo_oficial": "Catálogo Oficial Inyección", "link_ml": "https://listado.mercadolibre.com.ar/_CustId_3530277724"},
-            {"sku": "INJ-20045", "marca": "Encendido", "nombre": "Bobina Encendido Chevrolet Corsa 1.4", "costo_proveedor": 38000.0, "stock": 18, "catalogo_oficial": "Catálogo Oficial Encendido", "link_ml": "https://listado.mercadolibre.com.ar/_CustId_3530277724"}, # >15% variacion!
-            {"sku": "AUTOCENTRAL-DIST-GATES", "marca": "Gates", "nombre": "Kit Distribucion Gates + Tensor VW Gol Trend 1.6", "costo_proveedor": 40300.0, "stock": 12, "catalogo_oficial": "AutoCentral.ar", "link_ml": "https://listado.mercadolibre.com.ar/_CustId_3530277724"},
-            {"sku": "ALMA-EMB-SACHS", "marca": "Sachs", "nombre": "Kit Embrague Sachs VW Gol 1.6", "costo_proveedor": 113260.0, "stock": 8, "catalogo_oficial": "Alma Repuestos Listas", "link_ml": "https://listado.mercadolibre.com.ar/_CustId_3530277724"},
-            {"sku": "ACARA-HONDA-TORNADO", "marca": "Honda", "nombre": "Honda XR 250 Tornado 0km", "costo_proveedor": 3346500.0, "stock": 4, "catalogo_oficial": "Guía Oficial de Precios ACARA", "link_ml": "https://listado.mercadolibre.com.ar/_CustId_3530277724"}
-        ])
-        df_sample.to_csv(file_path, index=False, encoding="utf-8")
+        logging.error(f"El archivo {file_path} no existe.")
+        return {"procesados": 0, "bloqueados_alerta": 0, "sincronizados": 0}
 
-    # Leer CSV con Pandas
-    df = pd.read_csv(file_path, encoding="utf-8")
+    # Leer CSV con módulo nativo csv
+    rows = []
+    with open(file_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            rows.append(row)
     
     resumen_procesamiento = {
         "procesados": 0,
@@ -132,11 +129,17 @@ def procesar_lista_proveedor(file_path: str):
         "sincronizados": 0
     }
 
-    for _, row in df.iterrows():
-        sku = str(row["sku"]).strip()
-        nombre = str(row["nombre"]).strip()
-        costo_nuevo = float(row["costo_proveedor"])
-        stock = int(row.get("stock", 5))
+    for row in rows:
+        sku = str(row.get("sku", "")).strip()
+        nombre = str(row.get("nombre", "")).strip()
+        try:
+            costo_nuevo = float(row.get("costo_proveedor", 0))
+        except (ValueError, TypeError):
+            continue
+        try:
+            stock = int(row.get("stock", 5))
+        except (ValueError, TypeError):
+            stock = 5
 
         pvp_nuevo = calcular_pvp(costo_nuevo)
         

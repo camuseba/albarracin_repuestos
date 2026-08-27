@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 =============================================================================
@@ -28,6 +28,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Dict, Any, List, Optional, Tuple
 
 from dnrpa_provider import DnrpaVehicleProvider
+from acara_sync import fetch_open_data_and_acara_feed
 
 # Rutas del sistema
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -191,7 +192,7 @@ class DnrpaSyncEngine:
                 if custom_records is not None:
                     records = custom_records
                     last_cursor = f"BATCH_IMPORT_{run_id}"
-                else:
+                elif self.provider.enabled:
                     # Intento 1 -> Espera (2s) -> Intento 2 -> Espera (4s) -> Intento 3 (8s)
                     max_attempts = 3
                     backoff = 2
@@ -226,6 +227,13 @@ class DnrpaSyncEngine:
                         run_record["error_message"] = error_msg or "Fallaron todos los reintentos hacia DNRPA."
                         self._update_run_record(db, run_record)
                         return run_record
+                else:
+                    # Modo Solución 1: Datos Abiertos (datos.gob.ar / DNRPA Open Data / ACARA)
+                    logger.info("Ejecutando sincronización de Datos Abiertos Nacionales (datos.gob.ar + ACARA)...")
+                    records = fetch_open_data_and_acara_feed()
+                    run_record["provider"] = "DNRPA_OPEN_DATA_ACARA"
+                    last_cursor = f"OPEN_DATA_{run_id}"
+                    logger.info(f"Obtenidos {len(records)} registros de Datos Abiertos / ACARA para procesamiento incremental.")
 
                 # Procesamiento incremental de registros
                 inserted, updated, unchanged, failed = self._process_incremental_records(db, records)
