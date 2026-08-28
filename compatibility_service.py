@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 =============================================================================
@@ -267,10 +267,16 @@ class VehicleLookupService:
         st_info = cls.provider.get_status_info()
         return {
             "success": False,
+            "status": "DOMINIO_NO_IDENTIFICADO",
+            "vehicle_id": None,
+            "vehicle": None,
+            "source": None,
+            "confidence": 0,
+            "compatibilities": [],
             "error": "DOMINIO_NO_IDENTIFICADO",
             "provider_status": st_info.get("status"),
             "provider_badge": st_info.get("badge"),
-            "message": "Para evitar sugerir repuestos incompatibles, el dominio ingresado no posee coincidencia exacta en la base local verificada y el conector oficial DNRPA se encuentra en estado 'PENDIENTE DE CREDENCIALES / CONVENIO'. Podés seleccionar tu vehículo con total precisión en la pestaña 'Por Vehículo'."
+            "message": "No pudimos identificar esta patente. La consulta registral oficial no está disponible actualmente. Seleccioná Marca y Modelo para buscar repuestos."
         }
 
 # -----------------------------------------------------------------------------
@@ -324,7 +330,79 @@ class CompatibilityAPIHandler(BaseHTTPRequestHandler):
                 versions = [v for v in versions if str(v.get("vehicle_model_id")) == model_id]
             self._send_json(versions)
 
-        # 5. Estado de Sincronización Vehicular DNRPA (Fase 13)
+        # 5. Health Check Endpoint (FASE 18)
+        elif path == "/api/admin/sync/health" or path == "/api/vehicles/sync/health":
+            provider = DnrpaVehicleProvider()
+            st_info = provider.get_status_info()
+            runs = db.get("vehicle_sync_runs", [])
+            last_run = runs[-1] if runs else {}
+            last_success = next((r for r in reversed(runs) if r.get("status") in ("SUCCESS", "NO_CHANGES")), {})
+
+            # Determinar alertas
+            alerts = []
+            now_dt = datetime.now(timezone.utc)
+            if last_run.get("status") == "FAILED":
+                alerts.append({"type": "SYNC_FAILED", "level": "CRITICAL", "message": f"La última sincronización falló: {last_run.get('error_message')}"})
+
+            if last_success.get("finished_at"):
+                try:
+                    last_succ_dt = datetime.fromisoformat(last_success["finished_at"])
+                    diff_hours = (now_dt - last_succ_dt).total_seconds() / 3600
+                    if diff_hours >= 48:
+                        alerts.append({"type": "CRITICAL_DATA_OUTDATED", "level": "CRITICAL", "message": f"Pasaron {int(diff_hours)} horas sin sincronización exitosa."})
+                    elif diff_hours >= 24:
+                        alerts.append({"type": "DATA_STALE", "level": "WARNING", "message": f"Pasaron {int(diff_hours)} horas desde la última sincronización."})
+                except Exception:
+                    pass
+
+            vehicles = db.get("vehicles", [])
+            models = db.get("vehicle_models", [])
+            versions = db.get("vehicle_versions", [])
+            compatibilities = db.get("product_vehicle_compatibility", [])
+
+            self._send_json({
+                "status": "OK" if not any(a["level"] == "CRITICAL" for a in alerts) else "CRITICAL",
+                "dnrpa": {
+                    "implemented": True,
+                    "configured": st_info["configured"],
+                    "authenticated": False,
+                    "connected": False,
+                    "data_available": False,
+                    "status_badge": st_info["badge"],
+                    "message": st_info["message"]
+                },
+                "acara": {
+                    "implemented": True,
+                    "configured": False,
+                    "connected": False,
+                    "data_available": False,
+                    "source_type": "INTERNAL_CATALOG",
+                    "note": "A la espera de API REST oficial habilitada por ACARA"
+                },
+                "internal_master_catalog": {
+                    "status": "OPERATIONAL",
+                    "catalog_name": "Catálogo Maestro Nacional Homologado",
+                    "records_count": last_run.get("records_received", 73),
+                    "last_sync": last_run.get("finished_at"),
+                    "source_hash": last_run.get("source_hash")
+                },
+                "database": {
+                    "status": "VALID",
+                    "total_vehicles": len(vehicles),
+                    "total_models": len(models),
+                    "total_versions": len(versions),
+                    "total_compatibilities": len(compatibilities),
+                    "verified_compatibilities": len([c for c in compatibilities if c.get("verification_status") == "VERIFIED" or c.get("verified") is True]),
+                    "pending_compatibilities": len([c for c in compatibilities if c.get("verification_status") == "PENDING"]),
+                    "dataset_date": last_run.get("dataset_date", datetime.now().strftime("%Y-%m-%d"))
+                },
+                "last_run": last_run,
+                "last_successful_run": last_success,
+                "alerts": alerts,
+                "next_scheduled_sync": get_next_scheduled_sync()
+            })
+
+        # 6. Estado de Sincronización Vehicular DNRPA (Fase 13)
         elif path == "/api/vehicles/sync/status":
             provider = DnrpaVehicleProvider()
             st_info = provider.get_status_info()

@@ -1,4 +1,4 @@
-﻿name: Sincronizacion Diaria de Catalogo Vehicular
+name: Sincronizacion Diaria de Catalogo Vehicular
 
 on:
   schedule:
@@ -19,6 +19,9 @@ jobs:
           python-version: '3.11'
 
       - name: Ejecutar Sincronizador de Datos Abiertos y ACARA
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SHA: ${{ github.sha }}
         run: |
           python dnrpa_sync.py --run-now
           python test_dnrpa_compatibility.py
@@ -26,5 +29,5 @@ jobs:
       - name: Commitear base actualizada hacia Netlify
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(cron): actualizacion diaria de base vehicular compatibility_db.json"
+          commit_message: "chore(cron): actualizacion diaria de base vehicular compatibility_db.json [skip ci]"
           file_pattern: "compatibility_db.json club_albarracin_fidelizacion/compatibility_db.json"

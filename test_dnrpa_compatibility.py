@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 =============================================================================
@@ -83,7 +83,7 @@ class TestDnrpaCompatibilityArchitecture(unittest.TestCase):
         test_rec = {
             "make": "Renault",
             "model": "Kangoo",
-            "version": "1.6 SCe Zen",
+            "version": f"1.6 SCe Zen Test_{int(time.time())}",
             "vehicle_type": "autos",
             "year": 2022,
             "year_from": 2018,
@@ -97,11 +97,11 @@ class TestDnrpaCompatibilityArchitecture(unittest.TestCase):
         # 1. Primera corrida: INSERT
         res1 = self.engine.execute_sync(custom_records=[test_rec])
         self.assertEqual(res1["status"], "SUCCESS")
-        self.assertGreaterEqual(res1["records_inserted"], 0)
+        self.assertGreaterEqual(res1["records_inserted"], 1)
 
-        # 2. Segunda corrida idéntica: UNCHANGED
+        # 2. Segunda corrida idéntica: NO_CHANGES
         res2 = self.engine.execute_sync(custom_records=[test_rec])
-        self.assertEqual(res2["status"], "SUCCESS")
+        self.assertIn(res2["status"], ("SUCCESS", "NO_CHANGES"))
         self.assertEqual(res2["records_inserted"], 0)
         self.assertGreaterEqual(res2["records_unchanged"], 1)
 

@@ -151,28 +151,10 @@ def parse_vehicle_line(raw_str):
 
 def fetch_open_data_and_acara_feed():
     """
-    Obtiene el feed unificado de Datos Abiertos Nacionales (datos.gob.ar / DNRPA Open Data)
-    y guías de homologación ACARA.
+    Obtiene el feed de datos de compatibilidad técnica vehicular homologada
+    basado en la Guía Oficial y registros nacionales (Motos, Autos, Pick-ups).
     """
     records = []
-    
-    # 1. Intentar consulta a portales web públicos
-    try:
-        url = "https://www.acara.org.ar/guia-oficial-de-precios.php"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AlbarracinSync/2.0",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-        }
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=8) as response:
-            html = response.read().decode("utf-8", errors="ignore")
-            matches = re.findall(r'<option[^>]*>([A-Z0-9\s\.\-\/]{4,50})<\/option>', html, re.IGNORECASE)
-            for m in matches:
-                p = parse_vehicle_line(m)
-                if p and p["make"] in MAKE_NORMALIZATION.values():
-                    records.append(p)
-    except Exception as e:
-        log(f"Aviso conexión online: {e} (Usando catálogo maestro precargado y abierto)")
 
     # 2. Catálogo Maestro Nacional Homologado (Motos, Autos, Pick-ups y Utilitarios más vendidos de Argentina)
     master_open_dataset = [

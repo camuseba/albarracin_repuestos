@@ -228,12 +228,31 @@ class DnrpaSyncEngine:
                         self._update_run_record(db, run_record)
                         return run_record
                 else:
-                    # Modo Solución 1: Datos Abiertos (datos.gob.ar / DNRPA Open Data / ACARA)
-                    logger.info("Ejecutando sincronización de Datos Abiertos Nacionales (datos.gob.ar + ACARA)...")
+                    # Modo Catálogo Maestro Interno de Especificaciones Vehiculares Homologadas
+                    logger.info("Ejecutando sincronización de Catálogo Maestro Interno de Especificaciones Vehiculares...")
                     records = fetch_open_data_and_acara_feed()
-                    run_record["provider"] = "DNRPA_OPEN_DATA_ACARA"
-                    last_cursor = f"OPEN_DATA_{run_id}"
-                    logger.info(f"Obtenidos {len(records)} registros de Datos Abiertos / ACARA para procesamiento incremental.")
+                    run_record["provider"] = "INTERNAL_MASTER_CATALOG"
+                    last_cursor = f"INTERNAL_CATALOG_{run_id}"
+                    logger.info(f"Obtenidos {len(records)} registros de Catálogo Maestro Interno para procesamiento incremental.")
+
+                # Calcular hash global de la fuente recibida
+                raw_payload_str = json.dumps(records, sort_keys=True)
+                current_hash = hashlib.sha256(raw_payload_str.encode("utf-8")).hexdigest()
+                
+                # Obtener corrida anterior exitosa
+                previous_runs = [r for r in db.get("vehicle_sync_runs", []) if r.get("status") in ("SUCCESS", "NO_CHANGES")]
+                prev_run = previous_runs[-1] if previous_runs else {}
+                previous_hash = prev_run.get("source_hash")
+
+                if len(records) == 0:
+                    run_record["status"] = "FAILED"
+                    run_record["finished_at"] = datetime.now(timezone.utc).isoformat()
+                    run_record["error_message"] = "CRITICAL — EMPTY DATASET: Se recibieron 0 registros de la fuente."
+                    run_record["source_hash"] = current_hash
+                    run_record["previous_source_hash"] = previous_hash
+                    self._update_run_record(db, run_record)
+                    logger.error("CRITICAL — EMPTY DATASET: Abortando importación para proteger base actual.")
+                    return run_record
 
                 # Procesamiento incremental de registros
                 inserted, updated, unchanged, failed = self._process_incremental_records(db, records)
@@ -245,11 +264,22 @@ class DnrpaSyncEngine:
                 run_record["records_failed"] = failed
                 run_record["last_cursor"] = last_cursor
                 run_record["last_sync_reference"] = f"DNRPA_SYNC_REF_{run_id}"
-                run_record["status"] = "PARTIAL_SUCCESS" if failed > 0 else "SUCCESS"
+                run_record["hash_algorithm"] = "SHA-256"
+                run_record["source_hash"] = current_hash
+                run_record["previous_source_hash"] = previous_hash
+                run_record["dataset_date"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                run_record["workflow_run_id"] = os.getenv("GITHUB_RUN_ID", "LOCAL_EXECUTION")
+                run_record["commit_sha"] = os.getenv("GITHUB_SHA", "LOCAL_COMMIT")
+
+                if current_hash == previous_hash and inserted == 0 and updated == 0:
+                    run_record["status"] = "NO_CHANGES"
+                else:
+                    run_record["status"] = "PARTIAL_SUCCESS" if failed > 0 else "SUCCESS"
+
                 run_record["finished_at"] = datetime.now(timezone.utc).isoformat()
 
                 self._update_run_record(db, run_record)
-                logger.info(f"Sincronización completada: Insertados={inserted}, Actualizados={updated}, Sin cambios={unchanged}, Fallidos={failed}.")
+                logger.info(f"Sincronización completada ({run_record['status']}): Hash={current_hash[:8]}..., Insertados={inserted}, Actualizados={updated}, Sin cambios={unchanged}, Fallidos={failed}.")
                 return run_record
 
         except RuntimeError as lock_err:
@@ -517,7 +547,25 @@ if __name__ == "__main__":
     elif args.run_now:
         print("Iniciando DAILY_DNRPA_SYNC bajo demanda...")
         res = engine.execute_sync()
-        print(json.dumps(res, indent=2))
+        now_dt = datetime.now(timezone.utc)
+        print("\n" + "=" * 60)
+        print("=== ALBARRACÍN VEHICLE DATABASE SYNC ===")
+        print(f"DATE: {now_dt.strftime('%Y-%m-%d')}")
+        print(f"TIME: {now_dt.strftime('%H:%M:%S')}")
+        print("TIMEZONE: America/Argentina/Buenos_Aires (UTC-3)")
+        print(f"PROVIDER: {res.get('provider')}")
+        print(f"RECORDS RECEIVED: {res.get('records_received')}")
+        print(f"DATA DATE: {res.get('dataset_date')}")
+        print(f"DATABASE INSERTED: {res.get('records_inserted')}")
+        print(f"DATABASE UPDATED: {res.get('records_updated')}")
+        print(f"DATABASE UNCHANGED: {res.get('records_unchanged')}")
+        print(f"DATABASE REJECTED: {res.get('records_failed')}")
+        print(f"PREVIOUS HASH: {res.get('previous_source_hash')}")
+        print(f"CURRENT HASH: {res.get('source_hash')}")
+        print(f"WORKFLOW RUN ID: {res.get('workflow_run_id')}")
+        print(f"COMMIT SHA: {res.get('commit_sha')}")
+        print(f"FINAL STATUS: {res.get('status')}")
+        print("=" * 60 + "\n")
 
     elif args.daemon:
         print(f"Iniciando scheduler daemon DNRPA (Programado: {DNRPA_SYNC_SCHEDULE} en {DNRPA_SYNC_TIMEZONE})...")

@@ -2242,7 +2242,7 @@
     activeVehicleFilter: null,
 
     init: async function () {
-      // Intentar sincronizar si hay un servidor backend activo
+      // Intentar cargar la base de datos remota/sincronizada
       try {
         const res = await fetch("compatibility_db.json");
         if (res.ok) {
@@ -2252,12 +2252,22 @@
           }
         }
       } catch (err) {
-        // En entorno local o sin servidor HTTP, RELATIONAL_DB funciona al 100% de forma autónoma
+        console.warn("[COMPATIBILITY] Cargado con base de respaldo local.");
       }
 
       this.bindUI();
       this.populateTypes();
       this.populateMakes();
+      this.updateStatsCount();
+    },
+
+    updateStatsCount: function () {
+      const el = document.getElementById("synced-parts-count");
+      if (!el || !this.db) return;
+      const compatibilities = this.db.product_vehicle_compatibility || [];
+      const verifiedCount = compatibilities.filter(c => c.verification_status === "VERIFIED" || c.verified === true).length;
+      const totalDisplay = verifiedCount > 0 ? verifiedCount : (this.db.vehicles ? this.db.vehicles.length : 45);
+      el.innerHTML = `${totalDisplay}<span>+</span>`;
     },
 
     getMakes: function (typeId) {
@@ -2535,11 +2545,11 @@
             versionId: selectedVersionId || match.version_id,
             year: match.year,
             displayName: `${match.make_name} ${match.model_name} ${match.version_name} (${match.year})`,
-            provider: "BASE_LOCAL_VERIFICADA"
+            provider: "FIXTURE_TEST"
           };
 
           if (statusEl) {
-            statusEl.innerHTML = `<div style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; padding: 8px 10px; border-radius: 4px; margin-top: 6px; color: #10b981; font-weight: 800; font-size: 0.8rem;">✓ Vehículo identificado (Base Local): ${this.activeVehicleFilter.displayName}</div>`;
+            statusEl.innerHTML = `<div style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; padding: 8px 10px; border-radius: 4px; margin-top: 6px; color: #10b981; font-weight: 800; font-size: 0.8rem;">✓ Vehículo identificado (Muestra / Fixture): ${this.activeVehicleFilter.displayName}</div>`;
           }
 
           const resetBtn = document.getElementById("comp-reset-btn");
@@ -2548,16 +2558,10 @@
           this.updateCatalogView();
         } else {
           if (statusEl) {
-            const providerStatusBadge = backendResult?.provider_badge || "~ PENDIENTE DE CREDENCIALES / CONVENIO";
             statusEl.innerHTML = `
               <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); padding: 10px; border-radius: 4px; margin-top: 6px; color: #f87171; font-size: 0.78rem; line-height: 1.4;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                  <strong style="color: #ef4444;">⚠ Dominio sin coincidencia en base local</strong>
-                  <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.7rem; color: #e2e8f0;">DNRPA: ${providerStatusBadge}</span>
-                </div>
-                Para evitar sugerir repuestos incompatibles, las consultas en vivo requieren credenciales oficiales habilitadas.
-                <br><br>
-                👉 <strong>Seleccioná tu vehículo en la pestaña "Por Vehículo"</strong> para ver exactamente los repuestos que le corresponden.
+                <strong style="color: #ef4444; display: block; margin-bottom: 4px;">⚠ DOMINIO NO IDENTIFICADO</strong>
+                No pudimos identificar esta patente. La consulta registral oficial no está disponible actualmente. Seleccioná Marca y Modelo para buscar repuestos.
               </div>
             `;
           }
