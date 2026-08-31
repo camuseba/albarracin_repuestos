@@ -18,13 +18,26 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Ejecutar Sincronizador de Datos Abiertos y ACARA
+      - name: Validar servicio y pruebas sin modificar la base publicada
+        run: |
+          python -m compileall -q compatibility_service.py dnrpa_provider.py dnrpa_sync.py parts_compatibility_sync.py
+          python test_dnrpa_compatibility.py
+          git diff --exit-code -- compatibility_db.json
+
+      - name: Ejecutar sincronizador DNRPA o catalogo interno
         env:
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SHA: ${{ github.sha }}
-        run: |
-          python dnrpa_sync.py --run-now
-          python test_dnrpa_compatibility.py
+          DNRPA_ENABLED: ${{ vars.DNRPA_ENABLED || 'false' }}
+          DNRPA_CONNECTION_TYPE: ${{ vars.DNRPA_CONNECTION_TYPE || 'REST_API' }}
+          DNRPA_API_URL: ${{ secrets.DNRPA_API_URL }}
+          DNRPA_CLIENT_ID: ${{ secrets.DNRPA_CLIENT_ID }}
+          DNRPA_CLIENT_SECRET: ${{ secrets.DNRPA_CLIENT_SECRET }}
+          DNRPA_USERNAME: ${{ secrets.DNRPA_USERNAME }}
+          DNRPA_PASSWORD: ${{ secrets.DNRPA_PASSWORD }}
+          DNRPA_CERTIFICATE_PATH: ${{ vars.DNRPA_CERTIFICATE_PATH }}
+          DNRPA_TIMEOUT_SECONDS: ${{ vars.DNRPA_TIMEOUT_SECONDS || '15' }}
+        run: python dnrpa_sync.py --run-now
 
       - name: Commitear base actualizada hacia Netlify
         uses: stefanzweifel/git-auto-commit-action@v5
