@@ -89,8 +89,10 @@ class SyncLock:
 class DnrpaSyncEngine:
     """Motor maestro de sincronización incremental DNRPA y Base Vehicular."""
 
-    def __init__(self):
+    def __init__(self, db_path: str = DB_FILE, lock_path: str = LOCK_FILE):
         self.provider = DnrpaVehicleProvider()
+        self.db_path = db_path
+        self.lock_path = lock_path
 
     @staticmethod
     def calculate_record_hash(data: Dict[str, Any]) -> str:
@@ -112,7 +114,7 @@ class DnrpaSyncEngine:
 
     def load_db(self) -> Dict[str, Any]:
         """Carga la base de datos relacional local."""
-        if not os.path.exists(DB_FILE):
+        if not os.path.exists(self.db_path):
             return {
                 "vehicle_types": [
                     {"id": 1, "name": "Motos", "slug": "motos"},
@@ -130,7 +132,7 @@ class DnrpaSyncEngine:
                 "vehicle_sync_runs": []
             }
         try:
-            with open(DB_FILE, "r", encoding="utf-8") as f:
+            with open(self.db_path, "r", encoding="utf-8") as f:
                 db = json.load(f)
                 if "vehicle_sync_runs" not in db:
                     db["vehicle_sync_runs"] = []
@@ -141,11 +143,11 @@ class DnrpaSyncEngine:
 
     def save_db(self, db: Dict[str, Any]) -> bool:
         """Persiste la base de datos relacional local de forma atómica."""
-        tmp_file = DB_FILE + ".tmp"
+        tmp_file = self.db_path + ".tmp"
         try:
             with open(tmp_file, "w", encoding="utf-8") as f:
                 json.dump(db, f, indent=2, ensure_ascii=False)
-            os.replace(tmp_file, DB_FILE)
+            os.replace(tmp_file, self.db_path)
             return True
         except Exception as e:
             logger.error(f"Error al guardar compatibility_db.json: {e}")
@@ -179,7 +181,7 @@ class DnrpaSyncEngine:
 
         # Comprobar lock de concurrencia
         try:
-            with SyncLock():
+            with SyncLock(self.lock_path):
                 db = self.load_db()
                 db["vehicle_sync_runs"].append(run_record)
                 self.save_db(db)
@@ -566,6 +568,7 @@ if __name__ == "__main__":
         print(f"COMMIT SHA: {res.get('commit_sha')}")
         print(f"FINAL STATUS: {res.get('status')}")
         print("=" * 60 + "\n")
+        sys.exit(0 if res.get("status") in ("SUCCESS", "NO_CHANGES") else 1)
 
     elif args.daemon:
         print(f"Iniciando scheduler daemon DNRPA (Programado: {DNRPA_SYNC_SCHEDULE} en {DNRPA_SYNC_TIMEZONE})...")

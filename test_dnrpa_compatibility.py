@@ -17,6 +17,8 @@ Verifica los requisitos de la FASE 17:
 import os
 import sys
 import json
+import shutil
+import tempfile
 import time
 import unittest
 from datetime import datetime, timezone
@@ -29,10 +31,20 @@ from compatibility_service import VehicleLookupService, load_compatibility_db
 class TestDnrpaCompatibilityArchitecture(unittest.TestCase):
 
     def setUp(self):
-        self.engine = DnrpaSyncEngine()
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.test_db_path = os.path.join(self.temp_dir.name, "compatibility_db.json")
+        shutil.copy2(os.path.join(os.path.dirname(__file__), "compatibility_db.json"), self.test_db_path)
+        self.engine = DnrpaSyncEngine(
+            db_path=self.test_db_path,
+            lock_path=os.path.join(self.temp_dir.name, "dnrpa_sync.lock")
+        )
         self.provider = DnrpaVehicleProvider()
-        self.parts_engine = PartsCompatibilityEngine()
-        self.db = load_compatibility_db()
+        self.parts_engine = PartsCompatibilityEngine(db_path=self.test_db_path)
+        with open(self.test_db_path, "r", encoding="utf-8") as f:
+            self.db = json.load(f)
+
+    def tearDown(self):
+        self.temp_dir.cleanup()
 
     def test_01_privacy_sanitization(self):
         """FASE 16: Privacidad - Descarte inmediato de datos personales."""
@@ -115,7 +127,7 @@ class TestDnrpaCompatibilityArchitecture(unittest.TestCase):
 
     def test_04_concurrency_sync_lock(self):
         """FASE 7: Concurrencia - DNRPA_SYNC_LOCK impide ejecuciones simultáneas."""
-        lock_file = os.path.join(os.path.dirname(__file__), "dnrpa_sync.lock")
+        lock_file = self.engine.lock_path
         
         # Simular un lock activo
         with open(lock_file, "w", encoding="utf-8") as f:

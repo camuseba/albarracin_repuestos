@@ -27,6 +27,7 @@ from datetime import datetime, timezone, timedelta
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import urllib.parse
 import urllib.request
+from typing import Optional
 
 from dnrpa_provider import DnrpaVehicleProvider
 from dnrpa_sync import DnrpaSyncEngine, get_next_scheduled_sync
