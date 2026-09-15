@@ -14,3 +14,10 @@
 2026-08-27 18:12:42,776 [INFO] [API & ML SYNC] Sincronizando SKU ALMA-EMB-SACHS -> PVP: $185010.21 | Stock: 8 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
 2026-08-27 18:12:42,776 [INFO] [API & ML SYNC] Sincronizando SKU ACARA-HONDA-TORNADO -> PVP: $5466507.75 | Stock: 4 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
 2026-08-27 18:12:42,776 [INFO] === ETL COMPLETADO: {'procesados': 5, 'bloqueados_alerta': 0, 'sincronizados': 5} ===
+2026-09-01 13:23:48,917 [INFO] === INICIANDO PROCESAMIENTO ETL: lista_proveedor.csv ===
+2026-09-01 13:23:48,943 [INFO] [API & ML SYNC] Sincronizando SKU FISPA-70014 -> PVP: $84566.29 | Stock: 14 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-09-01 13:23:48,944 [INFO] [API & ML SYNC] Sincronizando SKU FISPA-20045 -> PVP: $62073.0 | Stock: 18 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-09-01 13:23:48,944 [INFO] [API & ML SYNC] Sincronizando SKU AUTOCENTRAL-DIST-GATES -> PVP: $65830.05 | Stock: 12 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-09-01 13:23:48,944 [INFO] [API & ML SYNC] Sincronizando SKU ALMA-EMB-SACHS -> PVP: $185010.21 | Stock: 8 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-09-01 13:23:48,944 [INFO] [API & ML SYNC] Sincronizando SKU ACARA-HONDA-TORNADO -> PVP: $5466507.75 | Stock: 4 | ML: https://listado.mercadolibre.com.ar/_CustId_3530277724
+2026-09-01 13:23:48,944 [INFO] === ETL COMPLETADO: {'procesados': 5, 'bloqueados_alerta': 0, 'sincronizados': 5} ===
