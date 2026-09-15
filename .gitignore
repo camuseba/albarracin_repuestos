@@ -1,4 +1,4 @@
-﻿__pycache__/
+__pycache__/
 *.py[cod]
 *.class
 *.log
@@ -6,3 +6,4 @@
 *.tmp
 .DS_Store
 Thumbs.db
+_backups/
