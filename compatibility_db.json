@@ -31,7 +31,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_1",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "9fdac8674143502be933ae856f1ed9e51123228dde2927500c3370be331b03ea"
@@ -45,7 +45,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_2",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "881f06faa94c1d5d091dc6736f743560fa4b8f13ce69d11b774dab5a1a63887f"
@@ -59,7 +59,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_3",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "993ab308744c52bd7b0ea4327e461a0f33d2bd03ed29a732f3bd7e638dbc6b7e"
@@ -73,7 +73,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_4",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "c8c5be844d06a660f81b6f37df948381a25986115319027082af7646a4d8bbd0"
@@ -87,7 +87,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_5",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "abe9f8178842130810136c7b295b20869dc050a49f44d863ae7001fd629f4f36"
@@ -101,7 +101,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_6",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "c898986a383c5176eab65a78ae703788232b059480a519f39a2ffa78f51cd927"
@@ -115,7 +115,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_7",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "0ad051fa05acdfdc88bd796965ea2c6ada35ef87bb9339a79cd2586c0c1785db"
@@ -129,7 +129,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_8",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "d5e5bae14f396071e807dadc615c1a1183bf75ead8a25f20570a13bcb1d1a5f3"
@@ -143,7 +143,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_9",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "dd29ac62c5805c35e61be763bdab2152e66c8ab2f856d4f1b52cf000bb8c2664"
@@ -157,7 +157,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_10",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "32a1f2304a5a41f6d2037ecb6c3238a1b0efca44e95c73200f7e3ef1acfef59b"
@@ -171,7 +171,7 @@
       "is_active": true,
       "source": "BASE_INTERNA_VERIFICADA",
       "source_record_id": "MK_11",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "e11521cf741065abfad3fae87dcf041b0e5e23ef227a76bbea04acb407ba2912"
@@ -185,7 +185,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "source_record_id": "MAKE_12",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -200,7 +200,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "source_record_id": "MAKE_13",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -215,7 +215,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "source_record_id": "MAKE_14",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -230,7 +230,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "source_record_id": "MAKE_15",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -245,7 +245,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "source_record_id": "MAKE_16",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -308,7 +308,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_4",
       "source_record_id": "MOD_4",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "525d114de3bc3a89e29e79085e5779bca9c955261f896600bc59fa91e28f4375"
@@ -323,7 +323,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_5",
       "source_record_id": "MOD_5",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "5fee245283106a94e64de497c9ba328402f58f23f3e6b7c7ed8df476a0008e13"
@@ -368,7 +368,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_8",
       "source_record_id": "MOD_8",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "1785ee2cb026dd225265417a383fa08f36aec8744087782ab709647064e12a69"
@@ -383,7 +383,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_9",
       "source_record_id": "MOD_9",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "18d7ce3681c76f4f9005a39d4d0d5ff41b5c8ed54d85bf0e0793fc51b2046974"
@@ -443,7 +443,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_13",
       "source_record_id": "MOD_13",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "e06c6a4fc3be294f79192a8c504bf537e1841991c70777faf2a5655432f43dc0"
@@ -458,7 +458,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_14",
       "source_record_id": "MOD_14",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "8d8f649ac817293afcafcde1716dddce6ce6951231c762018a287069ef13d35f"
@@ -473,7 +473,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_15",
       "source_record_id": "MOD_15",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "779c6ec6726373b6bb6a4fe206b063fc738027c3d907053cb0126ce3314d962a"
@@ -488,7 +488,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_16",
       "source_record_id": "MOD_16",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "c3ac69728de0fcdf9b6968588f50d40210d7663d3bf8ecd1c65d804599254cf9"
@@ -518,7 +518,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_18",
       "source_record_id": "MOD_18",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "04221b701ded7dec53ddc1f7055a97b585ddeaccbcd5cc9ec5c338654c65f67c"
@@ -533,7 +533,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_19",
       "source_record_id": "MOD_19",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "0f5beea4a7860c91ebe8b1f1eea5b98ccab21cb51b77da153b133495ced766e3"
@@ -548,7 +548,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_20",
       "source_record_id": "MOD_20",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "0a3385375688bd51d2b0736a52e65915163837e9aa5c566ebf57ec37e0b71d14"
@@ -563,7 +563,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_21",
       "source_record_id": "MOD_21",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "82d00428524588c4ee0fabe0ece704fe45eb538baab5cf91c194546f39b11ec9"
@@ -578,7 +578,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_22",
       "source_record_id": "MOD_22",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "a2a0f90b69c0636d4524ad5778500a59cef491efe4af803a08796637e2f944e8"
@@ -593,7 +593,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_23",
       "source_record_id": "MOD_23",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "5392c54b4ef2c10f9f0a21490c5cd816acc84e147bd988d106939a1c7830a868"
@@ -608,7 +608,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_24",
       "source_record_id": "MOD_24",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "695f50dab939a733c6169d3304f6aaa785e096fb0cc50c01d25aade5516245bc"
@@ -623,7 +623,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_25",
       "source_record_id": "MOD_25",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "a198ac282ab0883d15f80a0dec14542f6ec19d3e055313d2f9f1170bf78f21c1"
@@ -638,7 +638,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_26",
       "source_record_id": "MOD_26",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "26bda681ac040e79ca342c9b6b1e960c2f709ad43b855c90d7e321036def4761"
@@ -653,7 +653,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_27",
       "source_record_id": "MOD_27",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "7712edef140bcc73333babc05d5bd709af05fbbbde397593b811862552fe4960"
@@ -668,7 +668,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_28",
       "source_record_id": "MOD_28",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "1c81219cab7e2bb21bf41122c4152534e8bdff7146ffa0ef42e57fd6ac49afb2"
@@ -683,7 +683,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_29",
       "source_record_id": "MOD_29",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "471cb5972242fe60fd9a516e2c0f30c89bfc0a23cdb9aee0d53476f55658ac37"
@@ -698,7 +698,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_30",
       "source_record_id": "MOD_30",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "d4bc5857dcaf50ab232c44cd7b4dc98efa1b9b9bcb955d2273818622607d80a6"
@@ -713,7 +713,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_31",
       "source_record_id": "MOD_31",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "02fd2f16215808a07c2ee73f10dc406df841ae2b9b36745ee76383fcb6c5fd06"
@@ -728,7 +728,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_32",
       "source_record_id": "MOD_32",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "5b9a48c9396ed6422c0712cc3a45900d3a8b7a35621afc0bf1639c13140a3445"
@@ -743,7 +743,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_33",
       "source_record_id": "MOD_33",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "4cc4865a228622cfaa1a70b74b881e7979300b0a1e2d9d75a3eafc7d84f6c286"
@@ -758,7 +758,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_34",
       "source_record_id": "MOD_34",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "8969fbcee9767ed05487432c828044135341633742df7498aeb4b1c058760404"
@@ -773,7 +773,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_35",
       "source_record_id": "MOD_35",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "173b6702af7fdbda0a1ec3bea16eaad7c8e6257497845188ab89de5dfec00424"
@@ -788,7 +788,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_36",
       "source_record_id": "MOD_36",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "075f07d778574cb22d1aff5052652214f57d08c2f5949c4683d450472b7ae28a"
@@ -803,7 +803,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_37",
       "source_record_id": "MOD_37",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "ef538485a3a8ce89e7762b9c23edb202ed5cd52690e432a3021214b004602087"
@@ -818,7 +818,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_38",
       "source_record_id": "MOD_38",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "84b4d26d7bf1ebf6a0bb5ed8b7b0ffd08a3bfa347eceb5bfc0419ff89647c89d"
@@ -833,7 +833,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_39",
       "source_record_id": "MOD_39",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "8eb388570cc0e82a9d07c2e0c1e447acebb2fcb851b1cdf1380524af2400205c"
@@ -848,7 +848,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_40",
       "source_record_id": "MOD_40",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "d93315c83e391416b4b3e9321fe0027534b95cce6633386d0222be3ed5882519"
@@ -863,7 +863,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_41",
       "source_record_id": "MOD_41",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "2401d2e664d88564cbd58a221e837ebf09f8265690b5a9288cc6313168c4bace"
@@ -878,7 +878,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_42",
       "source_record_id": "MOD_42",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "567750427555a52ef7ffa769f1e7337c6f81adaf31386927a36620778745912b"
@@ -893,7 +893,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_43",
       "source_record_id": "MOD_43",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "b8fa3e0cfb9554859da892ee89ca4e5064544527816e5429aba15f3ced85b674"
@@ -908,7 +908,7 @@
       "source": "BASE_INTERNA_VERIFICADA",
       "external_id": "MOD_44",
       "source_record_id": "MOD_44",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "record_hash": "819a8a72f9ba7efffa64b916bf78130fcb778a54bdfc365bf6235d1135c25993"
@@ -922,7 +922,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_45",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -937,7 +937,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_46",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -952,7 +952,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_47",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -967,7 +967,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_48",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -982,7 +982,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_49",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -997,7 +997,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_50",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1012,7 +1012,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_51",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1027,7 +1027,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_52",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1042,7 +1042,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_53",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1057,7 +1057,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_54",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1072,7 +1072,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_55",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1087,7 +1087,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_56",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1102,7 +1102,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_57",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1117,7 +1117,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_58",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1132,7 +1132,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_59",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1147,7 +1147,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_60",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1162,7 +1162,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_61",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1177,7 +1177,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_62",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1192,7 +1192,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_63",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1207,7 +1207,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_64",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1222,7 +1222,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_65",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1237,7 +1237,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_66",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1252,7 +1252,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_67",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1267,7 +1267,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_68",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1282,7 +1282,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_69",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -1297,7 +1297,7 @@
       "is_active": true,
       "source": "DNRPA_OFFICIAL",
       "external_id": "MODEL_70",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00",
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00",
       "sync_status": "SYNCED",
       "verification_status": "VERIFIED",
       "created_at": "2026-08-27T21:06:46.882375+00:00",
@@ -2294,7 +2294,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 48,
@@ -2317,7 +2317,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 49,
@@ -2340,7 +2340,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 50,
@@ -2363,7 +2363,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 51,
@@ -2386,7 +2386,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 52,
@@ -2409,7 +2409,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 53,
@@ -2432,7 +2432,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 54,
@@ -2455,7 +2455,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 55,
@@ -2478,7 +2478,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 56,
@@ -2501,7 +2501,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 57,
@@ -2524,7 +2524,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 58,
@@ -2547,7 +2547,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 59,
@@ -2570,7 +2570,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 60,
@@ -2593,7 +2593,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 61,
@@ -2616,7 +2616,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 62,
@@ -2639,7 +2639,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 63,
@@ -2662,7 +2662,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 64,
@@ -2685,7 +2685,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 65,
@@ -2708,7 +2708,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 66,
@@ -2731,7 +2731,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 67,
@@ -2754,7 +2754,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 68,
@@ -2777,7 +2777,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 69,
@@ -2800,7 +2800,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 70,
@@ -2823,7 +2823,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 71,
@@ -2846,7 +2846,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 72,
@@ -2869,7 +2869,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 73,
@@ -2892,7 +2892,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 74,
@@ -2915,7 +2915,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 75,
@@ -2938,7 +2938,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 76,
@@ -2961,7 +2961,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 77,
@@ -2984,7 +2984,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 78,
@@ -3007,7 +3007,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 79,
@@ -3030,7 +3030,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 80,
@@ -3053,7 +3053,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 81,
@@ -3076,7 +3076,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 82,
@@ -3099,7 +3099,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 83,
@@ -3122,7 +3122,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 84,
@@ -3145,7 +3145,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 85,
@@ -3168,7 +3168,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 86,
@@ -3191,7 +3191,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 87,
@@ -3214,7 +3214,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 88,
@@ -3237,7 +3237,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 89,
@@ -3260,7 +3260,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 90,
@@ -3283,7 +3283,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 91,
@@ -3306,7 +3306,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 92,
@@ -3329,7 +3329,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 93,
@@ -3352,7 +3352,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 94,
@@ -3375,7 +3375,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 95,
@@ -3398,7 +3398,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 96,
@@ -3421,7 +3421,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 97,
@@ -3444,7 +3444,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 98,
@@ -3467,7 +3467,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 99,
@@ -3490,7 +3490,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 100,
@@ -3513,7 +3513,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 101,
@@ -3536,7 +3536,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 102,
@@ -3559,7 +3559,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 103,
@@ -3582,7 +3582,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 104,
@@ -3605,7 +3605,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 105,
@@ -3628,7 +3628,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 106,
@@ -3651,7 +3651,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 107,
@@ -3674,7 +3674,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 108,
@@ -3697,7 +3697,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 109,
@@ -3720,7 +3720,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 110,
@@ -3743,7 +3743,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 111,
@@ -3766,7 +3766,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 112,
@@ -3789,7 +3789,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 113,
@@ -3812,7 +3812,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 114,
@@ -3835,7 +3835,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 115,
@@ -3858,7 +3858,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 116,
@@ -3881,7 +3881,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 117,
@@ -3904,7 +3904,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 118,
@@ -3927,7 +3927,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     },
     {
       "id": 119,
@@ -3950,7 +3950,7 @@
       "is_active": true,
       "created_at": "2026-08-27T21:06:46.882375+00:00",
       "updated_at": "2026-08-27T21:06:46.882375+00:00",
-      "last_synced_at": "2026-09-21T06:48:16.866299+00:00"
+      "last_synced_at": "2026-09-22T06:46:40.483069+00:00"
     }
   ],
   "vehicles": [
@@ -8404,6 +8404,28 @@
       "dataset_date": "2026-09-21",
       "workflow_run_id": "35570036173",
       "commit_sha": "4d6d3966eae9c9d14f30d450c78c807bfb771be8"
+    },
+    {
+      "id": 1790059600,
+      "provider": "INTERNAL_MASTER_CATALOG",
+      "started_at": "2026-09-22T06:46:40.471724+00:00",
+      "finished_at": "2026-09-22T06:46:40.491270+00:00",
+      "status": "NO_CHANGES",
+      "records_received": 73,
+      "records_inserted": 0,
+      "records_updated": 0,
+      "records_unchanged": 73,
+      "records_failed": 0,
+      "last_cursor": "INTERNAL_CATALOG_1790059600",
+      "last_sync_reference": "DNRPA_SYNC_REF_1790059600",
+      "error_message": null,
+      "created_at": "2026-09-22T06:46:40.471724+00:00",
+      "hash_algorithm": "SHA-256",
+      "source_hash": "d64c7a2887f86b3d9cf455a6058923940ef9f27bd1b1d3c4a713368233bf36b3",
+      "previous_source_hash": "d64c7a2887f86b3d9cf455a6058923940ef9f27bd1b1d3c4a713368233bf36b3",
+      "dataset_date": "2026-09-22",
+      "workflow_run_id": "35696371204",
+      "commit_sha": "ccd463554cda224aeddad21a72a27fa04dde3291"
     }
   ]
 }
