@@ -2794,3 +2794,25 @@ button {
   }
 }
 
+/* ==========================================
+   SECCIÓN COMPROMISO DE CONFIANZA & RESPALDO
+   ========================================== */
+.trust-pillar-card {
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.trust-pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
+.trust-cta-banner {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trust-cta-banner:hover {
+  box-shadow: 0 12px 30px rgba(255, 110, 0, 0.15);
+}
+

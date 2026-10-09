@@ -1,0 +1,231 @@
+{
+  "syncTimestamp": "2026-10-09T18:29:47.322274+00:00",
+  "formattedDate": "09/10/2026 15:29",
+  "sellerId": "3530277724",
+  "sellerStoreUrl": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+  "syncSource": "catalogo_base_albarracin",
+  "totalProducts": 10,
+  "products": [
+    {
+      "id": "MLA-TORNADO-250",
+      "sku": "ACARA-HONDA-TORNADO",
+      "name": "Honda XR 250 Tornado 0km",
+      "category": "motos",
+      "subcategory": "motos",
+      "price": 9996916,
+      "brand": "Honda",
+      "img": "assets/moto_honda_xr.jpg",
+      "desc": "Moto de enduro legendaria, ideal para ciudad y terrenos mixtos. Arranque eléctrico, motor 249cc DOHC y caja de 6 velocidades. Disponibilidad inmediata en concesionaria.",
+      "channelStatus": "Disponible en Showroom / Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 4,
+      "specs": {
+        "Año": "2026",
+        "Motor": "249cc DOHC Monocilíndrico",
+        "Potencia": "23 HP a 7500 RPM",
+        "Frenos": "Disco delantero hidráulico, tambor trasero"
+      },
+      "promo": true,
+      "oldPrice": 10800000,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-YAMAHA-R3",
+      "sku": "ACARA-YAMAHA-R3",
+      "name": "Yamaha YZF-R3 ABS Usada (2022)",
+      "category": "motos",
+      "subcategory": "motos",
+      "price": 12292226,
+      "brand": "Yamaha",
+      "img": "assets/moto_yamaha_r3.jpg",
+      "desc": "Deportiva en impecable estado general, único dueño. Services al día en concesionaria oficial. Cubiertas nuevas y frenos ABS.",
+      "channelStatus": "Disponible en Showroom / Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 2,
+      "specs": {
+        "Año": "2022",
+        "Kilometraje": "14.200 km",
+        "Motor": "321cc bicilíndrico DOHC"
+      },
+      "promo": false,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-MOTOMEL-BLITZ",
+      "sku": "ACARA-MOTOMEL-BLITZ",
+      "name": "Motomel Blitz 110 V8 0km",
+      "category": "motos",
+      "subcategory": "motos",
+      "price": 1690000,
+      "brand": "Motomel",
+      "img": "assets/moto_motomel_blitz.jpg",
+      "desc": "La motocicleta CUB más vendida del país. Ideal para traslados diarios y trabajo urbano por su consumo sumamente bajo y agilidad.",
+      "channelStatus": "Disponible en Showroom / Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 10,
+      "specs": {
+        "Año": "2026",
+        "Motor": "110cc monocilíndrico de 4 tiempos",
+        "Consumo promedio": "2.1 L / 100 km"
+      },
+      "promo": true,
+      "oldPrice": 1850000,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-CORVEN-TRIAX",
+      "sku": "ACARA-CORVEN-TRIAX",
+      "name": "Corven Triax 150 R3 0km",
+      "category": "motos",
+      "subcategory": "motos",
+      "price": 2890000,
+      "brand": "Corven",
+      "img": "assets/moto_corven_triax.jpg",
+      "desc": "On-off versátil con tablero digital, óptica delantera halógena y excelente suspensión para caminos de tierra o asfalto.",
+      "channelStatus": "Disponible en Showroom / Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 6,
+      "specs": {
+        "Año": "2026",
+        "Motor": "149cc monocilíndrico",
+        "Frenos": "Disco delantero / Tambor trasero"
+      },
+      "promo": false,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-INJ-BOSCH",
+      "sku": "INJ-70014",
+      "name": "Inyector Electrónico Bosch Original (0280158)",
+      "category": "repuestos",
+      "subcategory": "repuestos",
+      "price": 84500,
+      "brand": "Bosch",
+      "img": "assets/repuesto_inyector.jpg",
+      "desc": "Válvula de inyección multipunto de alta precisión. Pulverización óptima y calibración de fábrica garantizada.",
+      "channelStatus": "Publicación Oficial Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 15,
+      "specs": {
+        "Origen": "Alemania / Brasil",
+        "Resistencia": "12 Ohms",
+        "Presión de Trabajo": "3.0 Bar"
+      },
+      "promo": true,
+      "oldPrice": 92000,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-SONDA-DELPHI",
+      "sku": "INJ-20045",
+      "name": "Sonda Lambda Delphi 4 Cables",
+      "category": "repuestos",
+      "subcategory": "repuestos",
+      "price": 48200,
+      "brand": "Delphi",
+      "img": "assets/repuesto_sonda.jpg",
+      "desc": "Sensor de oxígeno planar de respuesta ultra rápida. Reduce emisiones y optimiza el consumo de combustible.",
+      "channelStatus": "Publicación Oficial Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 8,
+      "specs": {
+        "Cables": "4 conductores con conector sellado",
+        "Calefaccionada": "Sí (resistencia blindada)"
+      },
+      "promo": false,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-KIT-DIST-GATES",
+      "sku": "AUTOCENTRAL-DIST-GATES",
+      "name": "Kit de Distribución Gates c/ Bomba de Agua",
+      "category": "repuestos",
+      "subcategory": "repuestos",
+      "price": 65800,
+      "brand": "Gates",
+      "img": "assets/repuesto_distribucion.jpg",
+      "desc": "Incluye correa dentada de alta durabilidad, tensor automático y bomba de agua con turbina metálica.",
+      "channelStatus": "Publicación Oficial Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 12,
+      "specs": {
+        "Garantía": "60.000 km o 1 año",
+        "Componentes": "Correa + Tensor + Bomba"
+      },
+      "promo": true,
+      "oldPrice": 72500,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-EMBRAGUE-SACHS",
+      "sku": "ALMA-EMB-SACHS",
+      "name": "Kit Embrague Sachs Reforzado",
+      "category": "repuestos",
+      "subcategory": "repuestos",
+      "price": 185000,
+      "brand": "Sachs",
+      "img": "assets/repuesto_embrague.jpg",
+      "desc": "Conjunto de placa, disco de embrague y crapodina hidráulica. Alta resistencia al desgaste térmico.",
+      "channelStatus": "Publicación Oficial Mercado Libre",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 5,
+      "specs": {
+        "Diámetro": "200 mm",
+        "Estrías": "28 estrías"
+      },
+      "promo": false,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-VIGIA-500",
+      "sku": "SRV-VIGIA-500",
+      "name": "Protector de Motor Vigia Calibrador Serie 500",
+      "category": "servicios",
+      "subcategory": "servicios",
+      "price": 420000,
+      "brand": "Vigia",
+      "img": "assets/servicio_vigia.jpg",
+      "desc": "Sistema de corte y alarma inteligente por caída de presión de aceite o sobretemperatura. Protege el motor antes de que se funda.",
+      "channelStatus": "Servicio e Instalación Oficial Homologada",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 7,
+      "specs": {
+        "Garantía": "Oficial Albarracín Vigia",
+        "Instalación": "Incluye mano de obra calificada en taller"
+      },
+      "promo": true,
+      "oldPrice": 460000,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    },
+    {
+      "id": "MLA-VIESA-INTELLIGENCE",
+      "sku": "SRV-VIESA-INTEL",
+      "name": "Climatizador Ecológico Viesa i11",
+      "category": "servicios",
+      "subcategory": "servicios",
+      "price": 890000,
+      "brand": "Viesa",
+      "img": "assets/servicio_viesa.jpg",
+      "desc": "El climatizador más eficiente del mercado. Enfría la cabina con el motor apagado, consumiendo solo agua y batería.",
+      "channelStatus": "Servicio e Instalación Oficial Homologada",
+      "mlLink": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
+      "stock": 3,
+      "specs": {
+        "Voltaje": "12V / 24V",
+        "Consumo Eléctrico": "Mínimo (apto reposo nocturno)"
+      },
+      "promo": false,
+      "source": "catalogo_oficial",
+      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+    }
+  ]
+}

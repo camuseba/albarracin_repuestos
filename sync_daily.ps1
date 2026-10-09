@@ -11,6 +11,10 @@ $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 # 1. Ejecutar sincronizacion incremental con datos abiertos y catalogo maestro
 python dnrpa_sync.py --run-now | Out-File -FilePath $LogFile -Append -Encoding utf8
 
+# 1.2. Sincronizar catalogo de Mercado Libre, precios vivos y stock oficial
+"[$Timestamp] [CRON_RUNNER] Sincronizando catalogo en vivo desde Mercado Libre..." | Out-File -FilePath $LogFile -Append -Encoding utf8
+python sync_mercadolibre_catalog.py | Out-File -FilePath $LogFile -Append -Encoding utf8
+
 # 1.5. Sincronizar precios, stock y catalogo de repuestos (proveedores y compatibilidades)
 if (Test-Path "$BaseDir\lista_proveedor.csv") {
     "[$Timestamp] [CRON_RUNNER] Sincronizando catalogo de repuestos y listas de proveedores..." | Out-File -FilePath $LogFile -Append -Encoding utf8

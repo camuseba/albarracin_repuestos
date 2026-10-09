@@ -14,7 +14,7 @@ const VEHICLE_MODELS_MAP = {
 // ==========================================
 // LOCAL DATABASE: REALISTIC INVENTORY WITH COMPATIBILITIES
 // ==========================================
-const PRODUCTS_DATA = [
+let PRODUCTS_DATA = [
   // MOTOS Y VEHÍCULOS
   {
     id: 1,
@@ -548,12 +548,61 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render Catalog
   renderCatalog();
 
+  // Sincronizar catálogo y precios vivos desde Mercado Libre / catalog_live.json
+  initLiveCatalogSync();
+
   // Bind UI Events
   bindUIEvents();
   
   // Init Compatibility Dropdowns
   initCompatibilityWidget();
 });
+
+// Sincronizador en vivo de catálogo y precios
+async function initLiveCatalogSync() {
+  try {
+    const res = await fetch("catalog_live.json?t=" + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.products && Array.isArray(data.products) && data.products.length > 0) {
+        const liveMap = new Map();
+        data.products.forEach(p => {
+          if (p.sku) liveMap.set(p.sku, p);
+          if (p.id) liveMap.set(String(p.id), p);
+        });
+
+        PRODUCTS_DATA.forEach(localProd => {
+          const match = liveMap.get(localProd.sku) || liveMap.get(String(localProd.id));
+          if (match) {
+            if (match.price) localProd.price = match.price;
+            if (match.oldPrice) localProd.oldPrice = match.oldPrice;
+            if (match.stock !== undefined) localProd.stock = match.stock;
+            if (match.mlLink) localProd.mlLink = match.mlLink;
+            if (match.channelStatus) localProd.channelStatus = match.channelStatus;
+          }
+        });
+
+        data.products.forEach(liveProd => {
+          const exists = PRODUCTS_DATA.some(p => p.sku === liveProd.sku || String(p.id) === String(liveProd.id));
+          if (!exists) {
+            PRODUCTS_DATA.push(liveProd);
+          }
+        });
+
+        const syncBadge = document.getElementById("sync-updated-text");
+        if (syncBadge && data.formattedDate) {
+          syncBadge.textContent = "Actualizado: " + data.formattedDate;
+        }
+
+        renderBrandFilters();
+        renderCatalog();
+        console.log(`[ALBARRACÍN] Catálogo sincronizado en vivo (${data.products.length} productos).`);
+      }
+    }
+  } catch (e) {
+    console.info("[ALBARRACÍN] Operando con catálogo base local.");
+  }
+}
 
 // ==========================================
 // THEME MANAGER
