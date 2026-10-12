@@ -973,14 +973,9 @@ function renderCatalog() {
         : 'Producto';
       const categoryBadge = `<span class="badge badge-blue">${catName}</span>`;
 
-      let availabilityBadge = '';
-      if (product.availability === 'Disponible') {
-        availabilityBadge = '<span class="badge badge-available">🟢 Disponible</span>';
-      } else if (product.availability === 'Vendido') {
-        availabilityBadge = '<span class="badge badge-sold">🔴 Vendido</span>';
-      } else {
-        availabilityBadge = '<span class="badge badge-consult">🟡 Consultar</span>';
-      }
+      const availabilityBadge = product.availability === 'Vendido'
+        ? '<span class="badge badge-sold">🔴 Vendido</span>'
+        : '';
 
       const galleryPill = (product.gallery && product.gallery.length > 1)
         ? `<span class="product-gallery-pill">📷 ${product.gallery.length} fotos</span>`
@@ -1412,14 +1407,9 @@ function openProductDetail(productId) {
       : product.category === 'promociones' ? 'Promoción Especial'
       : 'Producto Comercial';
 
-    let availabilityBadge = '';
-    if (product.availability === 'Disponible') {
-      availabilityBadge = '<span class="badge badge-available" style="padding: 6px 12px; font-size: 0.85rem;">🟢 Unidad Disponible</span>';
-    } else if (product.availability === 'Vendido') {
-      availabilityBadge = '<span class="badge badge-sold" style="padding: 6px 12px; font-size: 0.85rem;">🔴 Unidad Vendida</span>';
-    } else {
-      availabilityBadge = '<span class="badge badge-consult" style="padding: 6px 12px; font-size: 0.85rem;">🟡 Consultar Disponibilidad</span>';
-    }
+    const availabilityBadge = product.availability === 'Vendido'
+      ? '<span class="badge badge-sold" style="padding: 6px 12px; font-size: 0.85rem;">🔴 Unidad Vendida</span>'
+      : '';
 
     const whatsappMsg = `Hola Albarracín. Estoy consultando por ${product.name}, publicado en su catálogo web. ¿Me indican disponibilidad y precio actual? (ID: ${product.ig_media_id || product.id})`;
     const whatsappUrl = `https://wa.me/5493464685338?text=${encodeURIComponent(whatsappMsg)}`;
