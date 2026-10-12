@@ -1,0 +1,15 @@
+{
+  "last_sync": "2026-10-12T03:57:01.257Z",
+  "status": "HEALTHY",
+  "account": "@albarracinmotos",
+  "total_products": 7,
+  "metrics": {
+    "total_fetched": 7,
+    "motos": 4,
+    "repuestos": 2,
+    "accesorios": 1,
+    "promociones": 0,
+    "sold": 0
+  },
+  "schedule": "03:30 AM (America/Argentina/Buenos_Aires)"
+}

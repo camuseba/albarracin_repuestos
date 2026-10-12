@@ -1,24 +1,39 @@
 # =============================================================================
 # SCRIPT DE EJECUCION DIARIA AUTOMATIZADA — ALBARRACIN MOTOS Y REPUESTOS
+# Sincronización: 03:30 AM Argentina (Vehicular, Mercado Libre e Instagram)
 # =============================================================================
-$BaseDir = "d:\SEBASTIAN\IA_desarrollos\comp2\albarracin_repuestos"
+$BaseDir = if ($PSScriptRoot) { $PSScriptRoot } else { "h:\SEBASTIAN\IA_desarrollos\comp2\albarracin_repuestos" }
 Set-Location -Path $BaseDir
 
 $LogFile = Join-Path $BaseDir "daily_cron.log"
 $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-"[$Timestamp] [CRON_RUNNER] Iniciando ciclo diario de sincronizacion vehicular..." | Out-File -FilePath $LogFile -Append -Encoding utf8
+"[$Timestamp] [CRON_RUNNER] Iniciando ciclo diario de sincronizacion completa..." | Out-File -FilePath $LogFile -Append -Encoding utf8
 
-# 1. Ejecutar sincronizacion incremental con datos abiertos y catalogo maestro
-python dnrpa_sync.py --run-now | Out-File -FilePath $LogFile -Append -Encoding utf8
+# 1. Ejecutar sincronizacion incremental vehicular con datos abiertos y catalogo maestro
+if (Get-Command python -ErrorAction SilentlyContinue) {
+    python dnrpa_sync.py --run-now | Out-File -FilePath $LogFile -Append -Encoding utf8
+}
 
 # 1.2. Sincronizar catalogo de Mercado Libre, precios vivos y stock oficial
 "[$Timestamp] [CRON_RUNNER] Sincronizando catalogo en vivo desde Mercado Libre..." | Out-File -FilePath $LogFile -Append -Encoding utf8
-python sync_mercadolibre_catalog.py | Out-File -FilePath $LogFile -Append -Encoding utf8
+if (Get-Command python -ErrorAction SilentlyContinue) {
+    python sync_mercadolibre_catalog.py | Out-File -FilePath $LogFile -Append -Encoding utf8
+}
+
+# 1.3. Sincronizar Albarracín Instagram Smart Catalog (@albarracinmotos)
+"[$Timestamp] [CRON_RUNNER] Sincronizando Albarracín Instagram Smart Catalog (@albarracinmotos)..." | Out-File -FilePath $LogFile -Append -Encoding utf8
+if (Get-Command node -ErrorAction SilentlyContinue) {
+    node sync_instagram_catalog.js --run-now | Out-File -FilePath $LogFile -Append -Encoding utf8
+} elseif (Get-Command python -ErrorAction SilentlyContinue) {
+    python sync_instagram_catalog.py --run-now | Out-File -FilePath $LogFile -Append -Encoding utf8
+}
 
 # 1.5. Sincronizar precios, stock y catalogo de repuestos (proveedores y compatibilidades)
 if (Test-Path "$BaseDir\lista_proveedor.csv") {
     "[$Timestamp] [CRON_RUNNER] Sincronizando catalogo de repuestos y listas de proveedores..." | Out-File -FilePath $LogFile -Append -Encoding utf8
-    python importador.py | Out-File -FilePath $LogFile -Append -Encoding utf8
+    if (Get-Command python -ErrorAction SilentlyContinue) {
+        python importador.py | Out-File -FilePath $LogFile -Append -Encoding utf8
+    }
 }
 
 # 2. Replicar a carpeta fidelizacion si existe

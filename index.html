@@ -238,6 +238,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="loyalty.css">
   <link rel="stylesheet" href="mercadolibre.css">
+  <link rel="stylesheet" href="arcade.css">
 </head>
 <body>
 
@@ -472,95 +473,243 @@
     </section>
 
     <!-- ==========================================
-         COMPROMISO DE CONFIANZA & ENTREGA INMEDIATA
+         ALBARRACÍN RETRO ARCADE 1984 (INSERT COIN)
+         Reemplazo interactivo de Tarjetas de Confianza & Respaldo
          ========================================== -->
-    <section class="section" id="confianza" style="background: linear-gradient(180deg, rgba(18, 21, 30, 0.4) 0%, rgba(26, 30, 43, 0.7) 100%);">
-      <div class="container">
-        <div class="section-title-wrapper reveal">
-          <span class="section-subtitle" style="color: var(--accent-orange); font-weight: 700; letter-spacing: 1px;">COMPROMISO ALBARRACÍN</span>
-          <h2 class="section-title">Comprá con Respaldo y Tranquilidad Total</h2>
-          <p class="section-desc" style="max-width: 760px; margin: 12px auto 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
-            En un mercado con promesas vacías y planes que no cumplen, nosotros apostamos por lo que siempre nos definió: <strong>local a la calle, atención directa, stock real y garantía por escrito</strong>.
-          </p>
+    <section class="section arcade-section" id="confianza">
+      <div class="container" id="arcade-container">
+        
+        <!-- MÁQUINA ARCADE (CABINET) -->
+        <div class="arcade-cabinet-frame">
+
+          <!-- Marquee Luminoso Superior -->
+          <div class="arcade-marquee">
+            <div class="arcade-brand-tag">★ SISTEMA DE CONFIANZA & RESPALDO COMERCIAL ★</div>
+            <h2 class="arcade-marquee-title">ALBARRACÍN RETRO ARCADE</h2>
+            <div class="arcade-marquee-sub">► INSERT COIN — PRESS START ◄</div>
+          </div>
+
+          <!-- Barra de Estado / HUD Superior -->
+          <div class="arcade-top-hud">
+            <div class="hud-item">
+              <span class="hud-label">HIGH SCORE:</span>
+              <span class="hud-value hud-value-hs" id="arcade-hud-hs">1250</span>
+            </div>
+            <div class="hud-item">
+              <span class="hud-value" id="arcade-club-player" style="color: var(--arcade-cyan);">PLAYER: 1P</span>
+            </div>
+            <div class="arcade-quick-actions">
+              <button type="button" class="arcade-btn-mini active" id="arcade-sound-toggle" aria-label="Sonido Arcade">
+                🔊 SOUND
+              </button>
+              <a href="#catalogo" class="arcade-btn-mini" id="arcade-to-store-btn">
+                📦 IR AL CATÁLOGO
+              </a>
+            </div>
+          </div>
+
+          <!-- Bisel CRT y Monitor de Juego -->
+          <div class="arcade-screen-housing">
+            <div class="arcade-crt-bezel">
+              <!-- Capas visuales CRT y Scanlines -->
+              <div class="arcade-scanlines-layer"></div>
+              <div class="arcade-crt-glow-overlay"></div>
+
+              <!-- Canvas de Videojuego -->
+              <div class="arcade-canvas-wrapper">
+                <canvas id="arcadeCanvas" width="480" height="360" role="img" aria-label="Pantalla de videojuego interactivo Albarracín Retro Arcade"></canvas>
+
+                <!-- Modal de Fin de Partida & Mensaje Comercial Dinámico -->
+                <div id="arcade-gameover-modal" class="arcade-gameover-overlay" style="display: none;">
+                  <h3 class="gameover-title" id="gameover-game-title">GAME OVER</h3>
+                  
+                  <div class="gameover-score-box">
+                    <div class="gameover-score-item">
+                      <span>PUNTAJE</span>
+                      <strong id="gameover-score-value">0</strong>
+                    </div>
+                    <div class="gameover-score-item">
+                      <span>RÉCORD</span>
+                      <strong id="gameover-hs-value">0</strong>
+                    </div>
+                  </div>
+
+                  <!-- Micro-síntesis comercial de la tarjeta jugada -->
+                  <div class="gameover-commercial-card">
+                    <span class="comm-card-badge">COMPROMISO ALBARRACÍN</span>
+                    <h4 class="comm-card-headline" id="gameover-comm-headline">Entrega Inmediata Real</h4>
+                    <p class="comm-card-desc" id="gameover-comm-desc">
+                      La unidad que comprás está en nuestro showroom en Chabás con número de motor y chasis asignado. Salís rodando patentado y sin sorpresas.
+                    </p>
+                    <div class="comm-card-highlight">
+                      <span>✓ Transparencia, seguridad y respaldo directo</span>
+                    </div>
+                  </div>
+
+                  <!-- Botones de Acción Comercial y Rejugabilidad -->
+                  <div class="gameover-actions-grid">
+                    <button type="button" class="arcade-action-btn btn-arcade-restart" id="btn-gameover-restart">
+                      🔄 JUGAR OTRA VEZ
+                    </button>
+                    <button type="button" class="arcade-action-btn btn-arcade-menu" id="btn-gameover-menu">
+                      🎮 ELEGIR OTRO JUEGO
+                    </button>
+                    <a href="#catalogo" class="arcade-action-btn btn-arcade-showroom">
+                      🏍️ VER CATÁLOGO
+                    </a>
+                    <a href="https://wa.me/5493464685338" target="_blank" rel="noopener noreferrer" class="arcade-action-btn btn-arcade-whatsapp" id="btn-gameover-whatsapp">
+                      💬 CONSULTAR POR WHATSAPP
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ticker Comercial en Tiempo Real -->
+              <div class="arcade-commercial-ticker">
+                <span class="ticker-badge">ALBARRACÍN 1984</span>
+                <span class="ticker-content" id="arcade-ticker-text">SHOWROOM EN CHABÁS: UNIDADES DISPONIBLES EN STOCK REAL CON NÚMERO DE MOTOR Y CHASIS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selector de los 4 Juegos (Cartuchos Arcade) -->
+          <div class="arcade-games-selector">
+            <!-- Juego 1: Moto Rush 1984 -->
+            <div class="game-cartridge-card active" data-game="moto" id="cartridge-moto" role="button" tabindex="0">
+              <div class="cartridge-header">
+                <span class="cartridge-icon">🏍️</span>
+                <div>
+                  <span class="cartridge-number">GAME 01</span>
+                  <h3 class="cartridge-title">MOTO RUSH 1984</h3>
+                </div>
+              </div>
+              <p class="cartridge-commercial-target">
+                <strong>Entrega Inmediata Real:</strong> Showroom en Chabás, número de motor y chasis asignado, llave en mano 24/48 hs.
+              </p>
+              <div class="cartridge-footer">
+                <span class="cartridge-hs">HS: 1250</span>
+                <span class="cartridge-play-tag">JUGAR ▶</span>
+              </div>
+            </div>
+
+            <!-- Juego 2: Repuestos Invaders -->
+            <div class="game-cartridge-card" data-game="invaders" id="cartridge-invaders" role="button" tabindex="0">
+              <div class="cartridge-header">
+                <span class="cartridge-icon">⚙️</span>
+                <div>
+                  <span class="cartridge-number">GAME 02</span>
+                  <h3 class="cartridge-title">REPUESTOS INVADERS</h3>
+                </div>
+              </div>
+              <p class="cartridge-commercial-target">
+                <strong>Repuestos 100% Genuinos:</strong> Factura oficial A/B y trazabilidad comprobable. Sin copias ni piezas dudosas.
+              </p>
+              <div class="cartridge-footer">
+                <span class="cartridge-hs">HS: 1800</span>
+                <span class="cartridge-play-tag">JUGAR ▶</span>
+              </div>
+            </div>
+
+            <!-- Juego 3: Taller Hero -->
+            <div class="game-cartridge-card" data-game="taller" id="cartridge-taller" role="button" tabindex="0">
+              <div class="cartridge-header">
+                <span class="cartridge-icon">🔧</span>
+                <div>
+                  <span class="cartridge-number">GAME 03</span>
+                  <h3 class="cartridge-title">TALLER HERO 1984</h3>
+                </div>
+              </div>
+              <p class="cartridge-commercial-target">
+                <strong>Taller Oficial Homologado:</strong> Centro Técnico Vigia & Viesa en Pellegrini 1320. Diagnóstico y garantía escrita.
+              </p>
+              <div class="cartridge-footer">
+                <span class="cartridge-hs">HS: 2100</span>
+                <span class="cartridge-play-tag">JUGAR ▶</span>
+              </div>
+            </div>
+
+            <!-- Juego 4: Ruta Albarracín -->
+            <div class="game-cartridge-card" data-game="ruta" id="cartridge-ruta" role="button" tabindex="0">
+              <div class="cartridge-header">
+                <span class="cartridge-icon">🗺️</span>
+                <div>
+                  <span class="cartridge-number">GAME 04</span>
+                  <h3 class="cartridge-title">RUTA ALBARRACÍN</h3>
+                </div>
+              </div>
+              <p class="cartridge-commercial-target">
+                <strong>Atención Directa Regional:</strong> Sin call center. Chabás, Casilda, Firmat, Sanford, Arequito y Venado Tuerto.
+              </p>
+              <div class="cartridge-footer">
+                <span class="cartridge-hs">HS: 2500</span>
+                <span class="cartridge-play-tag">JUGAR ▶</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel de Controles Virtuales Mobile (Gamepad Táctil) -->
+          <div class="arcade-controls-panel">
+            <!-- D-Pad Direccional -->
+            <div class="arcade-dpad" aria-label="Controles direccionales">
+              <button type="button" class="dpad-btn dpad-up" id="btn-dpad-up" aria-label="Arriba">▲</button>
+              <button type="button" class="dpad-btn dpad-left" id="btn-dpad-left" aria-label="Izquierda">◀</button>
+              <div class="dpad-btn dpad-center"></div>
+              <button type="button" class="dpad-btn dpad-right" id="btn-dpad-right" aria-label="Derecha">▶</button>
+              <button type="button" class="dpad-btn dpad-down" id="btn-dpad-down" aria-label="Abajo">▼</button>
+            </div>
+
+            <!-- Botones de Acción Arcade -->
+            <div class="arcade-action-cluster">
+              <div class="action-btn-wrapper">
+                <button type="button" class="arcade-round-btn btn-arcade-start" id="btn-arcade-start">
+                  START
+                </button>
+                <span class="action-label">INICIAR</span>
+              </div>
+
+              <div class="action-btn-wrapper">
+                <button type="button" class="arcade-round-btn btn-arcade-b" id="btn-arcade-b">
+                  B
+                </button>
+                <span class="action-label">HERRAMIENTA</span>
+              </div>
+
+              <div class="action-btn-wrapper">
+                <button type="button" class="arcade-round-btn btn-arcade-a" id="btn-arcade-a">
+                  A
+                </button>
+                <span class="action-label">ACCIÓN / TURBO</span>
+              </div>
+            </div>
+
+            <!-- Ayuda Teclado Desktop -->
+            <div class="arcade-keyboard-help">
+              <span>TECLADO: <kbd>◀</kbd> <kbd>▲</kbd> <kbd>▶</kbd> <kbd>▼</kbd> O <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> | ACCIÓN: <kbd>ESPACIO</kbd> | HERRAMIENTAS: <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> | START: <kbd>ENTER</kbd></span>
+            </div>
+          </div>
+
+          <!-- Banner Inferior de Confianza Comercial & Contacto Directo -->
+          <div class="arcade-trust-footer">
+            <div class="trust-footer-text">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span style="background: var(--arcade-orange); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">RESPALDO REGIONAL DIRECTO</span>
+                <span style="color: #9cb1d4; font-size: 0.8rem;">Chabás • Casilda • Firmat • Sanford • Arequito • Venado Tuerto y zona</span>
+              </div>
+              <h4>¿Tuviste malas experiencias esperando tu moto o repuesto?</h4>
+              <p>
+                Consultanos hoy mismo. Te mostramos las unidades disponibles en el showroom para entrega en el acto y cotizamos tu plan con total transparencia.
+              </p>
+            </div>
+            <div>
+              <a href="https://wa.me/5493464685338?text=Hola%20Albarrac%C3%ADn!%20Estuve%20en%20el%20Retro%20Arcade%20y%20quisiera%20consultar%20por%20disponibilidad%20de%20unidades%20en%20showroom%20y%20repuestos%20con%20entrega%20inmediata." target="_blank" rel="noopener noreferrer" class="trust-footer-btn" id="btn-arcade-trust-wa">
+                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.18c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+                <span>Consultar Entrega Inmediata</span>
+              </a>
+            </div>
+          </div>
+
         </div>
 
-        <div class="trust-pillars-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 35px;">
-          <!-- Pilar 1 -->
-          <div class="trust-pillar-card glass-panel reveal" style="padding: 28px; border-radius: var(--border-radius-md); border-top: 3px solid #00e676; display: flex; flex-direction: column; height: 100%;">
-            <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(0, 230, 118, 0.12); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 18px;">
-              🏍️
-            </div>
-            <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-weight: 700;">Entrega Inmediata Real</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; flex-grow: 1;">
-              <strong>Basta de promesas en el aire.</strong> La unidad que comprás está en nuestro showroom en Chabás con número de motor y chasis asignado. Salís rodando patentado y sin sorpresas.
-            </p>
-            <div style="margin-top: 15px; font-size: 0.8rem; color: #00e676; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-              <span>✓ Llave en mano en 24/48 hs</span>
-            </div>
-          </div>
-
-          <!-- Pilar 2 -->
-          <div class="trust-pillar-card glass-panel reveal" style="padding: 28px; border-radius: var(--border-radius-md); border-top: 3px solid var(--accent-orange); display: flex; flex-direction: column; height: 100%;">
-            <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(255, 110, 0, 0.12); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 18px;">
-              ⚙️
-            </div>
-            <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-weight: 700;">Repuestos 100% Genuinos</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; flex-grow: 1;">
-              Tu seguridad no se negocia. Trabajamos únicamente con autopartes y componentes originales con <strong>factura oficial (A/B) y trazabilidad de fábrica</strong>. Sin copias ni piezas dudosas.
-            </p>
-            <div style="margin-top: 15px; font-size: 0.8rem; color: var(--accent-orange); font-weight: 600; display: flex; align-items: center; gap: 6px;">
-              <span>✓ Trazabilidad oficial comprobable</span>
-            </div>
-          </div>
-
-          <!-- Pilar 3 -->
-          <div class="trust-pillar-card glass-panel reveal" style="padding: 28px; border-radius: var(--border-radius-md); border-top: 3px solid #00bcd4; display: flex; flex-direction: column; height: 100%;">
-            <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(0, 188, 212, 0.12); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 18px;">
-              🛡️
-            </div>
-            <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-weight: 700;">Taller Oficial Homologado</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; flex-grow: 1;">
-              Somos <strong>Centro Técnico Oficial Vigia y Viesa</strong>. Contamos con instalaciones propias en Pellegrini 1320 equipadas con instrumental de diagnóstico y mecánicos matriculados.
-            </p>
-            <div style="margin-top: 15px; font-size: 0.8rem; color: #00bcd4; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-              <span>✓ Garantía escrita en mano de obra</span>
-            </div>
-          </div>
-
-          <!-- Pilar 4 -->
-          <div class="trust-pillar-card glass-panel reveal" style="padding: 28px; border-radius: var(--border-radius-md); border-top: 3px solid #ffe600; display: flex; flex-direction: column; height: 100%;">
-            <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(255, 230, 0, 0.12); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 18px;">
-              🤝
-            </div>
-            <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 10px; font-weight: 700;">Atención y Respaldo Directo</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; flex-grow: 1;">
-              Sin call centers ni intermediarios que no te atienden el teléfono. Te atendemos nosotros, cara a cara en el mostrador o por WhatsApp con respuestas inmediatas y seguimiento real.
-            </p>
-            <div style="margin-top: 15px; font-size: 0.8rem; color: #ffe600; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-              <span>✓ Asistencia humana antes y después</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Banner de Acción Respaldo Regional -->
-        <div class="trust-cta-banner glass-panel reveal" style="margin-top: 36px; padding: 26px 32px; border-radius: var(--border-radius-md); background: linear-gradient(135deg, rgba(255, 110, 0, 0.15) 0%, rgba(45, 50, 119, 0.25) 100%); border: 1px solid rgba(255, 110, 0, 0.35); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
-          <div style="max-width: 650px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-              <span style="background: var(--accent-orange); color: white; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Respaldo Regional</span>
-              <span style="color: var(--text-secondary); font-size: 0.82rem;">Chabás • Casilda • Firmat • Sanford • Arequito y zona</span>
-            </div>
-            <h4 style="font-size: 1.25rem; color: var(--text-primary); font-weight: 700; margin-bottom: 6px;">¿Tuviste malas experiencias esperando tu moto o repuesto?</h4>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">
-              Consultanos hoy mismo. Te mostramos las unidades disponibles en el showroom para entrega en el acto y cotizamos tu plan con total transparencia.
-            </p>
-          </div>
-          <div>
-            <a href="https://wa.me/5493464685338?text=Hola%20Albarrac%C3%ADn!%20Quisiera%20consultar%20por%20disponibilidad%20de%20unidades%20en%20showroom%20y%20repuestos%20con%20entrega%20inmediata." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; font-weight: 700; font-size: 0.95rem; text-decoration: none; border-radius: var(--border-radius-sm); box-shadow: var(--neon-orange-shadow);">
-              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.18c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
-              <span>Consultar Entrega Inmediata</span>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -666,6 +815,14 @@
                   <div class="filter-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
                   Repuestos Generales
                 </li>
+                <li class="filter-item" data-value="accesorios">
+                  <div class="filter-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+                  Accesorios & Indumentaria
+                </li>
+                <li class="filter-item" data-value="promociones">
+                  <div class="filter-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+                  Promociones & Oportunidades
+                </li>
                 <li class="filter-item" data-value="vigia-viesa">
                   <div class="filter-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
                   Equipos Vigia & Viesa
@@ -759,18 +916,33 @@
               </div>
             </div>
 
-            <!-- Sincronización Oficial Mercado Libre Badge -->
-            <div class="catalog-sync-badge-wrapper reveal" id="catalog-sync-info" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; padding: 12px 18px; background: rgba(255, 230, 0, 0.08); border: 1px solid rgba(255, 230, 0, 0.3); border-radius: var(--border-radius-sm); font-size: 0.85rem;">
-              <div style="display: flex; align-items: center; gap: 10px;">
+            <!-- Selector de Fuente de Catálogo: Instagram Smart Catalog vs Técnico / ML -->
+            <div class="catalog-source-tabs reveal" id="catalog-source-tabs">
+              <button type="button" class="catalog-source-btn active" id="tab-source-instagram" onclick="setCatalogSource('instagram')">
+                <span style="font-size: 1.1rem;">📸</span>
+                <span>Instagram Smart Catalog</span>
+                <span class="badge" style="background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); color: #fff; font-size: 0.65rem; padding: 2px 7px;">@albarracinmotos</span>
+              </button>
+              <button type="button" class="catalog-source-btn" id="tab-source-technical" onclick="setCatalogSource('technical')">
+                <span style="font-size: 1.1rem;">⚙️</span>
+                <span>Catálogo Técnico & Mercado Libre</span>
+                <span class="badge" style="background: #3b82f6; color: #fff; font-size: 0.65rem; padding: 2px 7px;">MULTIMARCA</span>
+              </button>
+            </div>
+
+            <!-- Sincronización Oficial Badge (Dinámico) -->
+            <div class="catalog-sync-badge-wrapper reveal" id="catalog-sync-info" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; padding: 12px 18px; background: rgba(225, 48, 108, 0.08); border: 1px solid rgba(225, 48, 108, 0.3); border-radius: var(--border-radius-sm); font-size: 0.85rem;">
+              <div style="display: flex; align-items: center; gap: 10px;" id="sync-info-left">
                 <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #00e676; box-shadow: 0 0 10px #00e676;"></span>
-                <span style="color: var(--text-primary);">
-                  <strong>Precios & Stock en Vivo:</strong> Sincronizados con la tienda oficial de Mercado Libre (<span id="sync-updated-text" style="color: var(--accent-orange); font-weight: 600;">Actualizado diariamente</span>)
+                <span style="color: var(--text-primary);" id="sync-info-title">
+                  <strong>Instagram Smart Catalog:</strong> Publicaciones oficiales sincronizadas a las 03:30 AM (<span id="sync-updated-text" style="color: var(--accent-orange); font-weight: 600;">Actualizado en vivo</span>)
                 </span>
               </div>
-              <a href="https://listado.mercadolibre.com.ar/_CustId_3530277724" target="_blank" rel="noopener noreferrer" style="color: #ffe600; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; padding: 4px 10px; background: rgba(45, 50, 119, 0.4); border-radius: 4px; border: 1px solid rgba(255, 230, 0, 0.2);">
-                <span>Tienda Oficial en ML</span>
-                <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
-              </a>
+              <div id="sync-info-right">
+                <a href="https://www.instagram.com/albarracinmotos/" target="_blank" rel="noopener noreferrer" id="sync-info-link" style="color: #ff5b93; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; padding: 4px 10px; background: rgba(225, 48, 108, 0.15); border-radius: 4px; border: 1px solid rgba(225, 48, 108, 0.3);">
+                  <span>Seguir @albarracinmotos ↗</span>
+                </a>
+              </div>
             </div>
 
             <!-- Products Grid -->
@@ -1202,5 +1374,6 @@
   <script src="app.js"></script>
   <script src="loyalty.js"></script>
   <script src="mercadolibre.js"></script>
+  <script src="arcade.js"></script>
 </body>
 </html>

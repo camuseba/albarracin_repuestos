@@ -2816,3 +2816,142 @@ button {
   box-shadow: 0 12px 30px rgba(255, 110, 0, 0.15);
 }
 
+/* ==========================================
+   ALBARRACÍN INSTAGRAM SMART CATALOG
+   ========================================== */
+.catalog-source-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.catalog-source-btn {
+  padding: 10px 18px;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.catalog-source-btn:hover {
+  border-color: rgba(255, 110, 0, 0.5);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.catalog-source-btn.active {
+  background: linear-gradient(135deg, rgba(225, 48, 108, 0.2) 0%, rgba(255, 110, 0, 0.25) 100%);
+  border-color: #e1306c;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(225, 48, 108, 0.3);
+}
+
+.catalog-source-btn.active-tech {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(45, 50, 119, 0.3) 100%);
+  border-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.3);
+}
+
+.product-instagram-badge {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(220, 39, 67, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.product-gallery-pill {
+  position: absolute;
+  top: 10px;
+  right: 48px;
+  background: rgba(10, 12, 18, 0.75);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.product-ig-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.product-ig-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn-ig-whatsapp {
+  background: #25d366;
+  color: #051408;
+  font-weight: 800;
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.25);
+}
+
+.btn-ig-whatsapp:hover {
+  background: #2fe873;
+  transform: translateY(-2px);
+}
+
+.btn-ig-view {
+  background: rgba(225, 48, 108, 0.12);
+  color: #ff5b93;
+  border: 1px solid rgba(225, 48, 108, 0.35);
+}
+
+.btn-ig-view:hover {
+  background: rgba(225, 48, 108, 0.25);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.badge-sold {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #ef4444 !important;
+  border-color: #ef4444 !important;
+}
+
+.badge-available {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+.badge-consult {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+

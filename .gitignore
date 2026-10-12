@@ -7,3 +7,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 _backups/
+*.bak
+*.bak.json
