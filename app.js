@@ -994,10 +994,6 @@ function renderCatalog() {
           <div class="product-img-wrapper" onclick="openProductDetail('${product.id}')">
             <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='assets/banner_main.jpg';">
             <div class="product-badges">
-              <span class="product-instagram-badge">
-                <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                Instagram Oficial
-              </span>
               ${categoryBadge}
               ${availabilityBadge}
             </div>
@@ -1009,7 +1005,6 @@ function renderCatalog() {
           <div class="product-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <span class="product-cat">${product.brand ? product.brand : 'Albarracín Motos'} ${product.model ? '• ' + product.model : ''}</span>
-              <span class="stock-badge" style="font-size: 0.72rem;">📸 Sync: 03:30 AM</span>
             </div>
             <h3 class="product-title" onclick="openProductDetail('${product.id}')">${product.name}</h3>
             <p class="product-desc" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.desc}</p>
@@ -1447,10 +1442,7 @@ function openProductDetail(productId) {
       </div>
       <div class="detail-info-box">
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
-            <span class="product-instagram-badge" style="font-size: 0.8rem; padding: 4px 10px;">
-              📸 Publicación Oficial @albarracinmotos
-            </span>
+          <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
             ${availabilityBadge}
           </div>
           <h2 class="detail-title" style="margin-top: 8px;">${product.name}</h2>
@@ -1470,7 +1462,7 @@ function openProductDetail(productId) {
         </div>
 
         <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 14px; border-radius: 8px; margin-bottom: 16px;">
-          <h4 style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Descripción de la publicación:</h4>
+          <h4 style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Detalles y equipamiento:</h4>
           <p style="font-size: 0.88rem; color: var(--text-primary); line-height: 1.5; white-space: pre-line; margin: 0;">${product.desc}</p>
         </div>
 
@@ -1478,21 +1470,17 @@ function openProductDetail(productId) {
           <tbody>
             <tr>
               <td class="detail-specs-label">Procedencia</td>
-              <td class="detail-specs-val">Instagram Graph API (@albarracinmotos)</td>
-            </tr>
-            <tr>
-              <td class="detail-specs-label">Instagram Media ID</td>
-              <td class="detail-specs-val" style="font-family: monospace;">${product.ig_media_id || product.id}</td>
+              <td class="detail-specs-val">Albarracín Motos Oficial</td>
             </tr>
             ${product.brand ? `<tr><td class="detail-specs-label">Marca</td><td class="detail-specs-val">${product.brand}</td></tr>` : ''}
             ${product.model ? `<tr><td class="detail-specs-label">Modelo</td><td class="detail-specs-val">${product.model}</td></tr>` : ''}
             <tr>
-              <td class="detail-specs-label">Sincronización Diaria</td>
-              <td class="detail-specs-val">03:30 AM (America/Argentina/Buenos_Aires)</td>
-            </tr>
-            <tr>
               <td class="detail-specs-label">Punto de Entrega</td>
               <td class="detail-specs-val">Pellegrini 1320, Chabás (Santa Fe)</td>
+            </tr>
+            <tr>
+              <td class="detail-specs-label">Atención y Ventas</td>
+              <td class="detail-specs-val">Cel: 3464 624126 / WhatsApp: 3464 685338</td>
             </tr>
           </tbody>
         </table>
