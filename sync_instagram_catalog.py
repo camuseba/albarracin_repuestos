@@ -43,7 +43,7 @@ ENV_FILE = os.path.join(BASE_DIR, ".env")
 KNOWN_BRANDS = [
     "Honda", "Yamaha", "Motomel", "Corven", "Bajaj", "Kawasaki", "Suzuki",
     "KTM", "Benelli", "Gilera", "Zanella", "Mondial", "Vespa", "BMW",
-    "CID", "Edge", "Moove", "Kayo", "Pirelli",
+    "Morbidelli", "CID", "Edge", "Moove", "Kayo", "Pirelli",
     "Bosch", "Gates", "Sachs", "Moura", "Fispa", "Dolz", "Frasle", "Vigia", "Viesa"
 ]
 
@@ -150,11 +150,76 @@ class MetaInstagramClient:
         """
         Publicaciones semilla autorizadas y verificadas de @albarracinmotos
         para operar con total estabilidad cuando no hay token de desarrollador activo.
+        Refleja fielmente las últimas 10 publicaciones comerciales de Instagram.
         """
         now = datetime.datetime.now(datetime.timezone.utc).isoformat()
         return [
             {
-                "id": "ig_1804291823901",
+                "id": "1804291823901",
+                "caption": (
+                    "Morbidelli T1002VX Maxi-Trail — Contado Especial\n"
+                    "MORBIDELLI MUCHO MÁS CERCA EN ALBARRACÍN MOTOS 🏁\n"
+                    "Maxi-trail bicilíndrica en V con valijones de aluminio, frenos Brembo, pantalla TFT y suspensión regulable.\n"
+                    "💰 CONTADO ESPECIAL: $21.090.000.\n"
+                    "Venta, repuestos y accesorios en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Morbidelli #T1002VX #MaxiTrail #0km #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_morbidelli_t1002vx.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823902",
+                "caption": (
+                    "Morbidelli T502X Trail Aventura — Contado Especial\n"
+                    "MORBIDELLI MUCHO MÁS CERCA EN ALBARRACÍN MOTOS 🚀\n"
+                    "Trail media bicilíndrica 500cc con llantas de rayos, defensas laterales, pantalla TFT e iluminación full LED.\n"
+                    "💰 CONTADO ESPECIAL: $13.990.000.\n"
+                    "Showroom y entrega inmediata en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Morbidelli #T502X #TrailAventura #0km #AlbarracinMotos"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_morbidelli_t502x.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823903",
+                "caption": (
+                    "Suzuki V-Strom 650 CC XT Shad — Tu Primera Suzuki\n"
+                    "TU PRIMERA SUZUKI MÁS CERCA TUYO EN ALBARRACÍN MOTOS ⚡\n"
+                    "Motor V-Twin 650cc, llantas de rayos tubeless, baúl Shad superior y tecnología japonesa inigualable.\n"
+                    "💰 Precio especial: $22.500.000.\n"
+                    "Consultanos financiación y toma de unidades en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Suzuki #VStrom650 #XTShad #0km #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_suzuki_vstrom_650.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823904",
+                "caption": (
+                    "Honda CB 190R Modelo 2017 — Usada Seleccionada\n"
+                    "HONDA CB 190 MODELO 2017 EN ALBARRACÍN MOTOS 🔴\n"
+                    "Unidad seleccionada en impecable estado de conservación, mecánica revisada y documentación lista para transferir.\n"
+                    "💰 Precio promocional: $3.190.000.\n"
+                    "Retiro inmediato en salón de ventas Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Honda #CB190 #UsadaSeleccionada #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_honda_cb190_2017.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823905",
                 "caption": (
                     "Casco CID Eclipse Rebatible c/ Doble Lente\n"
                     "Si tu casco tiene historia... ¡Es hora de cambiarlo! 🏁\n"
@@ -170,7 +235,7 @@ class MetaInstagramClient:
                 "timestamp": now
             },
             {
-                "id": "ig_1804291823902",
+                "id": "1804291823906",
                 "caption": (
                     "Bicicleta Moove 29'' — Oferta Especial Contado\n"
                     "¡Venite caminando y andate en una bicicleta Moove! 🚴‍♂️\n"
@@ -186,7 +251,7 @@ class MetaInstagramClient:
                 "timestamp": now
             },
             {
-                "id": "ig_1804291823903",
+                "id": "1804291823907",
                 "caption": (
                     "Casco Edge Quarz Rosa — Especial Octubre Rosa\n"
                     "Nos sumamos al Octubre Rosa 🎀\n"
@@ -202,22 +267,7 @@ class MetaInstagramClient:
                 "timestamp": now
             },
             {
-                "id": "ig_1804291823904",
-                "caption": (
-                    "Bicicleta Moove 29'' — Entrega a Rocío\n"
-                    "¡Gracias Rocío por la confianza, a disfrutar de tu Moove 29''! 🚴‍♀️\n"
-                    "Nueva entrega en Albarracín Motos. Movilidad ágil y saludable para disfrutar el aire libre.\n"
-                    "Venta, repuestos y accesorios con garantía en Pellegrini 1320, Chabás.\n"
-                    "💰 Precio especial: $298.000 (Financiación a tu medida).\n"
-                    "#Bicicleta #Moove #Moove29 #Entrega #ClientesFelices #AlbarracinMotos #Chabás"
-                ),
-                "media_type": "IMAGE",
-                "media_url": "assets/ig_real_bici_rocio.jpg",
-                "permalink": "https://www.instagram.com/albarracinmotos/",
-                "timestamp": now
-            },
-            {
-                "id": "ig_1804291823905",
+                "id": "1804291823908",
                 "caption": (
                     "Motomel Blitz 110cc Black Edition — Entrega a Natanael\n"
                     "¡Gracias Natanael por la confianza, a disfrutar! 🛵\n"
@@ -233,7 +283,22 @@ class MetaInstagramClient:
                 "timestamp": now
             },
             {
-                "id": "ig_1804291823906",
+                "id": "1804291823909",
+                "caption": (
+                    "Cuatriciclo Deportivo Kayo — Entrega a Marcos\n"
+                    "¡Gracias Marcos por la confianza, a disfrutar de tu nuevo cuatri! 🏁\n"
+                    "Entrega de cuatriciclo deportivo Kayo en Albarracín Motos, Concesionario Oficial Kayo.\n"
+                    "💰 Precio especial: $3.890.000.\n"
+                    "Unidades para deporte, campo y recreación familiar en Pellegrini 1320, Chabás.\n"
+                    "#Moto #Kayo #Cuatriciclo #Entrega #OffRoad #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_entrega_cuatri_marcos.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823910",
                 "caption": (
                     "Programa de Referidos — Albarracín Motos Octubre\n"
                     "¡En Albarracín Motos tenés nuestro Programa de Referidos! 🤝\n"
@@ -245,65 +310,6 @@ class MetaInstagramClient:
                 ),
                 "media_type": "IMAGE",
                 "media_url": "assets/ig_real_programa_referidos.jpg",
-                "permalink": "https://www.instagram.com/albarracinmotos/",
-                "timestamp": now
-            },
-            {
-                "id": "ig_1804291823907",
-                "caption": (
-                    "Bajaj Rouser NS Urbana — Entrega a Uriel\n"
-                    "¡Gracias Uriel por la confianza, a disfrutar! ⚡\n"
-                    "Entrega de Bajaj Rouser NS 0km. Potencia naked, diseño deportivo y máxima estabilidad en curvas y ruta.\n"
-                    "💰 Precio contado: $3.450.000 (Tomamos tu moto usada en parte de pago).\n"
-                    "Atención personalizada y entrega inmediata en Pellegrini 1320, Chabás.\n"
-                    "#Moto #Bajaj #Rouser #RouserNS #0km #Entrega0km #AlbarracinMotos #Chabás"
-                ),
-                "media_type": "IMAGE",
-                "media_url": "assets/ig_real_entrega_rouser.jpg",
-                "permalink": "https://www.instagram.com/albarracinmotos/",
-                "timestamp": now
-            },
-            {
-                "id": "ig_1804291823908",
-                "caption": (
-                    "Moto Enduro Cross Competición — Entrega a Emi\n"
-                    "¡Gracias Emi por la confianza, a disfrutar! 🏁\n"
-                    "Entrega de unidad Enduro Cross de pura potencia. Máxima diversión y rendimiento off-road en tierra, arena y circuitos.\n"
-                    "💰 Precio especial: $4.200.000.\n"
-                    "Equipamiento de competición, repuestos y service en Albarracín Motos. Pellegrini 1320, Chabás.\n"
-                    "#Moto #Kayo #Enduro #Cross #OffRoad #Competicion #AlbarracinMotos #Chabás"
-                ),
-                "media_type": "IMAGE",
-                "media_url": "assets/ig_real_entrega_cross.jpg",
-                "permalink": "https://www.instagram.com/albarracinmotos/",
-                "timestamp": now
-            },
-            {
-                "id": "ig_1804291823909",
-                "caption": (
-                    "Cubiertas Pirelli Mandrake / MT60 — Stock Inmediato\n"
-                    "Cubiertas Pirelli Mandrake y MT60 para motos de calle y doble propósito 🏍️\n"
-                    "Máximo agarre en asfalto seco y mojado, durabilidad y seguridad en cada frenada.\n"
-                    "💰 Precio: $68.900 con colocación disponible en nuestro taller.\n"
-                    "Pellegrini 1320, Chabás • WhatsApp 3464 685338.\n"
-                    "#Repuesto #Pirelli #Mandrake #Cubiertas #AlbarracinRepuestos"
-                ),
-                "media_type": "IMAGE",
-                "media_url": "assets/repuesto_cubierta_pirelli.jpg",
-                "permalink": "https://www.instagram.com/albarracinmotos/",
-                "timestamp": now
-            },
-            {
-                "id": "ig_1804291823910",
-                "caption": (
-                    "Servicio Técnico Vigia Protector de Motor — Taller Oficial\n"
-                    "Protegé tu inversión contra sobrecalentamiento y caídas de presión de aceite con el protector automático Vigia 🛡️\n"
-                    "Instalación matriculada y calibración computarizada para camionetas, utilitarios, camiones y maquinaria agrícola.\n"
-                    "Turnos y consultas técnicas al 3464 685338.\n"
-                    "#Repuesto #Vigia #Viesa #TallerOficial #ProtectorDeMotor #Pellegrini1320"
-                ),
-                "media_type": "IMAGE",
-                "media_url": "assets/service_vigia.jpg",
                 "permalink": "https://www.instagram.com/albarracinmotos/",
                 "timestamp": now
             }
@@ -359,6 +365,7 @@ class PostClassifier:
 
         # Buscar modelos usuales
         model_patterns = [
+            r'T1002VX', r'T502X', r'V-Strom\s*650', r'CB\s*190', r'Cuatriciclo',
             r'XR\s*250\s*Tornado', r'YZF-R3', r'Blitz\s*110', r'Triax\s*150',
             r'Wave\s*110', r'CG\s*150', r'Titan', r'Corsa', r'Classic', r'Hilux',
             r'Moove\s*29', r'Moove', r'Eclipse', r'Quarz', r'Rouser\s*NS', r'Rouser',
