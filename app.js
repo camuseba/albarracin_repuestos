@@ -1009,9 +1009,6 @@ function renderCatalog() {
               <div class="product-price-box">
                 <span class="product-price" style="font-size: 1.15rem;">${formattedPrice}</span>
               </div>
-              <button class="btn btn-secondary" onclick="openProductDetail('${product.id}')" style="padding: 6px 12px; font-size: 0.78rem;">
-                Ver Ficha
-              </button>
             </div>
           </div>
         </article>
