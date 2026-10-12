@@ -1,6 +1,6 @@
 {
-  "syncTimestamp": "2026-10-12T05:42:01.029Z",
-  "formattedDate": "12/10/2026 02:42 a. m.",
+  "syncTimestamp": "2026-10-12T06:21:27.086Z",
+  "formattedDate": "12/10/2026 03:21 a. m.",
   "account": "@albarracinmotos",
   "accountUrl": "https://www.instagram.com/albarracinmotos/",
   "totalProducts": 10,
@@ -33,8 +33,8 @@
         "assets/ig_real_morbidelli_t1002vx.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.068Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.133Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -58,8 +58,8 @@
         "assets/ig_real_morbidelli_t502x.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.069Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.134Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -83,8 +83,8 @@
         "assets/ig_real_suzuki_vstrom_650.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.069Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.134Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -98,18 +98,18 @@
       "model": "CB 190",
       "year": "2017",
       "displacement": null,
-      "desc": "Honda CB 190R Modelo 2017 — Usada Seleccionada\nHONDA CB 190 MODELO 2017 EN ALBARRACÍN MOTOS 🔴\nUnidad seleccionada en impecable estado de conservación, mecánica revisada y documentación lista para transferir.\n💰 Precio promocional: $3.190.000.\nRetiro inmediato en salón de ventas Pellegrini 1320, Chabás.\nCel: 3464 624126 / 3464 685338.\n#Moto #Honda #CB190 #UsadaSeleccionada #AlbarracinMotos #Chabás",
-      "price": 3190000,
-      "formattedPrice": "$ 3.190.000",
+      "desc": "Honda CB 190R Modelo 2017 — Usada Seleccionada\nHONDA CB 190 MODELO 2017 EN ALBARRACÍN MOTOS 🔴\nUnidad seleccionada en impecable estado de conservación, mecánica revisada y documentación lista para transferir.\nShowroom y atención personalizada en Pellegrini 1320, Chabás.\nCel: 3464 624126 / 3464 685338.\n#Moto #Honda #CB190 #UsadaSeleccionada #AlbarracinMotos #Chabás",
+      "price": null,
+      "formattedPrice": "Consultar",
       "currency": "ARS",
-      "availability": "Disponible",
+      "availability": "Consultar",
       "image": "assets/ig_real_honda_cb190_2017.jpg",
       "gallery": [
         "assets/ig_real_honda_cb190_2017.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.069Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.134Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -133,8 +133,8 @@
         "assets/ig_real_casco_cid_eclipse.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.070Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.135Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -158,8 +158,8 @@
         "assets/ig_real_bici_moove_promo.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.071Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.136Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -183,8 +183,8 @@
         "assets/ig_real_casco_octubre_rosa.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.071Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.138Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -198,18 +198,18 @@
       "model": "Blitz 110",
       "year": null,
       "displacement": "110cc",
-      "desc": "Motomel Blitz 110cc Black Edition — Entrega a Natanael\n¡Gracias Natanael por la confianza, a disfrutar! 🛵\nEntrega de Motomel Blitz 110cc Black Edition 0km lista para rodar en la calle.\nLa moto urbana más elegida por bajo consumo, repuestos económicos y confiabilidad.\n💰 Precio promocional: $1.690.000.\nSalís rodando con casco y service oficial bonificado en Pellegrini 1320, Chabás.\n#Moto #Motomel #Blitz110 #0km #Entrega0km #AlbarracinMotos #Chabás",
-      "price": 1690000,
-      "formattedPrice": "$ 1.690.000",
+      "desc": "Motomel Blitz 110cc Black Edition — Entrega a Natanael\n¡Gracias Natanael por la confianza, a disfrutar! 🛵\nEntrega de Motomel Blitz 110cc Black Edition 0km lista para rodar en la calle.\nLa moto urbana más elegida por bajo consumo, repuestos económicos y confiabilidad.\nSalís rodando con casco y service oficial bonificado en Pellegrini 1320, Chabás.\n#Moto #Motomel #Blitz110 #0km #Entrega0km #AlbarracinMotos #Chabás",
+      "price": null,
+      "formattedPrice": "Consultar",
       "currency": "ARS",
-      "availability": "Disponible",
+      "availability": "Consultar",
       "image": "assets/ig_real_entrega_blitz.jpg",
       "gallery": [
         "assets/ig_real_entrega_blitz.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.071Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.138Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -223,18 +223,18 @@
       "model": "Cuatriciclo",
       "year": null,
       "displacement": null,
-      "desc": "Cuatriciclo Deportivo Kayo — Entrega a Marcos\n¡Gracias Marcos por la confianza, a disfrutar de tu nuevo cuatri! 🏁\nEntrega de cuatriciclo deportivo Kayo en Albarracín Motos, Concesionario Oficial Kayo.\n💰 Precio especial: $3.890.000.\nUnidades para deporte, campo y recreación familiar en Pellegrini 1320, Chabás.\n#Moto #Kayo #Cuatriciclo #Entrega #OffRoad #AlbarracinMotos #Chabás",
-      "price": 3890000,
-      "formattedPrice": "$ 3.890.000",
+      "desc": "Cuatriciclo Deportivo Kayo — Entrega a Marcos\n¡Gracias Marcos por la confianza, a disfrutar de tu nuevo cuatri! 🏁\nEntrega de cuatriciclo deportivo Kayo en Albarracín Motos, Concesionario Oficial Kayo.\nUnidades para deporte, campo y recreación familiar en Pellegrini 1320, Chabás.\n#Moto #Kayo #Cuatriciclo #Entrega #OffRoad #AlbarracinMotos #Chabás",
+      "price": null,
+      "formattedPrice": "Consultar",
       "currency": "ARS",
-      "availability": "Disponible",
+      "availability": "Consultar",
       "image": "assets/ig_real_entrega_cuatri_marcos.jpg",
       "gallery": [
         "assets/ig_real_entrega_cuatri_marcos.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.071Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.138Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -258,8 +258,8 @@
         "assets/ig_real_programa_referidos.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T05:42:01.031Z",
-      "last_sync": "2026-10-12T05:42:01.072Z",
+      "timestamp": "2026-10-12T06:21:27.090Z",
+      "last_sync": "2026-10-12T06:21:27.139Z",
       "validation_status": "verified",
       "source": "instagram_official"
     }

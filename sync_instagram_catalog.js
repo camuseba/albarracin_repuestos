@@ -275,7 +275,7 @@ function getSeedPosts() {
     },
     {
       id: "1804291823904",
-      caption: "Honda CB 190R Modelo 2017 — Usada Seleccionada\nHONDA CB 190 MODELO 2017 EN ALBARRACÍN MOTOS 🔴\nUnidad seleccionada en impecable estado de conservación, mecánica revisada y documentación lista para transferir.\n💰 Precio promocional: $3.190.000.\nRetiro inmediato en salón de ventas Pellegrini 1320, Chabás.\nCel: 3464 624126 / 3464 685338.\n#Moto #Honda #CB190 #UsadaSeleccionada #AlbarracinMotos #Chabás",
+      caption: "Honda CB 190R Modelo 2017 — Usada Seleccionada\nHONDA CB 190 MODELO 2017 EN ALBARRACÍN MOTOS 🔴\nUnidad seleccionada en impecable estado de conservación, mecánica revisada y documentación lista para transferir.\nShowroom y atención personalizada en Pellegrini 1320, Chabás.\nCel: 3464 624126 / 3464 685338.\n#Moto #Honda #CB190 #UsadaSeleccionada #AlbarracinMotos #Chabás",
       media_type: "IMAGE",
       media_url: "assets/ig_real_honda_cb190_2017.jpg",
       permalink: "https://www.instagram.com/albarracinmotos/",
@@ -307,7 +307,7 @@ function getSeedPosts() {
     },
     {
       id: "1804291823908",
-      caption: "Motomel Blitz 110cc Black Edition — Entrega a Natanael\n¡Gracias Natanael por la confianza, a disfrutar! 🛵\nEntrega de Motomel Blitz 110cc Black Edition 0km lista para rodar en la calle.\nLa moto urbana más elegida por bajo consumo, repuestos económicos y confiabilidad.\n💰 Precio promocional: $1.690.000.\nSalís rodando con casco y service oficial bonificado en Pellegrini 1320, Chabás.\n#Moto #Motomel #Blitz110 #0km #Entrega0km #AlbarracinMotos #Chabás",
+      caption: "Motomel Blitz 110cc Black Edition — Entrega a Natanael\n¡Gracias Natanael por la confianza, a disfrutar! 🛵\nEntrega de Motomel Blitz 110cc Black Edition 0km lista para rodar en la calle.\nLa moto urbana más elegida por bajo consumo, repuestos económicos y confiabilidad.\nSalís rodando con casco y service oficial bonificado en Pellegrini 1320, Chabás.\n#Moto #Motomel #Blitz110 #0km #Entrega0km #AlbarracinMotos #Chabás",
       media_type: "IMAGE",
       media_url: "assets/ig_real_entrega_blitz.jpg",
       permalink: "https://www.instagram.com/albarracinmotos/",
@@ -315,7 +315,7 @@ function getSeedPosts() {
     },
     {
       id: "1804291823909",
-      caption: "Cuatriciclo Deportivo Kayo — Entrega a Marcos\n¡Gracias Marcos por la confianza, a disfrutar de tu nuevo cuatri! 🏁\nEntrega de cuatriciclo deportivo Kayo en Albarracín Motos, Concesionario Oficial Kayo.\n💰 Precio especial: $3.890.000.\nUnidades para deporte, campo y recreación familiar en Pellegrini 1320, Chabás.\n#Moto #Kayo #Cuatriciclo #Entrega #OffRoad #AlbarracinMotos #Chabás",
+      caption: "Cuatriciclo Deportivo Kayo — Entrega a Marcos\n¡Gracias Marcos por la confianza, a disfrutar de tu nuevo cuatri! 🏁\nEntrega de cuatriciclo deportivo Kayo en Albarracín Motos, Concesionario Oficial Kayo.\nUnidades para deporte, campo y recreación familiar en Pellegrini 1320, Chabás.\n#Moto #Kayo #Cuatriciclo #Entrega #OffRoad #AlbarracinMotos #Chabás",
       media_type: "IMAGE",
       media_url: "assets/ig_real_entrega_cuatri_marcos.jpg",
       permalink: "https://www.instagram.com/albarracinmotos/",

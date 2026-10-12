@@ -964,7 +964,7 @@ function renderCatalog() {
     filteredIg.forEach(product => {
       const formattedPrice = (product.price && product.price > 0)
         ? formatCurrency(product.price)
-        : '<span style="font-size: 0.95rem; color: #f59e0b; font-weight:700;">Consultar Precio</span>';
+        : '<span style="font-size: 0.92rem; color: var(--text-secondary); font-weight:600;">Precio a consultar</span>';
       
       const catName = product.category === 'motos' ? 'Moto'
         : product.category === 'repuestos' ? 'Repuesto'
@@ -1386,7 +1386,7 @@ function openProductDetail(productId) {
   if (product.source === "instagram_official" || String(product.id).startsWith("ig_")) {
     const formattedPrice = (product.price && product.price > 0)
       ? formatCurrency(product.price)
-      : '<span style="font-size: 1.05rem; color: #f59e0b; font-weight:700;">Consultar Precio Actualizado</span>';
+      : '<span style="font-size: 1.05rem; color: var(--text-secondary); font-weight:600;">Precio a consultar</span>';
     
     const catName = product.category === 'motos' ? 'Motocicleta'
       : product.category === 'repuestos' ? 'Repuesto Automotor / Moto'

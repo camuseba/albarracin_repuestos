@@ -208,8 +208,7 @@ class MetaInstagramClient:
                     "Honda CB 190R Modelo 2017 — Usada Seleccionada\n"
                     "HONDA CB 190 MODELO 2017 EN ALBARRACÍN MOTOS 🔴\n"
                     "Unidad seleccionada en impecable estado de conservación, mecánica revisada y documentación lista para transferir.\n"
-                    "💰 Precio promocional: $3.190.000.\n"
-                    "Retiro inmediato en salón de ventas Pellegrini 1320, Chabás.\n"
+                    "Showroom y atención personalizada en Pellegrini 1320, Chabás.\n"
                     "Cel: 3464 624126 / 3464 685338.\n"
                     "#Moto #Honda #CB190 #UsadaSeleccionada #AlbarracinMotos #Chabás"
                 ),
@@ -273,7 +272,6 @@ class MetaInstagramClient:
                     "¡Gracias Natanael por la confianza, a disfrutar! 🛵\n"
                     "Entrega de Motomel Blitz 110cc Black Edition 0km lista para rodar en la calle.\n"
                     "La moto urbana más elegida por bajo consumo, repuestos económicos y confiabilidad.\n"
-                    "💰 Precio promocional: $1.690.000.\n"
                     "Salís rodando con casco y service oficial bonificado en Pellegrini 1320, Chabás.\n"
                     "#Moto #Motomel #Blitz110 #0km #Entrega0km #AlbarracinMotos #Chabás"
                 ),
@@ -288,7 +286,6 @@ class MetaInstagramClient:
                     "Cuatriciclo Deportivo Kayo — Entrega a Marcos\n"
                     "¡Gracias Marcos por la confianza, a disfrutar de tu nuevo cuatri! 🏁\n"
                     "Entrega de cuatriciclo deportivo Kayo en Albarracín Motos, Concesionario Oficial Kayo.\n"
-                    "💰 Precio especial: $3.890.000.\n"
                     "Unidades para deporte, campo y recreación familiar en Pellegrini 1320, Chabás.\n"
                     "#Moto #Kayo #Cuatriciclo #Entrega #OffRoad #AlbarracinMotos #Chabás"
                 ),
