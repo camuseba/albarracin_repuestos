@@ -637,7 +637,7 @@ async function initInstagramSmartCatalog() {
 
         const syncBadge = document.getElementById("sync-updated-text");
         if (syncBadge && data.formattedDate) {
-          syncBadge.textContent = "Actualizado: " + data.formattedDate;
+          syncBadge.textContent = `${data.products.length} publicaciones en vivo (Sync: ${data.formattedDate})`;
         }
 
         renderBrandFilters();

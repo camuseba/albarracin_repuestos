@@ -1,12 +1,12 @@
 {
-  "last_sync": "2026-10-12T03:57:01.257Z",
+  "last_sync": "2026-10-12T04:43:17.077Z",
   "status": "HEALTHY",
   "account": "@albarracinmotos",
-  "total_products": 7,
+  "total_products": 10,
   "metrics": {
-    "total_fetched": 7,
-    "motos": 4,
-    "repuestos": 2,
+    "total_fetched": 10,
+    "motos": 5,
+    "repuestos": 4,
     "accesorios": 1,
     "promociones": 0,
     "sold": 0

@@ -1,13 +1,13 @@
 {
-  "syncTimestamp": "2026-10-12T03:57:01.257Z",
-  "formattedDate": "12/10/2026 12:57 a. m.",
+  "syncTimestamp": "2026-10-12T04:43:17.077Z",
+  "formattedDate": "12/10/2026 01:43 a. m.",
   "account": "@albarracinmotos",
   "accountUrl": "https://www.instagram.com/albarracinmotos/",
-  "totalProducts": 7,
+  "totalProducts": 10,
   "metrics": {
-    "total_fetched": 7,
-    "motos": 4,
-    "repuestos": 2,
+    "total_fetched": 10,
+    "motos": 5,
+    "repuestos": 4,
     "accesorios": 1,
     "promociones": 0,
     "sold": 0
@@ -33,8 +33,8 @@
         "assets/moto_honda_xr.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T03:57:01.260Z",
-      "last_sync": "2026-10-12T03:57:01.303Z",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.118Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -58,8 +58,8 @@
         "assets/moto_yamaha_r3.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T03:57:01.260Z",
-      "last_sync": "2026-10-12T03:57:01.304Z",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.119Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -83,8 +83,8 @@
         "assets/moto_motomel_blitz.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T03:57:01.260Z",
-      "last_sync": "2026-10-12T03:57:01.304Z",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.119Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
@@ -108,14 +108,39 @@
         "assets/moto_corven_triax.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T03:57:01.260Z",
-      "last_sync": "2026-10-12T03:57:01.305Z",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.119Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
     {
       "id": "ig_1804291823905",
       "ig_media_id": "1804291823905",
+      "permalink": "https://www.instagram.com/albarracinmotos/",
+      "name": "LA MOTO MÁS ELEGIDA DE ARGENTINA!",
+      "category": "motos",
+      "brand": "Honda",
+      "model": "Wave 110",
+      "year": null,
+      "displacement": null,
+      "desc": "🔥 ¡LA MOTO MÁS ELEGIDA DE ARGENTINA!\nHonda Wave 110S C/D 0km con arranque eléctrico y freno a disco delantero.\nIdeal para movilidad ágil en la ciudad con el consumo más eficiente.\nDisponibilidad inmediata en salón de ventas Chabás.\nPrecio especial contado: $2.490.000 (Financiación en cuotas fijas).\n#Moto #Honda #Wave110S #0km #EntregaInmediata #AlbarracinMotos",
+      "price": 2490000,
+      "formattedPrice": "$ 2.490.000",
+      "currency": "ARS",
+      "availability": "Disponible",
+      "image": "assets/moto_motomel_blitz.jpg",
+      "gallery": [
+        "assets/moto_motomel_blitz.jpg"
+      ],
+      "media_type": "IMAGE",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.119Z",
+      "validation_status": "verified",
+      "source": "instagram_official"
+    },
+    {
+      "id": "ig_1804291823906",
+      "ig_media_id": "1804291823906",
       "permalink": "https://www.instagram.com/albarracinmotos/",
       "name": "SEGURIDAD Y PRECISIÓN EN TU MOTOR.",
       "category": "repuestos",
@@ -133,14 +158,39 @@
         "assets/banner_main.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T03:57:01.260Z",
-      "last_sync": "2026-10-12T03:57:01.305Z",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.120Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
     {
-      "id": "ig_1804291823906",
-      "ig_media_id": "1804291823906",
+      "id": "ig_1804291823907",
+      "ig_media_id": "1804291823907",
+      "permalink": "https://www.instagram.com/albarracinmotos/",
+      "name": "MÁXIMA POTENCIA DE ARRANQUE GARANTIZADA.",
+      "category": "repuestos",
+      "brand": "Moura",
+      "model": "Hilux",
+      "year": null,
+      "displacement": null,
+      "desc": "🔋 MÁXIMA POTENCIA DE ARRANQUE GARANTIZADA.\nBatería Moura 12V 75Ah con aleación plata de libre mantenimiento.\nIdeal para camionetas Toyota Hilux, Ford Ranger, VW Amarok y utilitarios.\nInstalación y testeo de alternador bonificado en nuestro local de Pellegrini 1320.\nPrecio en oferta: $154.000 con entrega de batería usada.\n#Repuesto #Moura #Baterias #Hilux #Amarok #ServicioShowroom",
+      "price": 154000,
+      "formattedPrice": "$ 154.000",
+      "currency": "ARS",
+      "availability": "Disponible",
+      "image": "assets/banner_main.jpg",
+      "gallery": [
+        "assets/banner_main.jpg"
+      ],
+      "media_type": "IMAGE",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.120Z",
+      "validation_status": "verified",
+      "source": "instagram_official"
+    },
+    {
+      "id": "ig_1804291823908",
+      "ig_media_id": "1804291823908",
       "permalink": "https://www.instagram.com/albarracinmotos/",
       "name": "CENTRO TÉCNICO OFICIAL VIGIA Y VIESA.",
       "category": "repuestos",
@@ -158,14 +208,14 @@
         "assets/banner_main.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T03:57:01.260Z",
-      "last_sync": "2026-10-12T03:57:01.306Z",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.121Z",
       "validation_status": "verified",
       "source": "instagram_official"
     },
     {
-      "id": "ig_1804291823907",
-      "ig_media_id": "1804291823907",
+      "id": "ig_1804291823909",
+      "ig_media_id": "1804291823909",
       "permalink": "https://www.instagram.com/albarracinmotos/",
       "name": "Casco Integral Homologado con Visor Antirrayas.",
       "category": "accesorios",
@@ -183,8 +233,33 @@
         "assets/banner_main.jpg"
       ],
       "media_type": "IMAGE",
-      "timestamp": "2026-10-12T03:57:01.260Z",
-      "last_sync": "2026-10-12T03:57:01.306Z",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.122Z",
+      "validation_status": "verified",
+      "source": "instagram_official"
+    },
+    {
+      "id": "ig_1804291823910",
+      "ig_media_id": "1804291823910",
+      "permalink": "https://www.instagram.com/albarracinmotos/",
+      "name": "TRANSMISIÓN REFORZADA PARA ALTO RENDIMIENTO.",
+      "category": "repuestos",
+      "brand": "Honda",
+      "model": "Titan",
+      "year": null,
+      "displacement": null,
+      "desc": "⛓️ TRANSMISIÓN REFORZADA PARA ALTO RENDIMIENTO.\nKit de Transmisión con cadena O-Ring dorada, piñón templado y corona tratada térmicamente.\nDisponible para Honda Tornado 250, Yamaha FZ, Titan 150 y Rouser NS200.\nMayor durabilidad y resistencia al desgaste en tierra y asfalto.\nPrecio promocional: $74.500. Envíos inmediatos o colocación en taller.\n#Repuesto #Transmision #Honda #Yamaha #MotosChabas #AlbarracinMotos",
+      "price": 74500,
+      "formattedPrice": "$ 74.500",
+      "currency": "ARS",
+      "availability": "Disponible",
+      "image": "assets/banner_main.jpg",
+      "gallery": [
+        "assets/banner_main.jpg"
+      ],
+      "media_type": "IMAGE",
+      "timestamp": "2026-10-12T04:43:17.082Z",
+      "last_sync": "2026-10-12T04:43:17.122Z",
       "validation_status": "verified",
       "source": "instagram_official"
     }

@@ -209,6 +209,21 @@ class MetaInstagramClient:
             {
                 "id": "ig_1804291823905",
                 "caption": (
+                    "🔥 ¡LA MOTO MÁS ELEGIDA DE ARGENTINA!\n"
+                    "Honda Wave 110S C/D 0km con arranque eléctrico y freno a disco delantero.\n"
+                    "Ideal para movilidad ágil en la ciudad con el consumo más eficiente.\n"
+                    "Disponibilidad inmediata en salón de ventas Chabás.\n"
+                    "Precio especial contado: $2.490.000 (Financiación en cuotas fijas).\n"
+                    "#Moto #Honda #Wave110S #0km #EntregaInmediata #AlbarracinMotos"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/moto_motomel_blitz.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "ig_1804291823906",
+                "caption": (
                     "⚙️ SEGURIDAD Y PRECISIÓN EN TU MOTOR.\n"
                     "Kit de Distribución Gates Oficial con Tensor Automático.\n"
                     "100% Genuino con Factura oficial A/B y trazabilidad comprobable de fábrica.\n"
@@ -222,7 +237,22 @@ class MetaInstagramClient:
                 "timestamp": now
             },
             {
-                "id": "ig_1804291823906",
+                "id": "ig_1804291823907",
+                "caption": (
+                    "🔋 MÁXIMA POTENCIA DE ARRANQUE GARANTIZADA.\n"
+                    "Batería Moura 12V 75Ah con aleación plata de libre mantenimiento.\n"
+                    "Ideal para camionetas Toyota Hilux, Ford Ranger, VW Amarok y utilitarios.\n"
+                    "Instalación y testeo de alternador bonificado en nuestro local de Pellegrini 1320.\n"
+                    "Precio en oferta: $154.000 con entrega de batería usada.\n"
+                    "#Repuesto #Moura #Baterias #Hilux #Amarok #ServicioShowroom"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/banner_main.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "ig_1804291823908",
                 "caption": (
                     "🛡️ CENTRO TÉCNICO OFICIAL VIGIA Y VIESA.\n"
                     "Protector automático de motor Vigia: calibración computarizada e instalación matriculada.\n"
@@ -236,12 +266,27 @@ class MetaInstagramClient:
                 "timestamp": now
             },
             {
-                "id": "ig_1804291823907",
+                "id": "ig_1804291823909",
                 "caption": (
                     "🪖 Casco Integral Homologado con Visor Antirrayas.\n"
                     "Máxima protección y confort para ciudad y ruta. Talles S, M, L, XL.\n"
                     "Precio especial de temporada: $58.000.\n"
                     "#Accesorio #Casco #SeguridadVial #AlbarracinMotos"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/banner_main.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "ig_1804291823910",
+                "caption": (
+                    "⛓️ TRANSMISIÓN REFORZADA PARA ALTO RENDIMIENTO.\n"
+                    "Kit de Transmisión con cadena O-Ring dorada, piñón templado y corona tratada térmicamente.\n"
+                    "Disponible para Honda Tornado 250, Yamaha FZ, Titan 150 y Rouser NS200.\n"
+                    "Mayor durabilidad y resistencia al desgaste en tierra y asfalto.\n"
+                    "Precio promocional: $74.500. Envíos inmediatos o colocación en taller.\n"
+                    "#Repuesto #Transmision #Honda #Yamaha #MotosChabas #AlbarracinMotos"
                 ),
                 "media_type": "IMAGE",
                 "media_url": "assets/banner_main.jpg",
