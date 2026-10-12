@@ -964,7 +964,7 @@ function renderCatalog() {
     filteredIg.forEach(product => {
       const formattedPrice = (product.price && product.price > 0)
         ? formatCurrency(product.price)
-        : '<span style="font-size: 0.92rem; color: var(--text-secondary); font-weight:600;">Precio a consultar</span>';
+        : '<span style="font-size: 0.85rem; color: var(--text-secondary); font-weight:600;">Precio a consultar</span>';
       
       const catName = product.category === 'motos' ? 'Moto'
         : product.category === 'repuestos' ? 'Repuesto'
@@ -973,7 +973,7 @@ function renderCatalog() {
         : 'Producto';
       const categoryBadge = `<span class="badge badge-blue">${catName}</span>`;
       const galleryPill = (product.gallery && product.gallery.length > 1)
-        ? `<span class="product-gallery-pill">📷 ${product.gallery.length} fotos</span>`
+        ? `<span class="product-gallery-pill">📷 ${product.gallery.length}</span>`
         : '';
 
       const whatsappMsg = `Hola Albarracín. Estoy consultando por ${product.name}, publicado en su catálogo web. ¿Me indican disponibilidad y precio actual? (ID: ${product.ig_media_id || product.id})`;
@@ -992,23 +992,23 @@ function renderCatalog() {
             </button>
           </div>
           <div class="product-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
               <span class="product-cat">${product.brand ? product.brand : 'Albarracín Motos'} ${product.model ? '• ' + product.model : ''}</span>
             </div>
             <h3 class="product-title" onclick="openProductDetail('${product.id}')">${product.name}</h3>
-            <p class="product-desc" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.desc}</p>
+            <p class="product-desc">${product.desc}</p>
             
-            <div class="product-ig-actions">
-              <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="product-ig-btn btn-ig-whatsapp" onclick="event.stopPropagation();">
-                <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.19 1.9 5.86L2.5 22l4.31-1.37C8.4 21.46 10.15 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                CONSULTAR POR WHATSAPP
-              </a>
+            <div class="product-footer" style="margin-top: 6px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08);">
+              <div class="product-price-box">
+                <span class="product-price">${formattedPrice}</span>
+              </div>
             </div>
 
-            <div class="product-footer" style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
-              <div class="product-price-box">
-                <span class="product-price" style="font-size: 1.15rem;">${formattedPrice}</span>
-              </div>
+            <div class="product-ig-actions">
+              <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="product-ig-btn btn-ig-whatsapp" onclick="event.stopPropagation();">
+                <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.19 1.9 5.86L2.5 22l4.31-1.37C8.4 21.46 10.15 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                CONSULTAR WHATSAPP
+              </a>
             </div>
           </div>
         </article>
