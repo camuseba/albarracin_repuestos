@@ -972,11 +972,6 @@ function renderCatalog() {
         : product.category === 'promociones' ? 'Oferta'
         : 'Producto';
       const categoryBadge = `<span class="badge badge-blue">${catName}</span>`;
-
-      const availabilityBadge = product.availability === 'Vendido'
-        ? '<span class="badge badge-sold">🔴 Vendido</span>'
-        : '';
-
       const galleryPill = (product.gallery && product.gallery.length > 1)
         ? `<span class="product-gallery-pill">📷 ${product.gallery.length} fotos</span>`
         : '';
@@ -990,7 +985,6 @@ function renderCatalog() {
             <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='assets/banner_main.jpg';">
             <div class="product-badges">
               ${categoryBadge}
-              ${availabilityBadge}
             </div>
             ${galleryPill}
             <button class="product-like-btn" onclick="event.stopPropagation(); toggleLike('${product.id}')" aria-label="Agregar a favoritos">
@@ -1407,10 +1401,6 @@ function openProductDetail(productId) {
       : product.category === 'promociones' ? 'Promoción Especial'
       : 'Producto Comercial';
 
-    const availabilityBadge = product.availability === 'Vendido'
-      ? '<span class="badge badge-sold" style="padding: 6px 12px; font-size: 0.85rem;">🔴 Unidad Vendida</span>'
-      : '';
-
     const whatsappMsg = `Hola Albarracín. Estoy consultando por ${product.name}, publicado en su catálogo web. ¿Me indican disponibilidad y precio actual? (ID: ${product.ig_media_id || product.id})`;
     const whatsappUrl = `https://wa.me/5493464685338?text=${encodeURIComponent(whatsappMsg)}`;
 
@@ -1432,10 +1422,7 @@ function openProductDetail(productId) {
       </div>
       <div class="detail-info-box">
         <div>
-          <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
-            ${availabilityBadge}
-          </div>
-          <h2 class="detail-title" style="margin-top: 8px;">${product.name}</h2>
+          <h2 class="detail-title" style="margin-top: 4px;">${product.name}</h2>
           
           <div style="margin: 8px 0 12px 0; display: flex; gap: 8px; flex-wrap: wrap;">
             <span class="badge" style="background: rgba(30,35,56,0.9); color: #ffffff; font-weight: 800; border: 1px solid rgba(255,255,255,0.25);">
