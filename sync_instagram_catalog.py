@@ -309,6 +309,97 @@ class MetaInstagramClient:
                 "media_url": "assets/ig_real_programa_referidos.jpg",
                 "permalink": "https://www.instagram.com/albarracinmotos/",
                 "timestamp": now
+            },
+            {
+                "id": "1804291823911",
+                "caption": (
+                    "Kayo Argentina en Albarracín Motos — Concesionario Oficial\n"
+                    "¡Línea completa Kayo oficial en nuestro showroom! 🏁\n"
+                    "Cuatriciclos y motos off-road diseñados para competición, trabajo y recreación.\n"
+                    "Modelos disponibles con entrega inmediata, repuestos garantizados y servicio postventa especializado.\n"
+                    "Showroom en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Kayo #Cuatriciclo #OffRoad #ConcesionarioOficial #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_kayo_oficial.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823912",
+                "caption": (
+                    "Bajaj Rouser NS 200 — Nueva Entrega 0km\n"
+                    "¡Felicitaciones y muchas gracias por elegirnos para retirar tu 0km! 🚀\n"
+                    "Bajaj Rouser NS 200: potencia de 24.5 CV, refrigeración líquida y tecnología triple bujía DTS-i.\n"
+                    "Salís rodando con casco y service oficial bonificado en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Bajaj #Rouser #NS200 #0km #Entrega0km #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_entrega_rouser.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823913",
+                "caption": (
+                    "Corven Triax 150 Enduro — Nueva Entrega en Albarracín Motos\n"
+                    "¡Otra máquina que sale a recorrer las calles y caminos de la región! 🏁\n"
+                    "Corven Triax 150: suspensión de largo recorrido, freno a disco delantero y confiabilidad comprobada.\n"
+                    "Showroom, venta y repuestos en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Corven #Triax150 #Enduro #Cross #0km #Entrega #AlbarracinMotos"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_entrega_cross.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823914",
+                "caption": (
+                    "Honda CB 190R — Entrega a Derian\n"
+                    "¡Felicitaciones Derian por tu nueva Honda CB 190R, a disfrutar cada kilómetro! 🔴\n"
+                    "Diseño naked deportivo, inyección electrónica PGM-FI y ciclística premium Honda.\n"
+                    "Consultanos unidades y financiación en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Honda #CB190R #Naked #Entrega0km #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_entrega_cb190_derian.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823915",
+                "caption": (
+                    "Motomel Blitz 110cc — Entrega a María Laura\n"
+                    "¡Muchas gracias María Laura por confiar en Albarracín Motos! 🛵\n"
+                    "La 110cc urbana más confiable y económica, ideal para todos los días.\n"
+                    "Showroom y taller oficial en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Moto #Motomel #Blitz110 #Entrega #0km #AlbarracinMotos #Chabás"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_entrega_110_marialaura.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
+            },
+            {
+                "id": "1804291823916",
+                "caption": (
+                    "Bicicleta Mountain Bike Moove 29'' — Entrega a Rocío\n"
+                    "¡A pedalear con todo! Felicitaciones Rocío por tu nueva Moove rodado 29. 🚴‍♀️\n"
+                    "Cuadro liviano de aluminio, 21 velocidades y frenos a disco.\n"
+                    "Encontrá tu bici con financiación en cuotas en Pellegrini 1320, Chabás.\n"
+                    "Cel: 3464 624126 / 3464 685338.\n"
+                    "#Bicicleta #Moove #Moove29 #MountainBike #Accesorios #Entrega #AlbarracinMotos"
+                ),
+                "media_type": "IMAGE",
+                "media_url": "assets/ig_real_bici_rocio.jpg",
+                "permalink": "https://www.instagram.com/albarracinmotos/",
+                "timestamp": now
             }
         ]
 

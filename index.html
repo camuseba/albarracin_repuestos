@@ -238,7 +238,7 @@
   <link rel="stylesheet" href="style.css?v=2.8">
   <link rel="stylesheet" href="loyalty.css?v=2.8">
   <link rel="stylesheet" href="mercadolibre.css?v=2.8">
-  <link rel="stylesheet" href="arcade.css?v=2.8">
+  <link rel="stylesheet" href="arcade.css?v=2.9">
 </head>
 <body>
 
@@ -572,6 +572,95 @@
             </div>
           </div>
 
+          <!-- Deck de Controles y Comandos del Juego en Curso -->
+          <div class="arcade-control-deck" id="arcade-control-deck">
+            
+            <!-- Panel Dinámico de Comandos del Juego en Curso -->
+            <div class="arcade-commands-panel" id="arcade-commands-panel" aria-label="Información de comandos del juego">
+              <div class="commands-header">
+                <div class="commands-title-box">
+                  <span class="commands-badge" id="cmd-game-badge">GAME 01 • MOTO RUSH 1984</span>
+                  <span class="commands-live-indicator">● EN VIVO</span>
+                </div>
+                <div class="commands-goal" id="cmd-game-goal">
+                  🎯 <strong>Objetivo:</strong> Recolectá llaves en mano, patentes y repuestos. Esquivá baches y autos sin stock.
+                </div>
+              </div>
+
+              <div class="commands-grid">
+                <!-- Columna Móvil / Táctil -->
+                <div class="commands-col commands-col-mobile">
+                  <div class="commands-col-header">
+                    <span class="cmd-icon">📱</span>
+                    <strong>CONTROLES PARA MÓVILES</strong>
+                  </div>
+                  <ul class="commands-list" id="cmd-list-mobile">
+                    <li><span class="cmd-tag">◀ ▶</span> Doblar y cambiar carril</li>
+                    <li><span class="cmd-tag cmd-tag-a">[A]</span> / <span class="cmd-tag">▲</span> Turbo / Acelerar</li>
+                    <li><span class="cmd-tag">▼</span> Frenar</li>
+                    <li class="cmd-touch-hint">✨ <em>¡También podés tocar la pantalla: laterales para doblar y centro para turbo!</em></li>
+                  </ul>
+                </div>
+
+                <!-- Columna Teclado Desktop -->
+                <div class="commands-col commands-col-desktop">
+                  <div class="commands-col-header">
+                    <span class="cmd-icon">⌨️</span>
+                    <strong>TECLADO PC / NOTEBOOK</strong>
+                  </div>
+                  <ul class="commands-list" id="cmd-list-desktop">
+                    <li><kbd>◀</kbd> <kbd>▶</kbd> o <kbd>A</kbd> <kbd>D</kbd> : Doblar</li>
+                    <li><kbd>▲</kbd> / <kbd>ESPACIO</kbd> o <kbd>W</kbd> : Acelerar / Turbo</li>
+                    <li><kbd>▼</kbd> o <kbd>S</kbd> : Frenar</li>
+                    <li><kbd>ENTER</kbd> : Start / Pausa</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel de Controles Virtuales Mobile (Gamepad Táctil) -->
+            <div class="arcade-controls-panel" id="arcade-controls-panel">
+              <!-- D-Pad Direccional -->
+              <div class="arcade-dpad" aria-label="Controles direccionales táctiles">
+                <button type="button" class="dpad-btn dpad-up" id="btn-dpad-up" aria-label="Arriba">▲</button>
+                <button type="button" class="dpad-btn dpad-left" id="btn-dpad-left" aria-label="Izquierda">◀</button>
+                <div class="dpad-btn dpad-center"></div>
+                <button type="button" class="dpad-btn dpad-right" id="btn-dpad-right" aria-label="Derecha">▶</button>
+                <button type="button" class="dpad-btn dpad-down" id="btn-dpad-down" aria-label="Abajo">▼</button>
+              </div>
+
+              <!-- Botones de Acción Arcade -->
+              <div class="arcade-action-cluster">
+                <div class="action-btn-wrapper">
+                  <button type="button" class="arcade-round-btn btn-arcade-start" id="btn-arcade-start" aria-label="Iniciar o Pausar">
+                    START
+                  </button>
+                  <span class="action-label" id="lbl-arcade-start">INICIAR / PAUSA</span>
+                </div>
+
+                <div class="action-btn-wrapper">
+                  <button type="button" class="arcade-round-btn btn-arcade-b" id="btn-arcade-b" aria-label="Herramienta o Acción Secundaria">
+                    B
+                  </button>
+                  <span class="action-label" id="lbl-arcade-b">HERRAMIENTA</span>
+                </div>
+
+                <div class="action-btn-wrapper">
+                  <button type="button" class="arcade-round-btn btn-arcade-a" id="btn-arcade-a" aria-label="Acción Principal o Turbo">
+                    A
+                  </button>
+                  <span class="action-label" id="lbl-arcade-a">ACCIÓN / TURBO</span>
+                </div>
+              </div>
+
+              <!-- Ayuda Teclado Desktop -->
+              <div class="arcade-keyboard-help">
+                <span>TECLADO: <kbd>◀</kbd> <kbd>▲</kbd> <kbd>▶</kbd> <kbd>▼</kbd> O <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> | ACCIÓN: <kbd>ESPACIO</kbd> | HERRAMIENTAS: <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> | START: <kbd>ENTER</kbd></span>
+              </div>
+            </div>
+
+          </div>
+
           <!-- Selector de los 4 Juegos (Cartuchos Arcade) -->
           <div class="arcade-games-selector">
             <!-- Juego 1: Moto Rush 1984 -->
@@ -647,47 +736,6 @@
             </div>
           </div>
 
-          <!-- Panel de Controles Virtuales Mobile (Gamepad Táctil) -->
-          <div class="arcade-controls-panel">
-            <!-- D-Pad Direccional -->
-            <div class="arcade-dpad" aria-label="Controles direccionales">
-              <button type="button" class="dpad-btn dpad-up" id="btn-dpad-up" aria-label="Arriba">▲</button>
-              <button type="button" class="dpad-btn dpad-left" id="btn-dpad-left" aria-label="Izquierda">◀</button>
-              <div class="dpad-btn dpad-center"></div>
-              <button type="button" class="dpad-btn dpad-right" id="btn-dpad-right" aria-label="Derecha">▶</button>
-              <button type="button" class="dpad-btn dpad-down" id="btn-dpad-down" aria-label="Abajo">▼</button>
-            </div>
-
-            <!-- Botones de Acción Arcade -->
-            <div class="arcade-action-cluster">
-              <div class="action-btn-wrapper">
-                <button type="button" class="arcade-round-btn btn-arcade-start" id="btn-arcade-start">
-                  START
-                </button>
-                <span class="action-label">INICIAR</span>
-              </div>
-
-              <div class="action-btn-wrapper">
-                <button type="button" class="arcade-round-btn btn-arcade-b" id="btn-arcade-b">
-                  B
-                </button>
-                <span class="action-label">HERRAMIENTA</span>
-              </div>
-
-              <div class="action-btn-wrapper">
-                <button type="button" class="arcade-round-btn btn-arcade-a" id="btn-arcade-a">
-                  A
-                </button>
-                <span class="action-label">ACCIÓN / TURBO</span>
-              </div>
-            </div>
-
-            <!-- Ayuda Teclado Desktop -->
-            <div class="arcade-keyboard-help">
-              <span>TECLADO: <kbd>◀</kbd> <kbd>▲</kbd> <kbd>▶</kbd> <kbd>▼</kbd> O <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> | ACCIÓN: <kbd>ESPACIO</kbd> | HERRAMIENTAS: <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> | START: <kbd>ENTER</kbd></span>
-            </div>
-          </div>
-
           <!-- Banner Inferior de Confianza Comercial & Contacto Directo -->
           <div class="arcade-trust-footer">
             <div class="trust-footer-text">
@@ -721,6 +769,33 @@
         <div class="section-title-wrapper reveal">
           <span class="section-subtitle">Nuestra Tienda</span>
           <h2 class="section-title">Catálogo Completo de Productos</h2>
+        </div>
+
+        <!-- Selector de Modo de Catálogo: Instagram Smart vs Catálogo Técnico -->
+        <div class="catalog-source-tabs reveal" id="catalog-source-selector">
+          <button type="button" class="catalog-source-btn active" id="tab-source-instagram" onclick="setCatalogSource('instagram')">
+            <span>📸</span>
+            <span>Catálogo Oficial Instagram (@albarracinmotos)</span>
+          </button>
+          <button type="button" class="catalog-source-btn" id="tab-source-technical" onclick="setCatalogSource('technical')">
+            <span>⚙️</span>
+            <span>Catálogo Técnico, Stock & Mercado Libre</span>
+          </button>
+        </div>
+
+        <!-- Barra de Estado de Sincronización Diaria Automática -->
+        <div class="catalog-sync-banner reveal" id="catalog-sync-info">
+          <div id="sync-info-title">
+            <strong>Instagram Smart Catalog:</strong> Publicaciones oficiales sincronizadas automáticamente (<span id="sync-updated-text" style="color: var(--accent-orange); font-weight: 600;">16 publicaciones en vivo</span>)
+          </div>
+          <div id="sync-info-right" class="sync-actions-group">
+            <button type="button" class="btn-catalog-refresh" id="btn-refresh-ig-catalog" onclick="refreshInstagramCatalog(true)">
+              <span>🔄 Actualizar</span>
+            </button>
+            <a href="https://www.instagram.com/albarracinmotos/" target="_blank" rel="noopener noreferrer" style="color: #ff5b93; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; padding: 5px 12px; background: rgba(225, 48, 108, 0.15); border-radius: 4px; border: 1px solid rgba(225, 48, 108, 0.3);">
+              <span>Seguir @albarracinmotos ↗</span>
+            </a>
+          </div>
         </div>
 
         <div class="catalog-layout">
@@ -1344,6 +1419,6 @@
   <script src="app.js?v=2.8"></script>
   <script src="loyalty.js?v=2.8"></script>
   <script src="mercadolibre.js?v=2.8"></script>
-  <script src="arcade.js?v=2.8"></script>
+  <script src="arcade.js?v=2.9"></script>
 </body>
 </html>

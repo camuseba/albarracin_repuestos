@@ -279,7 +279,7 @@
 
 @media (max-width: 600px) {
   .arcade-canvas-wrapper {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
     max-height: 380px;
   }
 }
@@ -449,14 +449,183 @@
 }
 
 /* ==========================================================
+   DECK DE CONTROLES Y PANEL DE COMANDOS DEL JUEGO
+   ========================================================== */
+.arcade-control-deck {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ==========================================================
+   PANEL DINÁMICO DE COMANDOS DEL JUEGO EN CURSO
+   ========================================================== */
+.arcade-commands-panel {
+  background: linear-gradient(180deg, #101522 0%, #090c14 100%);
+  border: 2px solid #232c42;
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.commands-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 12px;
+}
+
+.commands-title-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.commands-badge {
+  background: linear-gradient(135deg, #ff2a2a, #c62828);
+  color: #ffffff;
+  font-family: var(--arcade-font-pixel);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(255, 42, 42, 0.45);
+}
+
+.commands-live-indicator {
+  font-family: var(--arcade-font-pixel);
+  font-size: 0.55rem;
+  color: var(--arcade-green);
+  letter-spacing: 1px;
+  animation: liveBlink 1.4s infinite ease-in-out;
+}
+
+@keyframes liveBlink {
+  0%, 100% { opacity: 1; text-shadow: 0 0 8px var(--arcade-green-glow); }
+  50% { opacity: 0.35; text-shadow: none; }
+}
+
+.commands-goal {
+  font-size: 0.82rem;
+  color: #cdd9f4;
+  line-height: 1.45;
+  background: rgba(4, 7, 13, 0.6);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--arcade-yellow);
+}
+
+.commands-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.commands-col {
+  background: #06080e;
+  border: 1px solid #1a2236;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.commands-col-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--arcade-font-pixel);
+  font-size: 0.6rem;
+  color: var(--arcade-cyan);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #151c2e;
+  letter-spacing: 0.5px;
+}
+
+.commands-col-desktop .commands-col-header {
+  color: var(--arcade-yellow);
+}
+
+.commands-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 0.8rem;
+  color: #a4b6d6;
+}
+
+.commands-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.35;
+}
+
+.cmd-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #192134;
+  border: 1px solid #364468;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-family: var(--arcade-font-pixel);
+  font-size: 0.62rem;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.cmd-tag-a {
+  background: #801818;
+  border-color: #ff5252;
+  color: #ffffff;
+}
+
+.cmd-tag-b {
+  background: #755208;
+  border-color: #ffd740;
+  color: #ffffff;
+}
+
+.commands-list kbd {
+  background: #181d2c;
+  border: 1px solid #36425f;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--arcade-font-pixel);
+  font-size: 0.6rem;
+  color: var(--arcade-yellow);
+  box-shadow: 0 2px 0 #0d1019;
+}
+
+.cmd-touch-hint {
+  margin-top: 4px;
+  font-size: 0.74rem;
+  color: var(--arcade-green);
+  font-style: italic;
+  background: rgba(57, 255, 20, 0.08);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: block;
+  border: 1px dashed rgba(57, 255, 20, 0.25);
+}
+
+/* ==========================================================
    PANEL DE CONTROLES VIRTUALES (MOBILE & TOUCH GAMEPAD)
    ========================================================== */
 .arcade-controls-panel {
-  margin-top: 20px;
-  background: #0c0f16;
-  border: 2px solid #1f2638;
+  background: #090c13;
+  border: 2px solid #1f273b;
   border-radius: 14px;
-  padding: 16px;
+  padding: 16px 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -464,16 +633,20 @@
   gap: 16px;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 /* D-PAD / Cruceta retro */
 .arcade-dpad {
   display: grid;
-  grid-template-columns: repeat(3, 44px);
-  grid-template-rows: repeat(3, 44px);
+  grid-template-columns: repeat(3, 46px);
+  grid-template-rows: repeat(3, 46px);
   gap: 4px;
   margin: 0 auto;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .dpad-btn {
@@ -484,17 +657,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   cursor: pointer;
   touch-action: none;
-  transition: all 0.1s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.08s ease, background 0.08s ease, box-shadow 0.08s ease;
   box-shadow: 0 4px 0 #10141f;
 }
 
 .dpad-btn:active, .dpad-btn.pressed {
   background: var(--arcade-red);
+  color: #fff;
+  border-color: #ff8a80;
   transform: translateY(3px);
-  box-shadow: 0 1px 0 #10141f;
+  box-shadow: 0 1px 0 #10141f, 0 0 10px rgba(255, 42, 42, 0.6);
 }
 
 .dpad-up    { grid-column: 2; grid-row: 1; }
@@ -507,8 +684,11 @@
 .arcade-action-cluster {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   margin: 0 auto;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .action-btn-wrapper {
@@ -516,6 +696,7 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  touch-action: none;
 }
 
 .arcade-round-btn {
@@ -527,45 +708,57 @@
   align-items: center;
   justify-content: center;
   font-family: var(--arcade-font-pixel);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
   touch-action: none;
-  transition: all 0.1s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
   box-shadow: 0 5px 0 rgba(0, 0, 0, 0.7);
 }
 
 .arcade-round-btn:active, .arcade-round-btn.pressed {
   transform: translateY(4px);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+  filter: brightness(1.25);
 }
 
 .btn-arcade-a {
   background: radial-gradient(circle at 35% 35%, #ff5252, #c62828);
   color: #fff;
   border-color: #ff8a80;
+  box-shadow: 0 5px 0 #7f1616, 0 0 12px rgba(255, 82, 82, 0.35);
 }
 
 .btn-arcade-b {
   background: radial-gradient(circle at 35% 35%, #ffd740, #ff8f00);
   color: #000;
   border-color: #ffe57f;
+  box-shadow: 0 5px 0 #8f5000, 0 0 12px rgba(255, 215, 64, 0.35);
 }
 
 .btn-arcade-start {
   background: radial-gradient(circle at 35% 35%, #69f0ae, #00c853);
   color: #000;
-  width: 76px;
+  width: 78px;
   height: 42px;
   border-radius: 20px;
   font-size: 0.65rem;
+  box-shadow: 0 5px 0 #00702e, 0 0 12px rgba(0, 200, 83, 0.35);
+}
+
+.btn-arcade-start:active, .btn-arcade-start.pressed {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #00702e;
 }
 
 .action-label {
   font-family: var(--arcade-font-pixel);
-  font-size: 0.5rem;
+  font-size: 0.52rem;
   color: #8c9bbd;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
+  text-align: center;
 }
 
 /* Indicador de Ayuda para Teclado Desktop */
@@ -813,25 +1006,61 @@
   transform: translateY(-2px);
 }
 
-/* Ajustes Responsive */
-@media (max-width: 600px) {
+/* Ajustes Responsive y Optimización Móvil */
+@media (max-width: 768px) {
+  .commands-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .arcade-controls-panel {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
   .arcade-dpad {
     grid-template-columns: repeat(3, 40px);
     grid-template-rows: repeat(3, 40px);
+    gap: 3px;
+  }
+  .dpad-btn {
+    font-size: 1rem;
+  }
+  .arcade-action-cluster {
+    gap: 10px;
   }
   .arcade-round-btn {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     font-size: 0.8rem;
   }
   .btn-arcade-start {
-    width: 66px;
+    width: 62px;
     height: 38px;
-    font-size: 0.55rem;
+    font-size: 0.52rem;
+  }
+  .action-label {
+    font-size: 0.46rem;
   }
   .arcade-controls-panel {
-    padding: 12px;
-    gap: 12px;
+    padding: 10px 8px;
+    gap: 8px;
+  }
+  .commands-header {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  .commands-badge {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+  .commands-goal {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+  .commands-list {
+    font-size: 0.74rem;
   }
   .gameover-actions-grid {
     flex-direction: column;
@@ -840,5 +1069,25 @@
   .arcade-action-btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .arcade-dpad {
+    grid-template-columns: repeat(3, 36px);
+    grid-template-rows: repeat(3, 36px);
+  }
+  .arcade-round-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 0.75rem;
+  }
+  .btn-arcade-start {
+    width: 56px;
+    height: 36px;
+    font-size: 0.48rem;
+  }
+  .arcade-controls-panel {
+    padding: 8px 6px;
   }
 }

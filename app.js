@@ -613,7 +613,13 @@ async function initLiveCatalogSync() {
 // ==========================================
 // ALBARRACÍN INSTAGRAM SMART CATALOG ENGINE
 // ==========================================
-async function initInstagramSmartCatalog() {
+async function initInstagramSmartCatalog(showNotification = false) {
+  const btnRefresh = document.getElementById("btn-refresh-ig-catalog");
+  if (btnRefresh && showNotification) {
+    btnRefresh.innerHTML = '<span>⏳ Sincronizando...</span>';
+    btnRefresh.style.opacity = '0.7';
+  }
+
   try {
     const res = await fetch("catalog_instagram.json?t=" + Date.now());
     if (res.ok) {
@@ -637,18 +643,47 @@ async function initInstagramSmartCatalog() {
 
         const syncBadge = document.getElementById("sync-updated-text");
         if (syncBadge && data.formattedDate) {
-          syncBadge.textContent = `${data.products.length} publicaciones en vivo (Sync: ${data.formattedDate})`;
+          syncBadge.textContent = `${data.products.length} publicaciones sincronizadas (${data.formattedDate})`;
         }
 
         renderBrandFilters();
-        renderCatalog();
+        if (state.catalogSource === "instagram") {
+          renderCatalog();
+        }
         console.log(`[ALBARRACÍN] Instagram Smart Catalog activo (${data.products.length} publicaciones de @albarracinmotos).`);
+
+        if (showNotification && typeof showToast === "function") {
+          showToast(`¡Catálogo al día! ${data.products.length} publicaciones de Instagram sincronizadas.`);
+        }
       }
     }
   } catch (e) {
     console.warn("[ALBARRACÍN] Error al cargar Instagram Smart Catalog:", e);
+  } finally {
+    if (btnRefresh) {
+      btnRefresh.innerHTML = '<span>🔄 Actualizar</span>';
+      btnRefresh.style.opacity = '1';
+    }
   }
 }
+
+function refreshInstagramCatalog(showToastFeedback = false) {
+  return initInstagramSmartCatalog(showToastFeedback);
+}
+window.refreshInstagramCatalog = refreshInstagramCatalog;
+
+// Sincronización automática periódica en segundo plano cada 15 minutos y al reactivar la pestaña
+setInterval(() => {
+  if (state.catalogSource === "instagram") {
+    initInstagramSmartCatalog(false);
+  }
+}, 15 * 60 * 1000);
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && state.catalogSource === "instagram") {
+    initInstagramSmartCatalog(false);
+  }
+});
 
 function setCatalogSource(source) {
   state.catalogSource = source;
@@ -670,11 +705,16 @@ function setCatalogSource(source) {
       syncBadgeWrapper.style.borderColor = "rgba(225, 48, 108, 0.3)";
     }
     if (syncLeft) {
-      syncLeft.innerHTML = `<strong>Instagram Smart Catalog:</strong> Publicaciones oficiales sincronizadas a las 03:30 AM (<span id="sync-updated-text" style="color: var(--accent-orange); font-weight: 600;">${state.instagramSyncInfo ? state.instagramSyncInfo.formattedDate : 'Actualizado en vivo'}</span>)`;
+      const syncDate = state.instagramSyncInfo ? state.instagramSyncInfo.formattedDate : 'Actualizado en vivo';
+      const count = state.instagramProducts && state.instagramProducts.length ? state.instagramProducts.length : 16;
+      syncLeft.innerHTML = `<strong>Instagram Smart Catalog:</strong> Publicaciones oficiales sincronizadas automáticamente a las 03:30 AM (<span id="sync-updated-text" style="color: var(--accent-orange); font-weight: 600;">${count} publicaciones en vivo - Sync: ${syncDate}</span>)`;
     }
     if (syncRight) {
       syncRight.innerHTML = `
-        <a href="https://www.instagram.com/albarracinmotos/" target="_blank" rel="noopener noreferrer" style="color: #ff5b93; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; padding: 4px 10px; background: rgba(225, 48, 108, 0.15); border-radius: 4px; border: 1px solid rgba(225, 48, 108, 0.3);">
+        <button type="button" class="btn-catalog-refresh" id="btn-refresh-ig-catalog" onclick="refreshInstagramCatalog(true)">
+          <span>🔄 Actualizar</span>
+        </button>
+        <a href="https://www.instagram.com/albarracinmotos/" target="_blank" rel="noopener noreferrer" style="color: #ff5b93; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; padding: 5px 12px; background: rgba(225, 48, 108, 0.15); border-radius: 4px; border: 1px solid rgba(225, 48, 108, 0.3);">
           <span>Seguir @albarracinmotos ↗</span>
         </a>
       `;
@@ -689,7 +729,7 @@ function setCatalogSource(source) {
     }
     if (syncRight) {
       syncRight.innerHTML = `
-        <a href="https://listado.mercadolibre.com.ar/_CustId_3530277724" target="_blank" rel="noopener noreferrer" style="color: #ffe600; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; padding: 4px 10px; background: rgba(45, 50, 119, 0.4); border-radius: 4px; border: 1px solid rgba(255, 230, 0, 0.2);">
+        <a href="https://listado.mercadolibre.com.ar/_CustId_3530277724" target="_blank" rel="noopener noreferrer" style="color: #ffe600; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; padding: 5px 12px; background: rgba(45, 50, 119, 0.4); border-radius: 4px; border: 1px solid rgba(255, 230, 0, 0.2);">
           <span>Tienda Oficial en ML</span>
           <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
         </a>
@@ -980,20 +1020,18 @@ function renderCatalog() {
       const whatsappUrl = `https://wa.me/5493464685338?text=${encodeURIComponent(whatsappMsg)}`;
 
       html += `
-        <article class="product-card glass-panel reveal active" data-id="${product.id}">
+        <article class="product-card product-card-ig glass-panel reveal active" data-id="${product.id}">
           <div class="product-img-wrapper" onclick="openProductDetail('${product.id}')">
             <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='assets/banner_main.jpg';">
-            <div class="product-badges">
-              ${categoryBadge}
-            </div>
             ${galleryPill}
             <button class="product-like-btn" onclick="event.stopPropagation(); toggleLike('${product.id}')" aria-label="Agregar a favoritos">
               <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             </button>
           </div>
           <div class="product-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; gap: 8px;">
               <span class="product-cat">${product.brand ? product.brand : 'Albarracín Motos'} ${product.model ? '• ' + product.model : ''}</span>
+              ${categoryBadge}
             </div>
             <h3 class="product-title" onclick="openProductDetail('${product.id}')">${product.name}</h3>
             <p class="product-desc">${product.desc}</p>

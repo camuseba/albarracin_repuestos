@@ -26,7 +26,7 @@
         }
       }
       if (this.ctx && this.ctx.state === 'suspended') {
-        this.ctx.resume();
+        this.ctx.resume().catch(() => {});
       }
     }
 
@@ -162,7 +162,8 @@
   // 2. GESTOR DE ENTRADA (KEYBOARD & VIRTUAL GAMEPAD MOBILE)
   // ==========================================================
   class ArcadeInput {
-    constructor() {
+    constructor(onStartCallback) {
+      this.onStart = onStartCallback;
       this.keys = {
         left: false,
         right: false,
@@ -224,10 +225,13 @@
             break;
           case 'Enter':
             this.keys.start = true;
+            if (this.onStart) this.onStart();
+            else if (window.arcadeApp) window.arcadeApp.handleStartInput();
             break;
           case 'p':
           case 'P':
             this.keys.pause = true;
+            if (window.arcadeApp) window.arcadeApp.handleStartInput();
             break;
           case '1':
             this.keys.tool1 = true;
@@ -299,40 +303,116 @@
     }
 
     setupTouchGamepad() {
-      const bindBtn = (id, keyName) => {
+      const activePointers = new Map();
+
+      const pressButton = (el, keyName) => {
+        if (!el) return;
+        this.keys[keyName] = true;
+        el.classList.add('pressed');
+        if (window.arcadeApp && window.arcadeApp.audio) {
+          window.arcadeApp.audio.init();
+        }
+      };
+
+      const releaseButton = (el, keyName) => {
+        if (!el) return;
+        this.keys[keyName] = false;
+        el.classList.remove('pressed');
+      };
+
+      const buttons = [
+        { id: 'btn-dpad-up', key: 'up' },
+        { id: 'btn-dpad-down', key: 'down' },
+        { id: 'btn-dpad-left', key: 'left' },
+        { id: 'btn-dpad-right', key: 'right' },
+        { id: 'btn-arcade-a', key: 'action' },
+        { id: 'btn-arcade-b', key: 'tool' },
+        { id: 'btn-arcade-start', key: 'start', isStart: true }
+      ];
+
+      buttons.forEach(({ id, key, isStart }) => {
         const el = document.getElementById(id);
         if (!el) return;
 
-        const press = (e) => {
+        // Pointer Events (Multi-touch independiente y ultra reactivo)
+        el.addEventListener('pointerdown', (e) => {
           e.preventDefault();
-          this.keys[keyName] = true;
-          el.classList.add('pressed');
-          if (window.arcadeApp && window.arcadeApp.audio) {
-            window.arcadeApp.audio.init();
+          try { el.setPointerCapture(e.pointerId); } catch (_) {}
+          activePointers.set(e.pointerId, { el, key });
+          pressButton(el, key);
+          if (isStart) {
+            if (this.onStart) this.onStart();
+            else if (window.arcadeApp) window.arcadeApp.handleStartInput();
           }
-        };
+        }, { passive: false });
 
-        const release = (e) => {
+        el.addEventListener('pointerup', (e) => {
           e.preventDefault();
-          this.keys[keyName] = false;
-          el.classList.remove('pressed');
+          releaseButton(el, key);
+          activePointers.delete(e.pointerId);
+        }, { passive: false });
+
+        el.addEventListener('pointercancel', (e) => {
+          releaseButton(el, key);
+          activePointers.delete(e.pointerId);
+        }, { passive: false });
+
+        // Touch Events como fallback robusto
+        el.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          pressButton(el, key);
+          if (isStart) {
+            if (this.onStart) this.onStart();
+            else if (window.arcadeApp) window.arcadeApp.handleStartInput();
+          }
+        }, { passive: false });
+
+        el.addEventListener('touchend', (e) => {
+          e.preventDefault();
+          releaseButton(el, key);
+        }, { passive: false });
+
+        el.addEventListener('touchcancel', (e) => {
+          releaseButton(el, key);
+        }, { passive: false });
+      });
+
+      // D-Pad sliding: permitir arrastrar el dedo entre flechas sin levantarlo
+      const dpadEl = document.querySelector('.arcade-dpad');
+      if (dpadEl) {
+        const dpadKeys = {
+          'btn-dpad-up': 'up',
+          'btn-dpad-down': 'down',
+          'btn-dpad-left': 'left',
+          'btn-dpad-right': 'right'
         };
 
-        el.addEventListener('touchstart', press, { passive: false });
-        el.addEventListener('touchend', release, { passive: false });
-        el.addEventListener('touchcancel', release, { passive: false });
-        el.addEventListener('mousedown', press);
-        el.addEventListener('mouseup', release);
-        el.addEventListener('mouseleave', release);
-      };
+        const handleDpadMove = (e) => {
+          const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : null);
+          const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : null);
+          if (clientX === null || clientY === null) return;
 
-      bindBtn('btn-dpad-up', 'up');
-      bindBtn('btn-dpad-down', 'down');
-      bindBtn('btn-dpad-left', 'left');
-      bindBtn('btn-dpad-right', 'right');
-      bindBtn('btn-arcade-a', 'action');
-      bindBtn('btn-arcade-b', 'tool');
-      bindBtn('btn-arcade-start', 'start');
+          const target = document.elementFromPoint(clientX, clientY);
+          const hitBtn = target ? target.closest('.dpad-btn') : null;
+          const hitId = hitBtn ? hitBtn.id : null;
+
+          Object.entries(dpadKeys).forEach(([btnId, kName]) => {
+            const btn = document.getElementById(btnId);
+            if (btnId === hitId) {
+              if (!this.keys[kName]) {
+                this.keys[kName] = true;
+                btn?.classList.add('pressed');
+              }
+            } else if (activePointers.has(e.pointerId) && activePointers.get(e.pointerId)?.key === kName) {
+              this.keys[kName] = false;
+              btn?.classList.remove('pressed');
+            }
+          });
+        };
+
+        dpadEl.addEventListener('pointermove', handleDpadMove, { passive: true });
+        dpadEl.addEventListener('touchmove', handleDpadMove, { passive: true });
+      }
     }
   }
 
@@ -1525,7 +1605,7 @@
 
       this.ctx = this.canvas.getContext('2d');
       this.audio = new ArcadeAudio();
-      this.input = new ArcadeInput();
+      this.input = new ArcadeInput(() => this.handleStartInput());
       this.scoreManager = new ArcadeScoreManager();
 
       this.currentGameKey = 'moto';
@@ -1534,6 +1614,7 @@
       this.lastTime = 0;
 
       this.setupCanvas();
+      this.setupCanvasTouch();
       this.setupUI();
       this.setupClubAlbarracinIntegration();
       this.switchGame('moto');
@@ -1553,6 +1634,218 @@
       // Resolución nativa 480x360 nítida pixel-art
       this.canvas.width = 480;
       this.canvas.height = 360;
+    }
+
+    setupCanvasTouch() {
+      if (!this.canvas) return;
+
+      const getCoords = (e) => {
+        const rect = this.canvas.getBoundingClientRect();
+        const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+        const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+        const scaleX = this.canvas.width / rect.width;
+        const scaleY = this.canvas.height / rect.height;
+        return {
+          cx: (clientX - rect.left) * scaleX,
+          cy: (clientY - rect.top) * scaleY
+        };
+      };
+
+      const handleTouchStart = (e) => {
+        e.preventDefault();
+        this.audio.init();
+
+        if (this.state === 'ATTRACT' || this.state === 'GAMEOVER') {
+          this.startGame();
+          return;
+        }
+
+        if (this.state === 'PAUSED') {
+          this.state = 'PLAYING';
+          return;
+        }
+
+        if (this.state === 'PLAYING') {
+          const { cx, cy } = getCoords(e);
+
+          if (this.currentGameKey === 'moto') {
+            if (cx < 170) {
+              this.input.keys.left = true;
+              this.input.keys.right = false;
+            } else if (cx > 310) {
+              this.input.keys.right = true;
+              this.input.keys.left = false;
+            } else {
+              this.input.keys.action = true; // Turbo centro
+            }
+            if (cy < 140) {
+              this.input.keys.action = true; // Turbo arriba
+            }
+          } else if (this.currentGameKey === 'invaders') {
+            if (this.activeGame && this.activeGame.catcher) {
+              const halfW = this.activeGame.catcher.w / 2;
+              this.activeGame.catcher.x = Math.max(10, Math.min(this.canvas.width - this.activeGame.catcher.w - 10, cx - halfW));
+            }
+          } else if (this.currentGameKey === 'taller') {
+            // Tocar directamente las 4 herramientas en pantalla
+            const colWidth = (this.canvas.width - 50) / 2;
+            const toolBoxY = 205;
+            let tappedTool = null;
+            if (cy >= toolBoxY && cy <= toolBoxY + 38) {
+              if (cx >= 25 && cx <= 25 + colWidth) tappedTool = 1;
+              else if (cx >= 25 + colWidth && cx <= 25 + colWidth * 2) tappedTool = 2;
+            } else if (cy >= toolBoxY + 44 && cy <= toolBoxY + 82) {
+              if (cx >= 25 && cx <= 25 + colWidth) tappedTool = 3;
+              else if (cx >= 25 + colWidth && cx <= 25 + colWidth * 2) tappedTool = 4;
+            }
+            if (tappedTool && this.activeGame && this.activeGame.handleToolChoice) {
+              this.activeGame.handleToolChoice(tappedTool);
+            }
+          } else if (this.currentGameKey === 'ruta') {
+            this.input.keys.action = true; // Salto con toque en pantalla
+          }
+        }
+      };
+
+      const handleTouchMove = (e) => {
+        if (this.state !== 'PLAYING') return;
+        const { cx } = getCoords(e);
+
+        if (this.currentGameKey === 'moto') {
+          if (cx < 170) {
+            this.input.keys.left = true;
+            this.input.keys.right = false;
+          } else if (cx > 310) {
+            this.input.keys.right = true;
+            this.input.keys.left = false;
+          } else {
+            this.input.keys.left = false;
+            this.input.keys.right = false;
+          }
+        } else if (this.currentGameKey === 'invaders') {
+          if (this.activeGame && this.activeGame.catcher) {
+            const halfW = this.activeGame.catcher.w / 2;
+            this.activeGame.catcher.x = Math.max(10, Math.min(this.canvas.width - this.activeGame.catcher.w - 10, cx - halfW));
+          }
+        }
+      };
+
+      const handleTouchEnd = (e) => {
+        if (this.state === 'PLAYING') {
+          if (this.currentGameKey === 'moto') {
+            this.input.keys.left = false;
+            this.input.keys.right = false;
+            this.input.keys.action = false;
+          } else if (this.currentGameKey === 'ruta') {
+            this.input.keys.action = false;
+          }
+        }
+      };
+
+      this.canvas.addEventListener('pointerdown', handleTouchStart, { passive: false });
+      this.canvas.addEventListener('pointermove', handleTouchMove, { passive: false });
+      this.canvas.addEventListener('pointerup', handleTouchEnd, { passive: false });
+      this.canvas.addEventListener('pointercancel', handleTouchEnd, { passive: false });
+    }
+
+    handleStartInput() {
+      if (this.state === 'ATTRACT' || this.state === 'GAMEOVER') {
+        this.startGame();
+      } else if (this.state === 'PLAYING') {
+        this.state = 'PAUSED';
+      } else if (this.state === 'PAUSED') {
+        this.state = 'PLAYING';
+      }
+    }
+
+    updateGameCommands(gameKey) {
+      const badgeEl = document.getElementById('cmd-game-badge');
+      const goalEl = document.getElementById('cmd-game-goal');
+      const listMobileEl = document.getElementById('cmd-list-mobile');
+      const listDesktopEl = document.getElementById('cmd-list-desktop');
+      const lblA = document.getElementById('lbl-arcade-a');
+      const lblB = document.getElementById('lbl-arcade-b');
+
+      const data = {
+        moto: {
+          badge: 'GAME 01 • MOTO RUSH 1984',
+          goal: '🎯 <strong>Objetivo:</strong> Recolectá llaves en mano, patentes y repuestos oficiales. Esquivá baches y autos demorados sin stock.',
+          lblA: 'TURBO / ACELERAR',
+          lblB: 'BOCINA / ALERTA',
+          mobile: [
+            '<li><span class="cmd-tag">◀ ▶</span> <span>Doblar y cambiar carril</span></li>',
+            '<li><span class="cmd-tag cmd-tag-a">[A]</span> / <span class="cmd-tag">▲</span> <span>Acelerar a fondo / Turbo (+pts)</span></li>',
+            '<li><span class="cmd-tag">▼</span> <span>Frenar / Reducir velocidad</span></li>',
+            '<li class="cmd-touch-hint">✨ <em>¡Tocá los laterales de la pantalla para doblar y el centro para turbo!</em></li>'
+          ].join(''),
+          desktop: [
+            '<li><kbd>◀</kbd> <kbd>▶</kbd> o <kbd>A</kbd> <kbd>D</kbd> : Doblar / Maniobrar</li>',
+            '<li><kbd>▲</kbd> / <kbd>ESPACIO</kbd> o <kbd>W</kbd> : Turbo / Acelerar (+pts)</li>',
+            '<li><kbd>▼</kbd> o <kbd>S</kbd> : Frenar</li>',
+            '<li><kbd>ENTER</kbd> : Iniciar / Pausa</li>'
+          ].join('')
+        },
+        invaders: {
+          badge: 'GAME 02 • REPUESTOS INVADERS',
+          goal: '🎯 <strong>Objetivo:</strong> Atrapá autopartes 100% genuinas con factura oficial A/B (Gates, Sachs, Moura). ¡Evitá las piezas dudosas o truchas!',
+          lblA: 'DESPLAZAR DER.',
+          lblB: 'DESPLAZAR IZQ.',
+          mobile: [
+            '<li><span class="cmd-tag">◀ ▶</span> <span>Mover bandeja receptora de repuestos</span></li>',
+            '<li><span class="cmd-tag cmd-tag-a">[A]</span> / <span class="cmd-tag cmd-tag-b">[B]</span> <span>Desplazamiento rápido</span></li>',
+            '<li class="cmd-touch-hint">✨ <em>¡Arrastrá tu dedo por la pantalla para mover la bandeja directo a la pieza!</em></li>'
+          ].join(''),
+          desktop: [
+            '<li><kbd>◀</kbd> <kbd>▶</kbd> o <kbd>A</kbd> <kbd>D</kbd> : Mover bandeja receptora</li>',
+            '<li><kbd>ESPACIO</kbd> : Desplazamiento turbo</li>',
+            '<li><kbd>ENTER</kbd> : Iniciar / Pausa</li>'
+          ].join('')
+        },
+        taller: {
+          badge: 'GAME 03 • TALLER HERO 1984',
+          goal: '🎯 <strong>Objetivo:</strong> Diagnosticá la falla técnica y aplicá la herramienta homologada Vigia o Viesa en Pellegrini 1320 antes de agotar el tiempo.',
+          lblA: '1. VIGIA OFICIAL',
+          lblB: '2. ESCÁNER',
+          mobile: [
+            '<li><span class="cmd-tag cmd-tag-a">[A]</span> <span>1. Calibrador Vigia Protector</span></li>',
+            '<li><span class="cmd-tag cmd-tag-b">[B]</span> <span>2. Escáner Computarizado</span></li>',
+            '<li><span class="cmd-tag">▲</span> <span>3. Llave Dinamométrica</span></li>',
+            '<li><span class="cmd-tag">▼</span> <span>4. Kit Climatizador Viesa</span></li>',
+            '<li class="cmd-touch-hint">✨ <em>¡Tocá directamente el recuadro de la herramienta en la pantalla!</em></li>'
+          ].join(''),
+          desktop: [
+            '<li><kbd>1</kbd> o <kbd>ESPACIO</kbd> : 1. Calibrador Vigia</li>',
+            '<li><kbd>2</kbd> o <kbd>X</kbd> : 2. Escáner Diagnóstico</li>',
+            '<li><kbd>3</kbd> o <kbd>W</kbd> / <kbd>▲</kbd> : 3. Llave Dinamométrica</li>',
+            '<li><kbd>4</kbd> o <kbd>S</kbd> / <kbd>▼</kbd> : 4. Climatizador Viesa</li>',
+            '<li><kbd>ENTER</kbd> : Iniciar / Pausa</li>'
+          ].join('')
+        },
+        ruta: {
+          badge: 'GAME 04 • RUTA ALBARRACÍN',
+          goal: '🎯 <strong>Objetivo:</strong> Recorré la región sin intermediarios: Chabás, Casilda, Firmat, Sanford, Arequito y Venado Tuerto saltando baches y peajes.',
+          lblA: 'SALTO / ESQUIVAR',
+          lblB: 'TURBO RUTA',
+          mobile: [
+            '<li><span class="cmd-tag cmd-tag-a">[A]</span> / <span class="cmd-tag">▲</span> <span>Saltar baches, peajes y obstáculos</span></li>',
+            '<li><span class="cmd-tag">◀ ▶</span> <span>Nivelar moto en el asfalto</span></li>',
+            '<li class="cmd-touch-hint">✨ <em>¡Tocá cualquier parte de la pantalla para saltar!</em></li>'
+          ].join(''),
+          desktop: [
+            '<li><kbd>ESPACIO</kbd> o <kbd>▲</kbd> / <kbd>W</kbd> : Saltar baches y peajes</li>',
+            '<li><kbd>◀</kbd> <kbd>▶</kbd> o <kbd>A</kbd> <kbd>D</kbd> : Ajustar posición en ruta</li>',
+            '<li><kbd>ENTER</kbd> : Iniciar / Pausa</li>'
+          ].join('')
+        }
+      };
+
+      const cur = data[gameKey] || data.moto;
+      if (badgeEl) badgeEl.textContent = cur.badge;
+      if (goalEl) goalEl.innerHTML = cur.goal;
+      if (listMobileEl) listMobileEl.innerHTML = cur.mobile;
+      if (listDesktopEl) listDesktopEl.innerHTML = cur.desktop;
+      if (lblA) lblA.textContent = cur.lblA;
+      if (lblB) lblB.textContent = cur.lblB;
     }
 
     setupUI() {
@@ -1579,24 +1872,31 @@
       // Botón Start General
       const startBtn = document.getElementById('btn-arcade-start');
       if (startBtn) {
-        startBtn.addEventListener('click', () => {
-          if (this.state === 'ATTRACT' || this.state === 'GAMEOVER') {
-            this.startGame();
-          } else if (this.state === 'PAUSED') {
-            this.state = 'PLAYING';
-          }
+        startBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.handleStartInput();
         });
       }
 
-      // Botones de Pantalla Final Modal
+      // Botones de Pantalla Final Modal (Soporte directo Touch y Click)
       const restartBtn = document.getElementById('btn-gameover-restart');
       if (restartBtn) {
-        restartBtn.addEventListener('click', () => this.startGame());
+        const doRestart = (e) => {
+          e.preventDefault();
+          this.startGame();
+        };
+        restartBtn.addEventListener('click', doRestart);
+        restartBtn.addEventListener('touchend', doRestart);
       }
 
       const menuBtn = document.getElementById('btn-gameover-menu');
       if (menuBtn) {
-        menuBtn.addEventListener('click', () => this.showMenu());
+        const doMenu = (e) => {
+          e.preventDefault();
+          this.showMenu();
+        };
+        menuBtn.addEventListener('click', doMenu);
+        menuBtn.addEventListener('touchend', doMenu);
       }
     }
 
@@ -1631,6 +1931,9 @@
       document.querySelectorAll('.game-cartridge-card').forEach((c) => {
         c.classList.toggle('active', c.dataset.game === gameKey);
       });
+
+      // Actualizar información de comandos del juego activo
+      this.updateGameCommands(gameKey);
 
       // Actualizar High Score en HUD
       const hs = this.scoreManager.getHighScore(gameKey);
@@ -1714,9 +2017,32 @@
         this.activeGame.draw();
       } else if (this.state === 'ATTRACT') {
         this.drawAttractScreen();
+      } else if (this.state === 'PAUSED' && this.activeGame) {
+        this.activeGame.draw();
+        this.drawPausedScreen();
       }
 
       requestAnimationFrame(this.loop);
+    }
+
+    drawPausedScreen() {
+      const ctx = this.ctx;
+      const w = this.canvas.width;
+      const h = this.canvas.height;
+
+      ctx.fillStyle = 'rgba(4, 7, 14, 0.78)';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#ffd800';
+      ctx.font = '14px "Press Start 2P", monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('⏸️ JUEGO PAUSADO', w / 2, h / 2 - 12);
+
+      ctx.fillStyle = '#39ff14';
+      ctx.font = '7px "Press Start 2P", monospace';
+      ctx.fillText('TOCÁ START O LA PANTALLA PARA REANUDAR', w / 2, h / 2 + 18);
+
+      ctx.textAlign = 'left';
     }
 
     drawAttractScreen() {
