@@ -38,6 +38,7 @@ OUTPUT_FILE = os.path.join(BASE_DIR, "catalog_instagram.json")
 BACKUP_FILE = os.path.join(BASE_DIR, "catalog_instagram.bak.json")
 STATUS_FILE = os.path.join(BASE_DIR, "instagram_sync_state.json")
 ENV_FILE = os.path.join(BASE_DIR, ".env")
+CUSTOM_POSTS_FILE = os.path.join(BASE_DIR, "custom_instagram_posts.json")
 
 # Marcas y modelos reconocidos en el concesionario y taller
 KNOWN_BRANDS = [
@@ -481,6 +482,11 @@ class PostClassifier:
     @classmethod
     def classify(cls, post: Dict[str, Any]) -> Dict[str, Any]:
         """Clasifica y normaliza una publicación en una ficha de catálogo."""
+        if post.get("name") and post.get("category") and str(post.get("id", "")).startswith("ig_"):
+            post_copy = dict(post)
+            post_copy["last_sync"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+            return post_copy
+
         caption = post.get("caption", "").strip()
         caption_lower = caption.lower()
         text_without_shop_name = re.sub(r'albarrac[ií]n motos|@albarracinmotos|#albarracinmotos', '', caption_lower)
@@ -581,9 +587,28 @@ class InstagramCatalogManager:
             if not raw_posts:
                 raise ValueError("La API de Instagram devolvió 0 publicaciones.")
 
+            custom_posts = []
+            if os.path.exists(CUSTOM_POSTS_FILE):
+                try:
+                    with open(CUSTOM_POSTS_FILE, "r", encoding="utf-8") as f:
+                        custom_posts = json.load(f)
+                        if not isinstance(custom_posts, list):
+                            custom_posts = []
+                except Exception as ex:
+                    logger.warning(f"No se pudo leer custom_instagram_posts.json: {ex}")
+
+            combined = custom_posts + raw_posts
+            seen_ids = set()
+            unique_posts = []
+            for p in combined:
+                pid = str(p.get("id") or p.get("ig_media_id"))
+                if pid not in seen_ids:
+                    seen_ids.add(pid)
+                    unique_posts.append(p)
+
             products = []
             metrics = {
-                "total_fetched": len(raw_posts),
+                "total_fetched": len(unique_posts),
                 "motos": 0,
                 "repuestos": 0,
                 "accesorios": 0,
@@ -591,7 +616,7 @@ class InstagramCatalogManager:
                 "sold": 0
             }
 
-            for post in raw_posts:
+            for post in unique_posts:
                 item = PostClassifier.classify(post)
                 products.append(item)
                 

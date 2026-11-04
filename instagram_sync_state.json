@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-14T18:02:02.927Z",
+  "last_sync": "2026-11-04T17:09:24.588130+00:00",
   "status": "HEALTHY",
   "account": "@albarracinmotos",
   "total_products": 16,
@@ -11,5 +11,7 @@
     "promociones": 2,
     "sold": 0
   },
+  "last_error": "",
+  "note": "",
   "schedule": "03:30 AM (America/Argentina/Buenos_Aires)"
 }

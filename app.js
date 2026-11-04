@@ -631,7 +631,24 @@ async function initInstagramSmartCatalog(showNotification = false) {
           overrides = JSON.parse(localStorage.getItem("albarracin_instagram_overrides") || "{}");
         } catch (e) {}
 
-        state.instagramProducts = data.products.map(p => {
+        // Cargar publicaciones personalizadas añadidas desde el panel administrativo
+        let customPosts = [];
+        try {
+          customPosts = JSON.parse(localStorage.getItem("albarracin_instagram_custom_posts") || "[]");
+        } catch (e) {}
+
+        const mergedList = [...customPosts, ...data.products];
+        const seenIds = new Set();
+        const uniqueProducts = [];
+        mergedList.forEach(p => {
+          const pid = p.id || p.ig_media_id;
+          if (!seenIds.has(pid)) {
+            seenIds.add(pid);
+            uniqueProducts.push(p);
+          }
+        });
+
+        state.instagramProducts = uniqueProducts.map(p => {
           const override = overrides[p.id] || overrides[p.ig_media_id];
           if (override) {
             return { ...p, ...override };

@@ -18,6 +18,20 @@ const OUTPUT_FILE = path.join(BASE_DIR, 'catalog_instagram.json');
 const BACKUP_FILE = path.join(BASE_DIR, 'catalog_instagram.bak.json');
 const STATUS_FILE = path.join(BASE_DIR, 'instagram_sync_state.json');
 const ENV_FILE = path.join(BASE_DIR, '.env');
+const CUSTOM_POSTS_FILE = path.join(BASE_DIR, 'custom_instagram_posts.json');
+
+function loadCustomPosts() {
+  if (!fs.existsSync(CUSTOM_POSTS_FILE)) return [];
+  try {
+    const raw = fs.readFileSync(CUSTOM_POSTS_FILE, 'utf-8');
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    console.warn('[INSTAGRAM_SYNC] Aviso: No se pudo leer custom_instagram_posts.json:', e.message);
+    return [];
+  }
+}
+
 
 const KNOWN_BRANDS = [
   "Honda", "Yamaha", "Motomel", "Corven", "Bajaj", "Kawasaki", "Suzuki",
@@ -167,6 +181,12 @@ class PostClassifier {
   }
 
   static classify(post) {
+    if (post.name && post.category && post.id && String(post.id).startsWith('ig_')) {
+      return {
+        ...post,
+        last_sync: new Date().toISOString()
+      };
+    }
     const caption = (post.caption || '').trim();
     const captionLower = caption.toLowerCase();
     const textWithoutShopName = captionLower
@@ -428,10 +448,23 @@ async function runSync(options = {}) {
       throw new Error('No se recuperaron publicaciones de Instagram.');
     }
 
-    const products = [];
-    const metrics = { total_fetched: rawPosts.length, motos: 0, repuestos: 0, accesorios: 0, promociones: 0, sold: 0 };
+    const customPosts = loadCustomPosts();
+    // Las publicaciones personalizadas/manuales se colocan primero para destacar lo más reciente
+    const combined = [...customPosts, ...rawPosts];
+    const seenIds = new Set();
+    const uniquePosts = [];
+    combined.forEach(p => {
+      const pid = String(p.id || p.ig_media_id);
+      if (!seenIds.has(pid)) {
+        seenIds.add(pid);
+        uniquePosts.push(p);
+      }
+    });
 
-    rawPosts.forEach(post => {
+    const products = [];
+    const metrics = { total_fetched: uniquePosts.length, motos: 0, repuestos: 0, accesorios: 0, promociones: 0, sold: 0 };
+
+    uniquePosts.forEach(post => {
       const item = PostClassifier.classify(post);
       products.push(item);
 

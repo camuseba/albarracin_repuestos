@@ -1,6 +1,6 @@
 {
-  "syncTimestamp": "2026-10-09T18:29:47.322274+00:00",
-  "formattedDate": "09/10/2026 15:29",
+  "syncTimestamp": "2026-11-04T17:07:53.968321+00:00",
+  "formattedDate": "04/11/2026 14:07",
   "sellerId": "3530277724",
   "sellerStoreUrl": "https://listado.mercadolibre.com.ar/_CustId_3530277724",
   "syncSource": "catalogo_base_albarracin",
@@ -28,7 +28,7 @@
       "promo": true,
       "oldPrice": 10800000,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-YAMAHA-R3",
@@ -50,7 +50,7 @@
       },
       "promo": false,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-MOTOMEL-BLITZ",
@@ -73,7 +73,7 @@
       "promo": true,
       "oldPrice": 1850000,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-CORVEN-TRIAX",
@@ -95,7 +95,7 @@
       },
       "promo": false,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-INJ-BOSCH",
@@ -118,7 +118,7 @@
       "promo": true,
       "oldPrice": 92000,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-SONDA-DELPHI",
@@ -139,7 +139,7 @@
       },
       "promo": false,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-KIT-DIST-GATES",
@@ -161,7 +161,7 @@
       "promo": true,
       "oldPrice": 72500,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-EMBRAGUE-SACHS",
@@ -182,7 +182,7 @@
       },
       "promo": false,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-VIGIA-500",
@@ -204,7 +204,7 @@
       "promo": true,
       "oldPrice": 460000,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     },
     {
       "id": "MLA-VIESA-INTELLIGENCE",
@@ -225,7 +225,7 @@
       },
       "promo": false,
       "source": "catalogo_oficial",
-      "updatedAt": "2026-10-09T18:29:47.322274+00:00"
+      "updatedAt": "2026-11-04T17:07:53.968321+00:00"
     }
   ]
 }

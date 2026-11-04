@@ -42,8 +42,23 @@ jobs:
           DNRPA_TIMEOUT_SECONDS: ${{ vars.DNRPA_TIMEOUT_SECONDS || '15' }}
         run: python dnrpa_sync.py --run-now
 
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sincronizar Albarracin Instagram Smart Catalog (@albarracinmotos)
+        env:
+          INSTAGRAM_ENABLED: ${{ vars.INSTAGRAM_ENABLED || 'true' }}
+          INSTAGRAM_ACCOUNT_USERNAME: ${{ vars.INSTAGRAM_ACCOUNT_USERNAME || 'albarracinmotos' }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_APP_ID: ${{ secrets.INSTAGRAM_APP_ID }}
+          INSTAGRAM_APP_SECRET: ${{ secrets.INSTAGRAM_APP_SECRET }}
+        run: node sync_instagram_catalog.js --run-now
+
       - name: Commitear base actualizada hacia Netlify
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(cron): actualizacion diaria de base vehicular compatibility_db.json [skip ci]"
-          file_pattern: "compatibility_db.json club_albarracin_fidelizacion/compatibility_db.json"
+          commit_message: "chore(cron): actualizacion diaria de catalogos vehicular e Instagram [skip ci]"
+          file_pattern: "compatibility_db.json club_albarracin_fidelizacion/compatibility_db.json catalog_instagram.json instagram_sync_state.json"

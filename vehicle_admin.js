@@ -575,8 +575,25 @@
       };
 
       const lastSync = (igData && igData.formattedDate) || (stateData && stateData.last_sync) || "12/10/2026 03:30 AM";
-      const products = (igData && igData.products) || [];
+      // Cargar publicaciones personalizadas locales
+      let customPosts = [];
+      try {
+        customPosts = JSON.parse(localStorage.getItem("albarracin_instagram_custom_posts") || "[]");
+      } catch (e) {}
+
+      const allProducts = [...customPosts, ...products];
       const overrides = JSON.parse(localStorage.getItem("albarracin_instagram_overrides") || "{}");
+
+      const computedMetrics = {
+        total_fetched: allProducts.length,
+        motos: allProducts.filter(p => (overrides[p.id]?.category || p.category) === 'motos').length,
+        repuestos: allProducts.filter(p => (overrides[p.id]?.category || p.category) === 'repuestos').length,
+        accesorios: allProducts.filter(p => (overrides[p.id]?.category || p.category) === 'accesorios').length,
+        promociones: allProducts.filter(p => (overrides[p.id]?.category || p.category) === 'promociones').length,
+        sold: allProducts.filter(p => (overrides[p.id]?.availability || p.availability) === 'Vendido').length
+      };
+
+      const lastSync = (igData && igData.formattedDate) || (stateData && stateData.last_sync) || "Sincronizado hoy";
 
       content.innerHTML = `
         <div style="display: flex; flex-direction: column; gap: 20px;">
@@ -589,19 +606,70 @@
               <div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <h4 style="margin: 0; font-size: 1.15rem; color: #ffffff; font-weight: 800;">Albarracín Instagram Smart Catalog</h4>
-                  <span style="background: #10b981; color: #042f1a; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">CONEXIÓN OFICIAL META</span>
+                  <span style="background: #10b981; color: #042f1a; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">SINCRONIZACIÓN AUTOMÁTICA ACTIVA</span>
                 </div>
                 <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: #cbd5e1;">
-                  Cuenta autorizada: <a href="https://www.instagram.com/albarracinmotos/" target="_blank" style="color: #ff5b93; font-weight: 700; text-decoration: none;">@albarracinmotos ↗</a> &bull; Última sincronización: <strong>${lastSync}</strong> &bull; Cron diario: <strong>03:30 AM Argentina</strong> (UTC-3)
+                  Cuenta: <a href="https://www.instagram.com/albarracinmotos/" target="_blank" style="color: #ff5b93; font-weight: 700; text-decoration: none;">@albarracinmotos ↗</a> &bull; Última corrida: <strong>${lastSync}</strong> &bull; Tarea Programada: <strong>03:30 AM</strong> (con recuperación al encender la PC)
                 </p>
               </div>
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button onclick="window.VEHICLE_ADMIN.toggleNewPostForm()" style="background: #3b82f6; color: white; font-weight: 800; font-size: 0.82rem; border: none; padding: 9px 16px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                ➕ Nueva Publicación
+              </button>
               <button onclick="window.VEHICLE_ADMIN.syncInstagramNow()" id="btn-ig-sync-now" style="background: #25d366; color: #042f1a; font-weight: 800; font-size: 0.82rem; border: none; padding: 9px 16px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-                🔄 Sincronizar Ahora
+                🔄 Actualizar Catálogo
               </button>
               <button onclick="window.VEHICLE_ADMIN.revertInstagramSync()" style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5; font-weight: 700; font-size: 0.82rem; padding: 9px 14px; border-radius: 6px; cursor: pointer;">
                 ⏪ Revertir Cambios
+              </button>
+            </div>
+          </div>
+
+          <!-- Formulario Nueva Publicación (Oculto por defecto) -->
+          <div id="ig-new-post-form" style="display: none; background: #1e293b; border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 8px; padding: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+              <h4 style="margin: 0; color: #60a5fa; font-size: 1rem; font-weight: 800;">📸 Publicar Nuevo Producto / Post de Instagram en el Catálogo</h4>
+              <button onclick="window.VEHICLE_ADMIN.toggleNewPostForm()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">✕</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; font-weight: 700;">Título Comercial (Moto / Repuesto)</label>
+                <input type="text" id="new-ig-name" placeholder="Ej: Honda Tornado XR 250 2024" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: white; padding: 8px 10px; border-radius: 4px; font-size: 0.8rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; font-weight: 700;">Categoría</label>
+                <select id="new-ig-category" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: white; padding: 8px 10px; border-radius: 4px; font-size: 0.8rem;">
+                  <option value="motos">Motos (0km / Usadas)</option>
+                  <option value="repuestos">Repuestos & Autopartes</option>
+                  <option value="accesorios">Accesorios & Cascos</option>
+                  <option value="promociones">Promociones & Ofertas</option>
+                </select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; font-weight: 700;">Precio en Pesos ($ ARS)</label>
+                <input type="number" id="new-ig-price" placeholder="Ej: 7500000 (Opcional)" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: white; padding: 8px 10px; border-radius: 4px; font-size: 0.8rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; font-weight: 700;">Disponibilidad</label>
+                <select id="new-ig-avail" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: white; padding: 8px 10px; border-radius: 4px; font-size: 0.8rem;">
+                  <option value="Disponible">Disponible</option>
+                  <option value="Consultar">Consultar Precio/Stock</option>
+                  <option value="Vendido">Vendido</option>
+                </select>
+              </div>
+              <div style="grid-column: 1 / -1;">
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; font-weight: 700;">Foto del Producto (URL de imagen web o archivo local ej: assets/banner_main.jpg)</label>
+                <input type="text" id="new-ig-image" placeholder="https://... o assets/banner_main.jpg" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: white; padding: 8px 10px; border-radius: 4px; font-size: 0.8rem;">
+              </div>
+              <div style="grid-column: 1 / -1;">
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; font-weight: 700;">Enlace a la Publicación de Instagram</label>
+                <input type="text" id="new-ig-permalink" placeholder="https://www.instagram.com/p/..." style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: white; padding: 8px 10px; border-radius: 4px; font-size: 0.8rem;">
+              </div>
+            </div>
+            <div style="margin-top: 14px; display: flex; justify-content: flex-end; gap: 10px;">
+              <button onclick="window.VEHICLE_ADMIN.saveNewPost()" style="background: #25d366; color: #042f1a; font-weight: 800; font-size: 0.82rem; border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer;">
+                💾 Guardar e Incorporar a la Web
               </button>
             </div>
           </div>
@@ -612,27 +680,27 @@
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
             <div style="background: #1e293b; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; text-align: center;">
               <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Publicaciones</div>
-              <div style="font-size: 1.4rem; color: #ffffff; font-weight: 800; margin-top: 4px;">${metrics.total_fetched || 0}</div>
+              <div style="font-size: 1.4rem; color: #ffffff; font-weight: 800; margin-top: 4px;">${computedMetrics.total_fetched}</div>
             </div>
             <div style="background: #1e293b; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; text-align: center;">
               <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Motos</div>
-              <div style="font-size: 1.4rem; color: #38bdf8; font-weight: 800; margin-top: 4px;">${metrics.motos || 0}</div>
+              <div style="font-size: 1.4rem; color: #38bdf8; font-weight: 800; margin-top: 4px;">${computedMetrics.motos}</div>
             </div>
             <div style="background: #1e293b; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; text-align: center;">
               <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Repuestos</div>
-              <div style="font-size: 1.4rem; color: #a78bfa; font-weight: 800; margin-top: 4px;">${metrics.repuestos || 0}</div>
+              <div style="font-size: 1.4rem; color: #a78bfa; font-weight: 800; margin-top: 4px;">${computedMetrics.repuestos}</div>
             </div>
             <div style="background: #1e293b; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; text-align: center;">
               <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Accesorios</div>
-              <div style="font-size: 1.4rem; color: #34d399; font-weight: 800; margin-top: 4px;">${metrics.accesorios || 0}</div>
+              <div style="font-size: 1.4rem; color: #34d399; font-weight: 800; margin-top: 4px;">${computedMetrics.accesorios}</div>
             </div>
             <div style="background: #1e293b; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; text-align: center;">
               <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Promociones</div>
-              <div style="font-size: 1.4rem; color: #fbbf24; font-weight: 800; margin-top: 4px;">${metrics.promociones || 0}</div>
+              <div style="font-size: 1.4rem; color: #fbbf24; font-weight: 800; margin-top: 4px;">${computedMetrics.promociones}</div>
             </div>
             <div style="background: #1e293b; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; text-align: center;">
-              <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Vendidos / Despub.</div>
-              <div style="font-size: 1.4rem; color: #f87171; font-weight: 800; margin-top: 4px;">${metrics.sold || 0}</div>
+              <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Vendidos</div>
+              <div style="font-size: 1.4rem; color: #f87171; font-weight: 800; margin-top: 4px;">${computedMetrics.sold}</div>
             </div>
           </div>
 
@@ -663,19 +731,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  ${products.map(p => {
+                  ${allProducts.map(p => {
                     const override = overrides[p.id] || overrides[p.ig_media_id] || {};
                     const effectiveName = override.name || p.name;
                     const effectiveCat = override.category || p.category;
                     const effectivePrice = override.price !== undefined ? override.price : (p.price || "");
                     const effectiveAvail = override.availability || p.availability || "Disponible";
+                    const isManual = p.source === 'manual_custom';
 
                     return `
                       <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); color: #e2e8f0;" id="ig-row-${p.id}">
                         <td style="padding: 10px 8px; vertical-align: middle;">
                           <div style="display: flex; align-items: center; gap: 8px;">
                             <img src="${p.image}" alt="" style="width: 44px; height: 44px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2);" onerror="this.src='assets/banner_main.jpg';">
-                            <span style="font-family: monospace; font-size: 0.7rem; color: #94a3b8;">${p.ig_media_id}</span>
+                            <div>
+                              <div style="font-family: monospace; font-size: 0.7rem; color: #94a3b8;">${p.ig_media_id}</div>
+                              ${isManual ? '<span style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.65rem; padding: 1px 4px; border-radius: 3px; font-weight: 700;">Manual</span>' : ''}
+                            </div>
                           </div>
                         </td>
                         <td style="padding: 10px 8px;">
@@ -699,10 +771,15 @@
                             <option value="Vendido" ${effectiveAvail === 'Vendido' ? 'selected' : ''}>Vendido</option>
                           </select>
                         </td>
-                        <td style="padding: 10px 8px; text-align: right;">
-                          <button onclick="window.VEHICLE_ADMIN.saveProductOverride('${p.id}')" style="background: #3b82f6; border: none; color: white; padding: 6px 12px; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">
+                        <td style="padding: 10px 8px; text-align: right; white-space: nowrap;">
+                          <button onclick="window.VEHICLE_ADMIN.saveProductOverride('${p.id}')" style="background: #3b82f6; border: none; color: white; padding: 6px 10px; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">
                             Guardar
                           </button>
+                          ${isManual ? `
+                            <button onclick="window.VEHICLE_ADMIN.deleteCustomPost('${p.id}')" title="Eliminar publicación personalizada" style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; margin-left: 4px;">
+                              🗑️
+                            </button>
+                          ` : ''}
                         </td>
                       </tr>
                     `;
@@ -713,6 +790,97 @@
           </div>
         </div>
       `;
+    },
+
+    toggleNewPostForm: function () {
+      const form = document.getElementById("ig-new-post-form");
+      if (form) {
+        form.style.display = form.style.display === "none" ? "block" : "none";
+      }
+    },
+
+    saveNewPost: function () {
+      const name = document.getElementById("new-ig-name")?.value.trim();
+      const category = document.getElementById("new-ig-category")?.value || "motos";
+      const priceVal = document.getElementById("new-ig-price")?.value;
+      const avail = document.getElementById("new-ig-avail")?.value || "Disponible";
+      const image = document.getElementById("new-ig-image")?.value.trim() || "assets/banner_main.jpg";
+      const permalink = document.getElementById("new-ig-permalink")?.value.trim() || "https://www.instagram.com/albarracinmotos/";
+
+      if (!name) {
+        alert("Por favor ingresá un título o nombre para la publicación.");
+        return;
+      }
+
+      const newId = "ig_custom_" + Date.now();
+      const price = priceVal !== "" ? parseFloat(priceVal) : null;
+      const formattedPrice = price !== null ? "$ " + Math.round(price).toLocaleString("es-AR") : "Consultar";
+
+      const newPost = {
+        id: newId,
+        ig_media_id: String(Date.now()).slice(-8),
+        permalink: permalink,
+        name: name,
+        category: category,
+        brand: "Albarracín",
+        model: name,
+        year: null,
+        displacement: null,
+        desc: name,
+        price: price,
+        formattedPrice: formattedPrice,
+        currency: "ARS",
+        availability: avail,
+        image: image,
+        gallery: [image],
+        media_type: "IMAGE",
+        timestamp: new Date().toISOString(),
+        last_sync: new Date().toISOString(),
+        validation_status: avail === "Vendido" ? "sold" : "verified",
+        source: "manual_custom"
+      };
+
+      let customPosts = [];
+      try {
+        customPosts = JSON.parse(localStorage.getItem("albarracin_instagram_custom_posts") || "[]");
+      } catch (e) {}
+
+      customPosts.unshift(newPost);
+      localStorage.setItem("albarracin_instagram_custom_posts", JSON.stringify(customPosts));
+
+      const fb = document.getElementById("ig-action-feedback");
+      if (fb) {
+        fb.innerHTML = `<span style="color: #10b981;">✓ Publicación "${name}" agregada exitosamente y publicada en la web.</span>`;
+      }
+
+      if (typeof initInstagramSmartCatalog === "function") {
+        initInstagramSmartCatalog();
+      }
+
+      this.renderInstagramTab();
+    },
+
+    deleteCustomPost: function (id) {
+      if (confirm("¿Estás seguro de eliminar esta publicación personalizada?")) {
+        let customPosts = [];
+        try {
+          customPosts = JSON.parse(localStorage.getItem("albarracin_instagram_custom_posts") || "[]");
+        } catch (e) {}
+
+        customPosts = customPosts.filter(p => p.id !== id && p.ig_media_id !== id);
+        localStorage.setItem("albarracin_instagram_custom_posts", JSON.stringify(customPosts));
+
+        if (typeof initInstagramSmartCatalog === "function") {
+          initInstagramSmartCatalog();
+        }
+
+        const fb = document.getElementById("ig-action-feedback");
+        if (fb) {
+          fb.innerHTML = '<span style="color: #f59e0b;">✓ Publicación eliminada.</span>';
+        }
+
+        this.renderInstagramTab();
+      }
     },
 
     saveProductOverride: function (productId) {
@@ -750,16 +918,16 @@
       const fb = document.getElementById("ig-action-feedback");
       const btn = document.getElementById("btn-ig-sync-now");
       if (btn) btn.disabled = true;
-      if (fb) fb.innerHTML = '<span style="color: #60a5fa;">⏳ Conectando con Meta Instagram API (@albarracinmotos)...</span>';
+      if (fb) fb.innerHTML = '<span style="color: #60a5fa;">⏳ Conectando y recargando catálogo de Instagram (@albarracinmotos)...</span>';
 
       try {
         if (typeof initInstagramSmartCatalog === "function") {
           await initInstagramSmartCatalog();
         }
         if (fb) {
-          fb.innerHTML = '<span style="color: #10b981;">✓ Catálogo sincronizado exitosamente con Instagram. Los productos están actualizados en la web.</span>';
+          fb.innerHTML = '<span style="color: #10b981;">✓ Catálogo recargado exitosamente. Productos actualizados en la web.</span>';
         }
-        setTimeout(() => this.renderInstagramTab(), 1000);
+        setTimeout(() => this.renderInstagramTab(), 800);
       } catch (e) {
         if (fb) fb.innerHTML = `<span style="color: #ef4444;">Error al sincronizar: ${e.message}</span>`;
       } finally {
